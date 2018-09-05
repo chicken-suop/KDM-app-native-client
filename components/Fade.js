@@ -13,7 +13,9 @@ export default class Fade extends React.Component {
     duration: PropTypes.number,
     disableScale: PropTypes.bool,
     disableMarginLeft: PropTypes.bool,
+    disableMarginRight: PropTypes.bool,
     marginLeft: PropTypes.number,
+    marginRight: PropTypes.number,
   }
 
   static defaultProps = {
@@ -22,7 +24,9 @@ export default class Fade extends React.Component {
     children: '',
     disableScale: false,
     disableMarginLeft: false,
+    disableMarginRight: true,
     marginLeft: 10,
+    marginRight: 10,
   }
 
   constructor(props) {
@@ -62,7 +66,14 @@ export default class Fade extends React.Component {
 
   render() {
     const {
-      visible, style, marginLeft, disableScale, disableMarginLeft, ...rest
+      visible,
+      style,
+      marginLeft,
+      marginRight,
+      disableScale,
+      disableMarginLeft,
+      disableMarginRight,
+      ...rest
     } = this.props;
     const { opacity, children } = this.state;
 
@@ -70,9 +81,13 @@ export default class Fade extends React.Component {
       <Animated.View
         style={[
           {
-            marginLeft: disableMarginLeft ? 1 : opacity.interpolate({
+            marginLeft: disableMarginLeft ? 0 : opacity.interpolate({
               inputRange: [0, 1],
               outputRange: [0, marginLeft],
+            }),
+            marginRight: disableMarginRight ? 0 : opacity.interpolate({
+              inputRange: [0, 1],
+              outputRange: [0, marginRight],
             }),
             opacity,
             transform: [

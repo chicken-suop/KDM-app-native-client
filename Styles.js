@@ -1,8 +1,11 @@
 import { StyleSheet } from 'react-native';
 
 export const activeColor = '#ca3724';
-export const secondaryColor = '#1e3136';
-export const trinaryColor = '#1e3338';
+export const primaryColor = '#2A454C';
+export const primaryColorBorder = '#253E44';
+export const secondaryColor = '#274047';
+export const secondaryColorBorder = '#253E44';
+export const trinaryColor = '#304E56';
 
 export const hexToRgbA = (hex, alpha = 1) => {
   const [r, g, b] = hex.match(/\w\w/g).map(x => parseInt(x, 16));

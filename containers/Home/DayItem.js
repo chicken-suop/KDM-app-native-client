@@ -3,11 +3,13 @@ import React from 'react';
 import {
   Text, View, StyleSheet, TouchableWithoutFeedback,
 } from 'react-native';
-import styles, { activeColor, secondaryColor, trinaryColor } from '../Styles';
+import styles, { activeColor } from '../../Styles';
+import { daysData } from '../../helpers/propTypes';
 import RoleRow from './RoleRow';
 import NameRow from './NameRow';
-import elemHeight from '../helpers/elemHeight';
-import Fade from './Fade';
+import elemHeight from '../../helpers/elemHeight';
+import Fade from '../../components/Fade';
+import RolesPart from './RolesPart';
 
 const dayItemStyles = StyleSheet.create({
   container: {
@@ -29,18 +31,6 @@ const dayItemStyles = StyleSheet.create({
   datePartActiveText: {
     color: activeColor,
   },
-  rolesPart: {
-    flex: 8,
-    alignItems: 'center',
-    backgroundColor: secondaryColor,
-    flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderColor: '#1d3035',
-  },
-  rolesPartOdd: {
-    backgroundColor: trinaryColor,
-    borderColor: '#1c2e32',
-  },
   rolesPartNameCol: {
     flex: 1,
   },
@@ -48,16 +38,7 @@ const dayItemStyles = StyleSheet.create({
 
 export default class DayItem extends React.Component {
   static propTypes = {
-    item: PropTypes.shape({
-      date: PropTypes.shape({
-        fullDate: PropTypes.string.isRequired,
-        month: PropTypes.string.isRequired,
-        number: PropTypes.number.isRequired,
-      }).isRequired,
-      roles: PropTypes.arrayOf(
-        RoleRow.propTypes.role, // eslint-disable-line react/forbid-foreign-prop-types
-      ).isRequired,
-    }).isRequired,
+    item: daysData.item.isRequired,
     index: PropTypes.number.isRequired,
     currentIndex: PropTypes.number.isRequired,
     isActiveDayItem: PropTypes.bool.isRequired,
@@ -71,6 +52,23 @@ export default class DayItem extends React.Component {
     this.state = { itemId: 0 };
     this.generateRows();
   }
+
+  // Temporary code to open detail view on load
+  // componentWillMount() {
+  //   const {
+  //     item,
+  //     index,
+  //     isActiveDayItem,
+  //     navigation,
+  //   } = this.props;
+  //
+  //   if (isActiveDayItem) {
+  //     navigation.push('Details', {
+  //       id: index,
+  //       item,
+  //     });
+  //   }
+  // }
 
   shouldComponentUpdate(nextProps, nextState) {
     const { itemId } = this.state;
@@ -95,7 +93,7 @@ export default class DayItem extends React.Component {
       item.roles.slice(i, i + 4).forEach((role) => {
         tmp1.push(
           <RoleRow
-            role={role}
+            itemRole={role}
             key={role.id}
           />,
         );
@@ -165,7 +163,7 @@ export default class DayItem extends React.Component {
               {item.date.number}
             </Text>
           </View>
-          <View style={[dayItemStyles.rolesPart, (index % 2 !== 0) && dayItemStyles.rolesPartOdd]}>
+          <RolesPart isOdd={index % 2 !== 0}>
             <Fade visible disableScale duration={200}>
               {this.roleRows && this.roleRows[itemId]}
             </Fade>
@@ -179,7 +177,7 @@ export default class DayItem extends React.Component {
             >
               {this.nameRows && this.nameRows[itemId]}
             </Fade>
-          </View>
+          </RolesPart>
         </View>
       </TouchableWithoutFeedback>
     );
