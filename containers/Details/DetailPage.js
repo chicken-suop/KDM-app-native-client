@@ -1,6 +1,8 @@
+import Pluralize from 'pluralize';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
+  Keyboard,
   View,
   StyleSheet,
   Text,
@@ -11,67 +13,59 @@ import {
   PanResponder,
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import Fade from '../../components/Fade';
 import styles, { secondaryColor } from '../../Styles';
-import DetailsItem from './DetailsItem';
 import { daysData } from '../../helpers/propTypes';
+import DetailsItem from './DetailsItem';
+import AddItem from './AddItem';
 
-const screenWidth = Dimensions.get('window').width;
-
-const detailPageStyles = StyleSheet.create({
-  container: {
-    width: screenWidth * 0.8,
-    height: '100%',
-    marginLeft: 2,
-    marginRight: 2,
-    borderRadius: 10,
-    backgroundColor: secondaryColor,
-    justifyContent: 'center',
-  },
-  scrollView: {
-    padding: 20,
-    flexGrow: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  header: {
-    justifyContent: 'space-around',
-  },
-  footer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
-    padding: 10,
-  },
-  closeButton: {
-    position: 'absolute',
-    right: 20,
-    padding: 10,
-  },
-});
+const windowHeight = Dimensions.get('window').height;
+const windowWidth = Dimensions.get('window').width;
 
 export default class DetailPage extends React.Component {
-  animatedVal = new Animated.Value(0)
-
   panResponder = PanResponder.create({
-    onMoveShouldSetPanResponderCapture: (e, { dx }) => {
+    onMoveShouldSetPanResponderCapture: (e, { moveX }) => {
       const { isFullScreen } = this.props;
-      return isFullScreen && Math.abs(dx) >= 20;
+      return isFullScreen
+        && (moveX <= windowWidth * 0.1
+          || moveX >= windowWidth - (windowWidth * 0.1)
+        );
     },
-    onPanResponderMove: (e, gestureState) => (
-      Math.abs(gestureState.dx) >= 30
-        ? null
-        : Animated.event([null, { dx: this.animatedVal }])(e, gestureState)
-    ),
+    onPanResponderMove: (e, gestureState) => {
+      const { animatedChangePage } = this.state;
+      return Animated.event([null, { dx: animatedChangePage }])(e, gestureState);
+    },
     onPanResponderRelease: (e, { vx, dx }) => {
+      const { animatedChangePage } = this.state;
       if (Math.abs(vx) >= 0.5 || Math.abs(dx) >= 30) {
-        const { swapPage } = this.props;
-        swapPage();
+        const { changePage } = this.props;
+        const durationOfAnimation = 100;
+        // Delay state change until page is off screen
+        changePage(dx < 0, durationOfAnimation);
+        Animated.sequence([
+          // Transition page to off screen
+          Animated.timing(animatedChangePage, {
+            toValue: dx < 0 ? -windowWidth : windowWidth,
+            duration: durationOfAnimation,
+          }),
+          // Move the page to the other side of the screen
+          Animated.timing(animatedChangePage, {
+            toValue: dx < 0 ? windowWidth : -windowWidth,
+            duration: 0,
+          }),
+          // A little delay to give setState enough time to update without seeing its effects
+          Animated.delay(10),
+          // Move the "next page" into view (really same page, but updated data);
+          Animated.timing(animatedChangePage, {
+            toValue: 0,
+            duration: durationOfAnimation,
+          }),
+        ], { useNativeDriver: true }).start();
+      } else {
+        Animated.spring(animatedChangePage, {
+          toValue: 0,
+          bounciness: 10,
+        }).start();
       }
-      Animated.spring(this.animatedVal, {
-        toValue: 0,
-        bounciness: 10,
-      }).start();
     },
   });
 
@@ -81,7 +75,7 @@ export default class DetailPage extends React.Component {
     detailPageRef: PropTypes.func.isRequired,
     openDetailPage: PropTypes.func.isRequired,
     closeDetailPage: PropTypes.func.isRequired,
-    swapPage: PropTypes.func.isRequired,
+    changePage: PropTypes.func.isRequired,
     isFullScreen: PropTypes.bool,
   };
 
@@ -92,7 +86,9 @@ export default class DetailPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      animatedAddItem: new Animated.Value(0),
       animatedOpacity: new Animated.Value(0),
+      animatedChangePage: new Animated.Value(0),
       pageTitle: props.pageTitle,
     };
     if (props.isFullScreen) {
@@ -103,8 +99,6 @@ export default class DetailPage extends React.Component {
         useNativeDriver: true,
       }).start();
     }
-
-    this.animatedVal.addListener((value) => { this.animatedValNumber = value; });
   }
 
   componentWillReceiveProps(newProps) {
@@ -161,15 +155,44 @@ export default class DetailPage extends React.Component {
     closeDetailPage();
   }
 
-  addItem = () => {
-    console.log('aa');
+  openAddItem = () => {
+    // Animation: Scroll view up and make it opaque
+    const { animatedAddItem } = this.state;
+    Animated.parallel([
+      Animated.timing(animatedAddItem, {
+        toValue: -windowHeight,
+        duration: 300,
+      }),
+    ], { useNativeDriver: true }).start(() => {
+      this.addItemSearchBox.focus();
+    });
+  }
+
+  closeAddItem = () => {
+    // Reverse of above this.openAddItem()
+    const { animatedAddItem } = this.state;
+    Keyboard.dismiss();
+    Animated.parallel([
+      Animated.timing(animatedAddItem, {
+        toValue: 0,
+        duration: 300,
+      }),
+    ], { useNativeDriver: true }).start();
   }
 
   render() {
     const {
-      item, detailPageRef, isFullScreen, openDetailPage,
+      item,
+      detailPageRef,
+      isFullScreen,
+      openDetailPage,
     } = this.props;
-    const { animatedOpacity, pageTitle } = this.state;
+    const {
+      animatedOpacity,
+      pageTitle,
+      animatedAddItem,
+      animatedChangePage,
+    } = this.state;
     const absentees = this.getAbsentees();
 
     return (
@@ -177,86 +200,78 @@ export default class DetailPage extends React.Component {
         style={[
           detailPageStyles.container,
           isFullScreen ? {
-            width: '100%', borderRadius: 0, marginLeft: 0, marginRight: 0,
+            width: '100%',
+            borderRadius: 0,
+            marginLeft: 0,
+            marginRight: 0,
           } : {},
         ]}
         ref={detailPageRef}
       >
-        <View
-          style={{ flex: 1 }}
+        <Animated.View
+          style={{
+            flex: 1,
+            position: 'relative',
+            transform: [{ translateX: animatedChangePage }, { translateY: animatedAddItem }],
+            opacity: animatedAddItem.interpolate({
+              inputRange: [-windowHeight * 0.5, 0],
+              outputRange: [0, 1],
+            }),
+          }}
           {...this.panResponder.panHandlers}
         >
-          <TouchableWithoutFeedback
-            onPress={openDetailPage}
-          >
+          <TouchableWithoutFeedback onPress={openDetailPage}>
             <View style={{ flex: 1 }}>
-              <Animated.View
-                style={{ height: '80%', transform: [{ translateX: this.animatedVal }] }}
-              >
+              <Animated.View style={{ height: '80%' }}>
                 <ScrollView
                   scrollEnabled={isFullScreen}
                   contentContainerStyle={detailPageStyles.scrollView}
                 >
-                  <Fade
-                    visible
-                    disableScale
-                    duration={200}
-                    disableMarginLeft
-                    disableMarginRight
+                  {pageTitle === 'Roles' && (
+                    item.roles.map(role => (
+                      <DetailsItem
+                        data1={`${role.person.name} ${role.person.lastName}`}
+                        data2={role.name}
+                        key={role.id}
+                      />
+                    ))
+                  )}
+                  {pageTitle === 'Songs' && (
+                    item.songs.map(song => (
+                      <DetailsItem data1={song.artist} data2={song.name} key={song.id} />
+                    ))
+                  )}
+                  {pageTitle === 'Absentees' && (
+                    absentees.map(absentee => (
+                      <DetailsItem
+                        image={absentee.image}
+                        data2={`${absentee.name} ${absentee.lastName}`}
+                        key={absentee.id}
+                      />
+                    ))
+                  )}
+                  <Animated.View
                     style={{
-                      width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center',
+                      width: '100%',
+                      opacity: animatedOpacity,
+                      transform: [{
+                        translateY: animatedOpacity.interpolate({
+                          inputRange: [0, 1],
+                          outputRange: [-80, 0],
+                        }),
+                      }],
                     }}
-                    onStartShouldSetResponder={() => isFullScreen}
                   >
-                    {pageTitle === 'Roles' && (
-                      item.roles.map(role => (
-                        <DetailsItem data1={`${role.person.name} ${role.person.lastName}`} data2={role.name} key={role.id} />
-                      ))
-                    )}
-                    {pageTitle === 'Songs' && (
-                      item.songs.map(song => (
-                        <DetailsItem data1={song.artist} data2={song.name} key={song.id} />
-                      ))
-                    )}
-                    {pageTitle === 'Absentees' && (
-                      absentees.map(absentee => (
-                        <DetailsItem
-                          image={absentee.image}
-                          data2={`${absentee.name} ${absentee.lastName}`}
-                          key={absentee.id}
-                        />
-                      ))
-                    )}
-                    <Animated.View
-                      style={{
-                        width: '100%',
-                        opacity: animatedOpacity,
-                        transform: [{
-                          translateY: animatedOpacity.interpolate({
-                            inputRange: [0, 1],
-                            outputRange: [-80, 0],
-                          }),
-                        }],
-                      }}
-                    >
-                      <DetailsItem data1="" data2="" onPress={this.addItem} />
-                    </Animated.View>
-                  </Fade>
+                    <DetailsItem data1="" data2="" onPress={this.openAddItem} />
+                  </Animated.View>
                 </ScrollView>
               </Animated.View>
               <View style={[styles.rowContainer, detailPageStyles.footer]}>
-                <Animated.View
-                  style={[
-                    detailPageStyles.pageTitle,
-                    { transform: [{ translateX: this.animatedVal }] },
-                  ]}
-                >
-                  <Fade visible disableScale duration={200} disableMarginLeft disableMarginRight>
-                    <Text style={[styles.whiteClr, styles.centerText, { fontSize: 24 }]}>
-                      {pageTitle}
-                    </Text>
-                  </Fade>
-                </Animated.View>
+                <View style={detailPageStyles.pageTitle}>
+                  <Text style={[styles.whiteClr, styles.centerText, { fontSize: 24 }]}>
+                    {pageTitle}
+                  </Text>
+                </View>
                 {isFullScreen
                   && (
                   <TouchableWithoutFeedback onPress={() => this.closeDetailPage()}>
@@ -279,8 +294,56 @@ export default class DetailPage extends React.Component {
               </View>
             </View>
           </TouchableWithoutFeedback>
-        </View>
+        </Animated.View>
+        <Animated.View
+          style={{
+            height: animatedAddItem.interpolate({
+              inputRange: [-windowHeight, 0],
+              outputRange: [windowHeight, 0],
+            }),
+          }}
+        >
+          <AddItem
+            addItemSearchBox={(addItemSearchBox) => { this.addItemSearchBox = addItemSearchBox; }}
+            closeAddItem={this.closeAddItem}
+            title={pageTitle.toUpperCase()}
+            subTitle={'Once added, you\'ll be able to assign a person.'}
+            itemSubTitle={`Add this new ${Pluralize.singular(pageTitle.toLowerCase())}`}
+          />
+        </Animated.View>
       </View>
     );
   }
 }
+
+const detailPageStyles = StyleSheet.create({
+  container: {
+    width: windowWidth * 0.8,
+    height: '100%',
+    marginLeft: 2,
+    marginRight: 2,
+    borderRadius: 10,
+    backgroundColor: secondaryColor,
+    justifyContent: 'center',
+  },
+  scrollView: {
+    padding: 20,
+    flexGrow: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  header: {
+    justifyContent: 'space-around',
+  },
+  footer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    padding: 10,
+  },
+  closeButton: {
+    position: 'absolute',
+    right: 20,
+    padding: 20,
+  },
+});

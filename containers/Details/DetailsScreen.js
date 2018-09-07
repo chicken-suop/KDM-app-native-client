@@ -16,12 +16,16 @@ import DetailPage from './DetailPage';
 import ToggleButton from '../../components/ToggleButton';
 
 const detailScreenStyles = StyleSheet.create({
+  header: {
+    height: '5%',
+  },
   container: {
     height: '80%',
     flexDirection: 'row',
     justifyContent: 'center',
   },
   footer: {
+    height: '15%',
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
@@ -36,35 +40,38 @@ const detailScreenStyles = StyleSheet.create({
 });
 
 const detailPages = ['Roles', 'Songs', 'Absentees'];
-
 const windowWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
 
 export default class DetailsScreen extends React.Component {
   currentIndex = 0
 
-  screenHeight = Dimensions.get('window').height
-
-  animatedVal = new Animated.Value(0)
-
   panResponder = PanResponder.create({
     onMoveShouldSetResponderCapture: () => true,
     onMoveShouldSetPanResponderCapture: (evt, { moveY, dy }) => (
-      dy < 0 && (moveY > this.screenHeight - (this.screenHeight * 0.2))
+      dy < 0 && (moveY > screenHeight - (screenHeight * 0.2))
     ),
-    onPanResponderMove: Animated.event([null, { dy: this.animatedVal }]),
+    onPanResponderMove: (e, gestureState) => {
+      const { goBackAV } = this.state;
+      return Animated.event([null, { dy: goBackAV }])(e, gestureState);
+    },
     onPanResponderRelease: (e, { vy, dy }) => {
+      const { goBackAV } = this.state;
       const { navigation } = this.props;
-      if (dy < 0 && (Math.abs(vy) >= 0.5 || Math.abs(dy) >= 0.5 * this.screenHeight)) {
+      if (dy < 0 && (Math.abs(vy) >= 0.5 || Math.abs(dy) >= 0.5 * screenHeight)) {
         navigation.goBack();
-        Animated.timing(this.animatedVal, {
-          toValue: -this.screenHeight,
+
+        Animated.timing(goBackAV, {
+          toValue: -screenHeight,
           duration: 400,
           easing: Easing.out(Easing.poly(4)),
+          useNativeDriver: true,
         }).start();
       } else {
-        Animated.spring(this.animatedVal, {
+        Animated.spring(goBackAV, {
           toValue: 0,
           bounciness: 10,
+          useNativeDriver: true,
         }).start();
       }
     },
@@ -78,69 +85,79 @@ export default class DetailsScreen extends React.Component {
 
   state = {
     activeDetailPage: null,
-    attendance: true,
     loading: true,
+    goBackAV: new Animated.Value(-screenHeight),
+    activePageWidth: new Animated.Value(0),
+    activePageHeight: new Animated.Value(0),
+    activePageLeft: new Animated.Value(0),
+    activePageTop: new Animated.Value(0),
   }
 
   componentWillMount() {
     this.allDetailPages = {};
     this.oldPosition = {};
-    this.position = new Animated.ValueXY();
-    this.dimensions = new Animated.ValueXY();
     this.activeDetailPageStyle = null;
-    this.setState({ usingTransitionScale: true });
-    this.transitionScale = new Animated.Value(0);
-    Animated.timing(this.transitionScale, {
-      toValue: 1,
+
+    // Animate scale transition when detail screen opens
+    const { goBackAV } = this.state;
+    Animated.timing(goBackAV, {
+      toValue: 0,
       duration: 400,
       easing: Easing.out(Easing.poly(4)),
-    }).start(() => { this.setState({ usingTransitionScale: false, loading: false }); });
+      useNativeDriver: true,
+    }).start(() => this.setState({ loading: false }));
+  }
+
+  // Get attendance data from server...
+  getAttendance = () => {
+    const naa = '';
+    return true;
   }
 
   openDetailPage = (index) => {
     if (index === this.currentIndex) {
-      this.allDetailPages[index].measure((x, y, width, height, pageX, pageY) => {
-        this.oldPosition.x = pageX;
-        this.oldPosition.y = pageY;
-        this.oldPosition.width = width;
-        this.oldPosition.height = height;
+      const {
+        activePageWidth, activePageHeight, activePageLeft, activePageTop,
+      } = this.state;
 
-        this.position.setValue({
+      this.allDetailPages[index].measure((x, y, width, height, pageX, pageY) => {
+        this.oldPosition = {
           x: pageX,
           y: pageY,
-        });
-
-        this.dimensions.setValue({
-          x: width,
-          y: height,
-        });
+          width,
+          height,
+        };
+        activePageWidth.setValue(width);
+        activePageHeight.setValue(height);
+        activePageLeft.setValue(pageX);
+        activePageTop.setValue(pageY);
 
         this.setState({
           activeDetailPage: detailPages[index],
         }, () => {
           this.viewDetailPage.measure((dx, dy, dWidth, dHeight, dPageX, dPageY) => {
             Animated.parallel([
-              Animated.timing(this.position.x, {
-                toValue: dPageX,
-                duration: 150,
-                easing: Easing.elastic(1.5),
-              }),
-              Animated.timing(this.position.y, {
-                toValue: dPageY,
-                duration: 150,
-                easing: Easing.elastic(1.5),
-              }),
-              Animated.timing(this.dimensions.x, {
+              Animated.timing(activePageWidth, {
                 toValue: dWidth,
-                duration: 150,
-                easing: Easing.elastic(1.5),
+                duration: 200,
+                easing: Easing.out(Easing.poly(4)),
               }),
-              Animated.timing(this.dimensions.y, {
+              Animated.timing(activePageHeight, {
                 toValue: dHeight,
-                duration: 150,
-                easing: Easing.elastic(1.5),
+                duration: 200,
+                easing: Easing.out(Easing.poly(4)),
               }),
-            ]).start();
+              Animated.timing(activePageLeft, {
+                toValue: dPageX,
+                duration: 200,
+                easing: Easing.out(Easing.poly(4)),
+              }),
+              Animated.timing(activePageTop, {
+                toValue: dPageY,
+                duration: 200,
+                easing: Easing.out(Easing.poly(4)),
+              }),
+            ], { useNativeDriver: true }).start();
           });
         });
       });
@@ -148,95 +165,121 @@ export default class DetailsScreen extends React.Component {
   }
 
   closeDetailPage = () => {
+    const {
+      activePageWidth, activePageHeight, activePageLeft, activePageTop,
+    } = this.state;
+
     Animated.parallel([
-      Animated.timing(this.position.x, {
-        toValue: this.oldPosition.x,
-        duration: 150,
-      }),
-      Animated.timing(this.position.y, {
-        toValue: this.oldPosition.y,
-        duration: 150,
-      }),
-      Animated.timing(this.dimensions.x, {
+      Animated.timing(activePageWidth, {
         toValue: this.oldPosition.width,
         duration: 150,
+        easing: Easing.out(Easing.poly(4)),
       }),
-      Animated.timing(this.dimensions.y, {
+      Animated.timing(activePageHeight, {
         toValue: this.oldPosition.height,
         duration: 150,
+        easing: Easing.out(Easing.poly(4)),
       }),
-    ]).start(() => {
-      this.setState({
-        activeDetailPage: null,
-      });
-    });
+      Animated.timing(activePageLeft, {
+        toValue: this.oldPosition.x,
+        duration: 150,
+        easing: Easing.out(Easing.poly(4)),
+      }),
+      Animated.timing(activePageTop, {
+        toValue: this.oldPosition.y,
+        duration: 150,
+        easing: Easing.out(Easing.poly(4)),
+      }),
+    ], { useNativeDriver: true }).start(() => this.setState({ activeDetailPage: null }));
   }
 
-  scrollToIndex = (index) => {
-    this.setState({
-      activeDetailPage: detailPages[index],
-    }, () => {
-      this.allDetailPages[index].measure((x, y, width) => {
-        this.scrollView.scrollTo({ animated: true, x: index * (width + 4) });
-      });
+  scrollToIndex = (index, delay) => {
+    setTimeout(() => this.setState({ activeDetailPage: detailPages[index] }), delay);
+    this.allDetailPages[index].measure((x, y, width) => {
+      this.scrollView.scrollTo({ animated: true, x: index * (width + 4) });
     });
   }
 
   goBack = () => {
-    this.setState({ usingTransitionScale: true });
+    const { goBackAV } = this.state;
     const { navigation } = this.props;
     navigation.goBack();
-    this.transitionScale.setValue(1);
-    Animated.timing(this.transitionScale, {
-      toValue: 0,
+
+    // Animate scale transition when leaving detail screen
+    goBackAV.setValue(0);
+    Animated.timing(goBackAV, {
+      toValue: -screenHeight,
       duration: 400,
       easing: Easing.out(Easing.poly(4)),
-    }).start(() => { this.setState({ usingTransitionScale: false }); });
+      useNativeDriver: true,
+    }).start();
   }
 
   toggleAway = () => {
-    this.setState(prevState => ({ attendance: !prevState.attendance }));
     // Send update data...
   }
 
   render() {
     const { navigation } = this.props;
     const {
-      activeDetailPage, usingTransitionScale, attendance, loading,
+      activeDetailPage,
+      loading,
+      goBackAV,
+      activePageWidth,
+      activePageHeight,
+      activePageLeft,
+      activePageTop,
     } = this.state;
     const item = navigation.getParam('item', {});
 
     const activeDetailPageStyle = {
-      width: this.dimensions.x,
-      height: this.dimensions.y,
-      left: this.position.x,
-      top: this.position.y,
+      width: activePageWidth,
+      height: activePageHeight,
+      left: activePageLeft,
+      top: activePageTop,
     };
 
     if (loading) {
+      // Display minimal view for quicker, less laggy loading (I think, need to test it)
       return (
         <View style={{ flex: 1, backgroundColor: trinaryColor }}>
           <Animated.View
             style={{
-              height: '80%',
-              borderRadius: 5,
-              margin: '10%',
-              backgroundColor: secondaryColor,
-              transform: [{ scale: this.transitionScale }],
+              flex: 1,
+              transform: [{
+                // Using interpolate so no state transitions are needed because of panResponder
+                scale: goBackAV.interpolate({
+                  inputRange: [-screenHeight, 0],
+                  outputRange: [0.6, 1],
+                }),
+              }],
             }}
-          />
-          <Animated.View
-            style={{
-              left: windowWidth * 0.8 + 4,
-              position: 'absolute',
-              height: '80%',
-              width: '100%',
-              margin: '10%',
-              borderRadius: 5,
-              backgroundColor: secondaryColor,
-              transform: [{ scale: this.transitionScale }],
-            }}
-          />
+          >
+            <View style={detailScreenStyles.header} />
+            <Animated.View
+              style={{
+                borderRadius: 10,
+                marginLeft: '10%',
+                marginRight: '10%',
+                height: '80%',
+                backgroundColor: secondaryColor,
+              }}
+            />
+            <Animated.View
+              style={{
+                borderRadius: 10,
+                marginLeft: '10%',
+                marginRight: '10%',
+                height: '80%',
+                backgroundColor: secondaryColor,
+                position: 'absolute',
+                top: '5%',
+                bottom: '15%',
+                left: windowWidth * 0.8 + 4,
+              }}
+            />
+            <View style={detailScreenStyles.footer} />
+          </Animated.View>
         </View>
       );
     }
@@ -253,18 +296,17 @@ export default class DetailsScreen extends React.Component {
             flex: 1,
             backgroundColor: trinaryColor,
             transform: [{
-              scale: usingTransitionScale
-                ? this.transitionScale
-                : this.animatedVal.interpolate({
-                  inputRange: [-this.screenHeight, 0],
-                  outputRange: [0.4, 1],
-                }),
+              // Using interpolate so no state transitions are needed because of panResponder
+              scale: goBackAV.interpolate({
+                inputRange: [-screenHeight, 0],
+                outputRange: [0.6, 1],
+              }),
             }],
 
           }}
           {...this.panResponder.panHandlers}
         >
-          <View style={{ height: '5%' }} />
+          <View style={detailScreenStyles.header} />
           <View style={detailScreenStyles.container}>
             <ScrollView
               contentContainerStyle={{ paddingLeft: 40, paddingRight: 40 }}
@@ -287,21 +329,19 @@ export default class DetailsScreen extends React.Component {
                   detailPageRef={(detailPage) => { this.allDetailPages[index] = detailPage; }}
                   openDetailPage={() => this.openDetailPage(index)}
                   closeDetailPage={() => {}}
-                  swapPage={() => {}}
+                  changePage={() => {}}
                 />
               ))}
             </ScrollView>
           </View>
           <View style={[styles.rowContainer, detailScreenStyles.footer]}>
-            <View style={styles.container}>
-              <ToggleButton
-                onPress={this.toggleAway}
-                message="ATTENDING"
-                options={['YES', 'NO']}
-                chosenOption={attendance ? 'YES' : 'NO'}
-                activeTextColor={trinaryColor}
-              />
-            </View>
+            <ToggleButton
+              onPress={this.toggleAway}
+              message="ATTENDING"
+              options={['YES', 'NO']}
+              chosenOption={this.getAttendance() ? 'YES' : 'NO'}
+              activeTextColor={trinaryColor}
+            />
             <TouchableWithoutFeedback onPress={this.goBack}>
               <View style={detailScreenStyles.closeButton}>
                 <Ionicons
@@ -319,11 +359,17 @@ export default class DetailsScreen extends React.Component {
         >
           <View style={{ flex: 1 }} ref={(view) => { this.viewDetailPage = view; }}>
             <Animated.View
-              style={[{
-                top: 0, left: 0, height: null, width: null,
-              }, activeDetailPageStyle]}
+              style={[
+                {
+                  top: 0,
+                  left: 0,
+                  height: null,
+                  width: null,
+                },
+                activeDetailPageStyle,
+              ]}
             >
-              {activeDetailPage && (
+              {!!activeDetailPage && (
                 <DetailPage
                   detailPageRef={() => {}}
                   item={item}
@@ -331,9 +377,20 @@ export default class DetailsScreen extends React.Component {
                   openDetailPage={() => {}}
                   closeDetailPage={() => { this.closeDetailPage(); }}
                   isFullScreen
-                  swapPage={
-                    () => this.scrollToIndex(detailPages.indexOf(activeDetailPage) === 0 ? 1 : 0)
-                  }
+                  changePage={(isForwards, delay) => {
+                    const index = detailPages.indexOf(activeDetailPage);
+                    if (isForwards) {
+                      this.scrollToIndex(
+                        index + 1 < detailPages.length ? index + 1 : 0,
+                        delay,
+                      );
+                    } else {
+                      this.scrollToIndex(
+                        index - 1 >= 0 ? index - 1 : detailPages.length - 1,
+                        delay,
+                      );
+                    }
+                  }}
                 />
               )}
             </Animated.View>

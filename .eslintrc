@@ -1,10 +1,10 @@
 {
     // Use the AirBnB JS styleguide - https://github.com/airbnb/javascript
-    "extends": "airbnb",
+    'extends': 'airbnb',
     // We use 'babel-eslint' mainly for React Native Classes
-    "parser": "babel-eslint",
-    "ecmaFeatures": {
-        "classes": true,
+    'parser': 'babel-eslint',
+    'ecmaFeatures': {
+        'classes': true,
     },
     // We can add/overwrite custom rules here
     rules: {
@@ -12,8 +12,10 @@
         'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx'] }],
         // React Native includes images via require('../images/example.png')
         'global-require': 'off',
+        // Let variables be defined after use
+        'no-use-before-define': ['error', { 'variables': false }]
     },
-    "env": {
-        "jest": true
+    'env': {
+        'jest': true
     }
 }

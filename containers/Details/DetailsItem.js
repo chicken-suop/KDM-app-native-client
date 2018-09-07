@@ -41,40 +41,53 @@ const detailsItemStyles = StyleSheet.create({
 });
 
 const DetailsItem = ({
-  data1, data2, image, onPress,
-}) => (
-  !onPress ? (
+  data1,
+  data2,
+  image,
+  onPress,
+}) => {
+  if (onPress) {
+    return (
+      <TouchableOpacity onPress={onPress}>
+        <View style={detailsItemStyles.container}>
+          <Feather
+            name="plus"
+            size={18}
+            color="white"
+          />
+        </View>
+      </TouchableOpacity>
+    );
+  }
+
+  return (
     <View
       style={[
         detailsItemStyles.container,
         { zIndex: 1 },
-        image && detailsItemStyles.containerImage,
+        !!image && detailsItemStyles.containerImage,
       ]}
     >
-      {image && (
+      {!!image && (
         <Image source={{ uri: image }} style={detailsItemStyles.image} resizeMode="cover" />
       )}
-      {data1 && (
+      {!!data1 && (
         <Text style={[detailsItemStyles.person, styles.whiteClr]}>
           {data1}
         </Text>
       )}
-      <Text style={[detailsItemStyles.role, styles.whiteClr, image && detailsItemStyles.roleImage]}>
+      <Text
+        style={[
+          detailsItemStyles.role,
+          styles.whiteClr,
+          !!image && detailsItemStyles.roleImage,
+        ]}
+      >
         {data2}
       </Text>
     </View>
-  ) : (
-    <TouchableOpacity onPress={onPress}>
-      <View style={detailsItemStyles.container}>
-        <Feather
-          name="plus"
-          size={18}
-          color="white"
-        />
-      </View>
-    </TouchableOpacity>
-  )
-);
+  );
+};
 
 DetailsItem.propTypes = {
   data1: PropTypes.string,

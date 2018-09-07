@@ -9,7 +9,9 @@ const NameRow = ({ person, fontSize }) => (
     numberOfLines={1}
     style={[
       styles.whiteClr,
-      { lineHeight: fontSize, fontSize, flex: 1 },
+      {
+        textAlignVertical: 'center', lineHeight: fontSize, fontSize, flex: 1,
+      },
     ]}
   >
     {person && (

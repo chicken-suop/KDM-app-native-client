@@ -19,7 +19,7 @@ export default class ToggleButton extends React.Component {
     this.state = {
       chosenOption: props.chosenOption,
       showingOptions: false,
-      chosenOptionAV: new Animated.Value(15),
+      chosenOptionAV: new Animated.Value(20),
       optionsAV: new Animated.Value(0),
     };
   }
@@ -36,14 +36,14 @@ export default class ToggleButton extends React.Component {
     if (showingOptions) {
       Animated.parallel([
         Animated.timing(chosenOptionAV, {
-          toValue: 15,
+          toValue: 20,
           duration: 150,
         }),
         Animated.timing(optionsAV, {
           toValue: 0,
           duration: 150,
         }),
-      ]).start();
+      ], { useNativeDriver: true }).start();
     } else {
       Animated.parallel([
         Animated.timing(chosenOptionAV, {
@@ -54,17 +54,17 @@ export default class ToggleButton extends React.Component {
           toValue: 30,
           duration: 150,
         }),
-      ]).start();
+      ], { useNativeDriver: true }).start();
     }
   }
 
-  handleOptionPress = (e, option) => {
+  handleOptionPress = (option) => {
     const { showingOptions } = this.state;
-    // const { onPress } = this.props;
+    const { onPress } = this.props;
     this.setState({ chosenOption: option }, () => {
       setTimeout(() => {
         this.toggleShowingOptions(showingOptions);
-        // onPress(e, option);
+        onPress(option);
       }, 150);
     });
   }
@@ -77,22 +77,19 @@ export default class ToggleButton extends React.Component {
 
     return (
       <TouchableWithoutFeedback onPress={() => this.toggleShowingOptions(showingOptions)}>
-        <View>
-          <View>
-            <Text style={[styles.whiteClr, styles.fntWt700, { fontSize: 22, marginBottom: 5 }]}>
-              {message}
-            </Text>
-          </View>
-          <Animated.View
-            style={{
-              maxHeight: chosenOptionAV,
-              overflow: 'hidden',
-            }}
+        <View style={{ alignItems: 'center' }}>
+          <Text style={[styles.whiteClr, styles.fntWt700, { fontSize: 22, marginBottom: 5 }]}>
+            {message}
+          </Text>
+          <Animated.Text
+            style={[
+              styles.whiteClr,
+              styles.centerText,
+              { maxHeight: chosenOptionAV, fontSize: 16 },
+            ]}
           >
-            <Text style={[styles.whiteClr, styles.centerText, { fontSize: 16 }]}>
-              {chosenOption}
-            </Text>
-          </Animated.View>
+            {chosenOption}
+          </Animated.Text>
           <Animated.View
             style={{
               maxHeight: optionsAV,
@@ -102,17 +99,21 @@ export default class ToggleButton extends React.Component {
             }}
           >
             {options.map(option => (
-              <TouchableWithoutFeedback
-                onPress={e => this.handleOptionPress(e, option)}
-                key={option}
-              >
-                <View
+              <TouchableWithoutFeedback onPress={() => this.handleOptionPress(option)} key={option}>
+                <Animated.View
                   style={[
-                    { padding: 5, borderRadius: 5 },
+                    {
+                      justifyContent: 'space-between',
+                      padding: optionsAV.interpolate({
+                        inputRange: [0, 30],
+                        outputRange: [0, 5],
+                      }),
+                      borderRadius: 5,
+                    },
                     option === chosenOption && { backgroundColor: '#fff' },
                   ]}
                 >
-                  <Text
+                  <Animated.Text
                     style={[
                       styles.whiteClr,
                       { fontSize: 18 },
@@ -120,8 +121,8 @@ export default class ToggleButton extends React.Component {
                     ]}
                   >
                     {option}
-                  </Text>
-                </View>
+                  </Animated.Text>
+                </Animated.View>
               </TouchableWithoutFeedback>
             ))}
           </Animated.View>

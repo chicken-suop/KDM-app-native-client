@@ -9,13 +9,25 @@ const RoleRow = ({
 }) => {
   if (typeof itemRole !== 'string') {
     return (
-      <Text style={[{ fontSize }, styles.whiteClr, !alignLeft && styles.textAlignRight]}>
+      <Text
+        style={[
+          { fontSize, textAlignVertical: 'center' },
+          styles.whiteClr,
+          !alignLeft && styles.textAlignRight,
+        ]}
+      >
         {itemRole.name.length && restrictLen > 10 ? `${itemRole.name.substring(0, 7)}...` : itemRole.name}
       </Text>
     );
   }
   return (
-    <Text style={[{ fontSize }, styles.whiteClr, !alignLeft && styles.textAlignRight]}>
+    <Text
+      style={[
+        { fontSize, textAlignVertical: 'center' },
+        styles.whiteClr,
+        !alignLeft && styles.textAlignRight,
+      ]}
+    >
       {itemRole.length && restrictLen > 10 ? `${itemRole.substring(0, 7)}...` : itemRole}
     </Text>
   );
