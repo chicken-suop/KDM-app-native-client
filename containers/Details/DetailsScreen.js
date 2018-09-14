@@ -41,7 +41,7 @@ const detailScreenStyles = StyleSheet.create({
 
 const detailPages = ['Roles', 'Songs', 'Absentees'];
 const windowWidth = Dimensions.get('window').width;
-const screenHeight = Dimensions.get('window').height;
+const windowHeight = Dimensions.get('window').height;
 
 export default class DetailsScreen extends React.Component {
   currentIndex = 0
@@ -49,7 +49,7 @@ export default class DetailsScreen extends React.Component {
   panResponder = PanResponder.create({
     onMoveShouldSetResponderCapture: () => true,
     onMoveShouldSetPanResponderCapture: (evt, { moveY, dy }) => (
-      dy < 0 && (moveY > screenHeight - (screenHeight * 0.2))
+      dy < 0 && (moveY > windowHeight - (windowHeight * 0.2))
     ),
     onPanResponderMove: (e, gestureState) => {
       const { goBackAV } = this.state;
@@ -58,11 +58,11 @@ export default class DetailsScreen extends React.Component {
     onPanResponderRelease: (e, { vy, dy }) => {
       const { goBackAV } = this.state;
       const { navigation } = this.props;
-      if (dy < 0 && (Math.abs(vy) >= 0.5 || Math.abs(dy) >= 0.5 * screenHeight)) {
+      if (dy < 0 && (Math.abs(vy) >= 0.5 || Math.abs(dy) >= 0.5 * windowHeight)) {
         navigation.goBack();
 
         Animated.timing(goBackAV, {
-          toValue: -screenHeight,
+          toValue: -windowHeight,
           duration: 400,
           easing: Easing.out(Easing.poly(4)),
           useNativeDriver: true,
@@ -86,7 +86,7 @@ export default class DetailsScreen extends React.Component {
   state = {
     activeDetailPage: null,
     loading: true,
-    goBackAV: new Animated.Value(-screenHeight),
+    goBackAV: new Animated.Value(-windowHeight),
     activePageWidth: new Animated.Value(0),
     activePageHeight: new Animated.Value(0),
     activePageLeft: new Animated.Value(0),
@@ -106,6 +106,15 @@ export default class DetailsScreen extends React.Component {
       easing: Easing.out(Easing.poly(4)),
       useNativeDriver: true,
     }).start(() => this.setState({ loading: false }));
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    const {
+      activeDetailPage,
+      loading,
+    } = this.state;
+    return nextState.loading !== loading
+      || nextState.activeDetailPage !== activeDetailPage;
   }
 
   // Get attendance data from server...
@@ -132,34 +141,29 @@ export default class DetailsScreen extends React.Component {
         activePageLeft.setValue(pageX);
         activePageTop.setValue(pageY);
 
-        this.setState({
-          activeDetailPage: detailPages[index],
-        }, () => {
-          this.viewDetailPage.measure((dx, dy, dWidth, dHeight, dPageX, dPageY) => {
-            Animated.parallel([
-              Animated.timing(activePageWidth, {
-                toValue: dWidth,
-                duration: 200,
-                easing: Easing.out(Easing.poly(4)),
-              }),
-              Animated.timing(activePageHeight, {
-                toValue: dHeight,
-                duration: 200,
-                easing: Easing.out(Easing.poly(4)),
-              }),
-              Animated.timing(activePageLeft, {
-                toValue: dPageX,
-                duration: 200,
-                easing: Easing.out(Easing.poly(4)),
-              }),
-              Animated.timing(activePageTop, {
-                toValue: dPageY,
-                duration: 200,
-                easing: Easing.out(Easing.poly(4)),
-              }),
-            ], { useNativeDriver: true }).start();
-          });
-        });
+        this.setState({ activeDetailPage: detailPages[index] });
+        Animated.parallel([
+          Animated.timing(activePageWidth, {
+            toValue: windowWidth,
+            duration: 200,
+            easing: Easing.out(Easing.poly(4)),
+          }),
+          Animated.timing(activePageHeight, {
+            toValue: windowHeight,
+            duration: 200,
+            easing: Easing.out(Easing.poly(4)),
+          }),
+          Animated.timing(activePageLeft, {
+            toValue: 0,
+            duration: 200,
+            easing: Easing.out(Easing.poly(4)),
+          }),
+          Animated.timing(activePageTop, {
+            toValue: 0,
+            duration: 200,
+            easing: Easing.out(Easing.poly(4)),
+          }),
+        ], { useNativeDriver: true }).start();
       });
     }
   }
@@ -208,7 +212,7 @@ export default class DetailsScreen extends React.Component {
     // Animate scale transition when leaving detail screen
     goBackAV.setValue(0);
     Animated.timing(goBackAV, {
-      toValue: -screenHeight,
+      toValue: -windowHeight,
       duration: 400,
       easing: Easing.out(Easing.poly(4)),
       useNativeDriver: true,
@@ -249,7 +253,7 @@ export default class DetailsScreen extends React.Component {
               transform: [{
                 // Using interpolate so no state transitions are needed because of panResponder
                 scale: goBackAV.interpolate({
-                  inputRange: [-screenHeight, 0],
+                  inputRange: [-windowHeight, 0],
                   outputRange: [0.6, 1],
                 }),
               }],
@@ -298,7 +302,7 @@ export default class DetailsScreen extends React.Component {
             transform: [{
               // Using interpolate so no state transitions are needed because of panResponder
               scale: goBackAV.interpolate({
-                inputRange: [-screenHeight, 0],
+                inputRange: [-windowHeight, 0],
                 outputRange: [0.6, 1],
               }),
             }],
@@ -335,13 +339,15 @@ export default class DetailsScreen extends React.Component {
             </ScrollView>
           </View>
           <View style={[styles.rowContainer, detailScreenStyles.footer]}>
-            <ToggleButton
-              onPress={this.toggleAway}
-              message="ATTENDING"
-              options={['YES', 'NO']}
-              chosenOption={this.getAttendance() ? 'YES' : 'NO'}
-              activeTextColor={trinaryColor}
-            />
+            <View>
+              <ToggleButton
+                onPress={this.toggleAway}
+                message="ATTENDING"
+                options={['YES', 'NO']}
+                chosenOption={this.getAttendance() ? 'YES' : 'NO'}
+                activeTextColor={trinaryColor}
+              />
+            </View>
             <TouchableWithoutFeedback onPress={this.goBack}>
               <View style={detailScreenStyles.closeButton}>
                 <Ionicons
@@ -357,7 +363,7 @@ export default class DetailsScreen extends React.Component {
           style={StyleSheet.absoluteFill}
           pointerEvents={activeDetailPage ? 'auto' : 'none'}
         >
-          <View style={{ flex: 1 }} ref={(view) => { this.viewDetailPage = view; }}>
+          <View style={{ flex: 1 }}>
             <Animated.View
               style={[
                 {

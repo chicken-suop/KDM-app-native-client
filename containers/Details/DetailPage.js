@@ -17,6 +17,7 @@ import styles, { secondaryColor } from '../../Styles';
 import { daysData } from '../../helpers/propTypes';
 import DetailsItem from './DetailsItem';
 import AddItem from './AddItem';
+import DetailsEditPage from './DetailsEditPage';
 
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
@@ -114,11 +115,14 @@ export default class DetailPage extends React.Component {
     } = this.props;
     const { animatedOpacity, pageTitle } = this.state;
 
+    if (!isFullScreen) {
+      return false;
+    }
     return (
       nextState.animatedOpacity !== animatedOpacity
-      || nextState.pageTitle !== pageTitle
-      || nextProps.item !== item
-      || nextProps.isFullScreen !== isFullScreen
+        || nextState.pageTitle !== pageTitle
+        || nextProps.item !== item
+        || nextProps.isFullScreen !== isFullScreen
     );
   }
 
@@ -196,121 +200,155 @@ export default class DetailPage extends React.Component {
     const absentees = this.getAbsentees();
 
     return (
-      <View
-        style={[
-          detailPageStyles.container,
-          isFullScreen ? {
-            width: '100%',
-            borderRadius: 0,
-            marginLeft: 0,
-            marginRight: 0,
-          } : {},
-        ]}
-        ref={detailPageRef}
-      >
-        <Animated.View
-          style={{
-            flex: 1,
-            position: 'relative',
-            transform: [{ translateX: animatedChangePage }, { translateY: animatedAddItem }],
-            opacity: animatedAddItem.interpolate({
-              inputRange: [-windowHeight * 0.5, 0],
-              outputRange: [0, 1],
-            }),
-          }}
-          {...this.panResponder.panHandlers}
+      <View>
+        <View
+          style={[
+            detailPageStyles.container,
+            isFullScreen ? {
+              width: '100%',
+              borderRadius: 0,
+              marginLeft: 0,
+              marginRight: 0,
+            } : {},
+          ]}
+          ref={detailPageRef}
         >
-          <TouchableWithoutFeedback onPress={openDetailPage}>
-            <View style={{ flex: 1 }}>
-              <Animated.View style={{ height: '80%' }}>
-                <ScrollView
-                  scrollEnabled={isFullScreen}
-                  contentContainerStyle={detailPageStyles.scrollView}
-                >
-                  {pageTitle === 'Roles' && (
-                    item.roles.map(role => (
-                      <DetailsItem
-                        data1={`${role.person.name} ${role.person.lastName}`}
-                        data2={role.name}
-                        key={role.id}
-                      />
-                    ))
-                  )}
-                  {pageTitle === 'Songs' && (
-                    item.songs.map(song => (
-                      <DetailsItem data1={song.artist} data2={song.name} key={song.id} />
-                    ))
-                  )}
-                  {pageTitle === 'Absentees' && (
-                    absentees.map(absentee => (
-                      <DetailsItem
-                        image={absentee.image}
-                        data2={`${absentee.name} ${absentee.lastName}`}
-                        key={absentee.id}
-                      />
-                    ))
-                  )}
-                  <Animated.View
-                    style={{
-                      width: '100%',
-                      opacity: animatedOpacity,
-                      transform: [{
-                        translateY: animatedOpacity.interpolate({
-                          inputRange: [0, 1],
-                          outputRange: [-80, 0],
-                        }),
-                      }],
-                    }}
+          <Animated.View
+            style={{
+              flex: 1,
+              position: 'relative',
+              transform: [{ translateX: animatedChangePage }, { translateY: animatedAddItem }],
+              opacity: animatedAddItem.interpolate({
+                inputRange: [-windowHeight * 0.5, 0],
+                outputRange: [0, 1],
+              }),
+            }}
+            {...this.panResponder.panHandlers}
+          >
+            <TouchableWithoutFeedback onPress={openDetailPage}>
+              <View style={{ flex: 1 }}>
+                <Animated.View style={{ height: '80%' }}>
+                  <ScrollView
+                    scrollEnabled={isFullScreen}
+                    contentContainerStyle={detailPageStyles.scrollView}
                   >
-                    <DetailsItem data1="" data2="" onPress={this.openAddItem} />
-                  </Animated.View>
-                </ScrollView>
-              </Animated.View>
-              <View style={[styles.rowContainer, detailPageStyles.footer]}>
-                <View style={detailPageStyles.pageTitle}>
-                  <Text style={[styles.whiteClr, styles.centerText, { fontSize: 24 }]}>
-                    {pageTitle}
-                  </Text>
-                </View>
-                {isFullScreen
-                  && (
-                  <TouchableWithoutFeedback onPress={() => this.closeDetailPage()}>
-                    <Animated.View style={[
-                      detailPageStyles.closeButton,
-                      {
+                    {pageTitle === 'Roles' && (
+                      item.roles.map(role => (
+                        <DetailsItem
+                          data1={`${role.person.name} ${role.person.lastName}`}
+                          data2={role.name}
+                          key={role.id}
+                          disablePress={!isFullScreen}
+                          onPress={() => this.editPage.open(
+                            'role',
+                            `${role.person.name} ${role.person.lastName}`,
+                            role.name,
+                          )}
+                        />
+                      ))
+                    )}
+                    {pageTitle === 'Songs' && (
+                      item.songs.map(song => (
+                        <DetailsItem
+                          data1={song.artist}
+                          data2={song.name}
+                          key={song.id}
+                          disablePress={!isFullScreen}
+                          onPress={() => this.editPage.open(
+                            'song',
+                            song.name,
+                            song.artist,
+                          )}
+                        />
+                      ))
+                    )}
+                    {pageTitle === 'Absentees' && (
+                      absentees.map(absentee => (
+                        <DetailsItem
+                          image={absentee.image}
+                          data2={`${absentee.name} ${absentee.lastName}`}
+                          key={absentee.id}
+                          disablePress={!isFullScreen}
+                          onPress={() => this.editPage.open(
+                            'absentee',
+                            `${absentee.name} ${absentee.lastName}`,
+                            'Absentee',
+                          )}
+                        />
+                      ))
+                    )}
+                    <Animated.View
+                      style={{
+                        width: '100%',
                         opacity: animatedOpacity,
-                      },
-                    ]}
+                        transform: [{
+                          translateY: animatedOpacity.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [-80, 0],
+                          }),
+                        }],
+                      }}
                     >
-                      <Feather
-                        name="minimize-2"
-                        size={24}
-                        color="white"
-                      />
+                      <DetailsItem data1="" data2="" onPress={this.openAddItem} isAddItemButton />
                     </Animated.View>
-                  </TouchableWithoutFeedback>
-                  )
-                }
+                  </ScrollView>
+                </Animated.View>
+                <View style={[styles.rowContainer, detailPageStyles.footer]}>
+                  <View style={detailPageStyles.pageTitle}>
+                    <Text style={[styles.whiteClr, styles.centerText, { fontSize: 24 }]}>
+                      {pageTitle}
+                    </Text>
+                  </View>
+                  {isFullScreen
+                    && (
+                    <TouchableWithoutFeedback onPress={() => this.closeDetailPage()}>
+                      <Animated.View style={[
+                        detailPageStyles.closeButton,
+                        {
+                          opacity: animatedOpacity,
+                        },
+                      ]}
+                      >
+                        <Feather
+                          name="minimize-2"
+                          size={24}
+                          color="white"
+                        />
+                      </Animated.View>
+                    </TouchableWithoutFeedback>
+                    )
+                  }
+                </View>
               </View>
-            </View>
-          </TouchableWithoutFeedback>
-        </Animated.View>
-        <Animated.View
-          style={{
-            height: animatedAddItem.interpolate({
-              inputRange: [-windowHeight, 0],
-              outputRange: [windowHeight, 0],
-            }),
-          }}
-        >
-          <AddItem
-            addItemSearchBox={(addItemSearchBox) => { this.addItemSearchBox = addItemSearchBox; }}
-            closeAddItem={this.closeAddItem}
-            title={pageTitle.toUpperCase()}
-            subTitle={'Once added, you\'ll be able to assign a person.'}
-            itemSubTitle={`Add this new ${Pluralize.singular(pageTitle.toLowerCase())}`}
+            </TouchableWithoutFeedback>
+          </Animated.View>
+          {isFullScreen && (
+            <Animated.View
+              style={{
+                height: animatedAddItem.interpolate({
+                  inputRange: [-windowHeight, 0],
+                  outputRange: [windowHeight, 0],
+                }),
+              }}
+            >
+              <AddItem
+                addItemSearchBox={(addItemSearchBox) => {
+                  this.addItemSearchBox = addItemSearchBox;
+                }}
+                closeAddItem={this.closeAddItem}
+                title={pageTitle.toUpperCase()}
+                subTitle={'Once added, you\'ll be able to assign a person.'}
+                itemSubTitle={`Add this new ${Pluralize.singular(pageTitle.toLowerCase())}`}
+              />
+            </Animated.View>
+          )}
+        </View>
+        {isFullScreen && (
+          <DetailsEditPage
+            ref={(editPage) => { this.editPage = editPage; }}
+            date={item.date.fullDate}
           />
-        </Animated.View>
+        )}
       </View>
     );
   }

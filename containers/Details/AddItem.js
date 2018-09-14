@@ -9,8 +9,6 @@ import {
   FlatList,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  Dimensions,
-  Animated,
   Platform,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -20,6 +18,14 @@ export default class AddItem extends React.Component {
   initalData = Array(20).fill().map((_, index) => ({
     id: index, title: 'ProPresenter', subTitle: 'Media',
   }));
+
+  static propTypes = {
+    addItemSearchBox: PropTypes.func.isRequired,
+    closeAddItem: PropTypes.func.isRequired,
+    title: PropTypes.string.isRequired,
+    subTitle: PropTypes.string.isRequired,
+    itemSubTitle: PropTypes.string.isRequired,
+  };
 
   state = {
     query: '',
@@ -85,7 +91,12 @@ export default class AddItem extends React.Component {
             />
             {!!query && (
               <View style={addItemStyles.clearButton}>
-                <TouchableWithoutFeedback onPress={() => this.setState({ query: '' })}>
+                <TouchableWithoutFeedback
+                  onPress={() => this.setState({
+                    query: '',
+                    dataSource: this.filterData(''),
+                  })}
+                >
                   <Ionicons
                     name={Platform.OS === 'ios' ? 'ios-close-circle' : 'md-close-circle'}
                     size={18}
@@ -109,24 +120,26 @@ export default class AddItem extends React.Component {
             )}
             data={dataSource}
             renderItem={({ item, index }) => (
-              <View style={[addItemStyles.addItemRow, index !== 0 && { borderTopWidth: 1 }]}>
-                {item.id === -1 && (
-                  <Ionicons
-                    name={Platform.OS === 'ios' ? 'ios-add-circle' : 'md-add-circle'}
-                    size={20}
-                    color="#fff"
-                    style={{ padding: 10 }}
-                  />
-                )}
-                <View style={[addItemStyles.addItemRowInner]}>
-                  <Text style={[styles.whiteClr, { fontSize: 20 }]}>
-                    {item.title}
-                  </Text>
-                  <Text style={[styles.whiteClr, { fontSize: 12 }]}>
-                    {item.subTitle}
-                  </Text>
+              <TouchableOpacity onPress={closeAddItem}>
+                <View style={[addItemStyles.addItemRow, index !== 0 && { borderTopWidth: 1 }]}>
+                  {item.id === -1 && (
+                    <Ionicons
+                      name={Platform.OS === 'ios' ? 'ios-add-circle' : 'md-add-circle'}
+                      size={20}
+                      color="#fff"
+                      style={{ padding: 10 }}
+                    />
+                  )}
+                  <View style={[addItemStyles.addItemRowInner]}>
+                    <Text style={[styles.whiteClr, { fontSize: 20 }]}>
+                      {item.title}
+                    </Text>
+                    <Text style={[styles.whiteClr, { fontSize: 12 }]}>
+                      {item.subTitle}
+                    </Text>
+                  </View>
                 </View>
-              </View>
+              </TouchableOpacity>
             )}
           />
         </View>

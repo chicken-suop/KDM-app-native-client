@@ -77,7 +77,7 @@ export default class ToggleButton extends React.Component {
 
     return (
       <TouchableWithoutFeedback onPress={() => this.toggleShowingOptions(showingOptions)}>
-        <View style={{ alignItems: 'center' }}>
+        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
           <Text style={[styles.whiteClr, styles.fntWt700, { fontSize: 22, marginBottom: 5 }]}>
             {message}
           </Text>
@@ -95,7 +95,8 @@ export default class ToggleButton extends React.Component {
               maxHeight: optionsAV,
               overflow: 'hidden',
               flexDirection: 'row',
-              justifyContent: 'space-around',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}
           >
             {options.map(option => (
@@ -103,12 +104,12 @@ export default class ToggleButton extends React.Component {
                 <Animated.View
                   style={[
                     {
-                      justifyContent: 'space-between',
                       padding: optionsAV.interpolate({
                         inputRange: [0, 30],
                         outputRange: [0, 5],
                       }),
                       borderRadius: 5,
+                      marginHorizontal: 5,
                     },
                     option === chosenOption && { backgroundColor: '#fff' },
                   ]}
