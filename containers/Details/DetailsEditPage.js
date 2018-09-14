@@ -77,6 +77,25 @@ export default class DetailsEditPage extends React.Component {
     ], { useNativeDriver: true }).start(() => this.setState({ itemType: '' }));
   }
 
+  reschedule = () => {
+    this.close();
+  }
+
+  delete = () => {
+    this.close();
+  }
+
+  handlePress = (type) => {
+    const { itemType } = this.state;
+    if (itemType === 'role' && type === 'itemTitle') {
+      // Open person selector
+    } else if (itemType === 'role' && type === 'itemSubTitle') {
+      // Open role selector
+    } else if (itemType === 'song') {
+      // Open song selector for both
+    }
+  }
+
   async loadLyrics(itemTitle, itemSubTitle) {
     console.log('Getting lyrics');
     this.setState({ lyrics: '...' });
@@ -149,18 +168,18 @@ export default class DetailsEditPage extends React.Component {
                 </View>
                 <View style={detailsEditPageStyles.topPart}>
                   <View style={[detailsEditPageStyles.paragraph, { marginTop: 0 }]}>
-                    <TouchableOpacity onPress={this.close}>
+                    <TouchableOpacity onPress={() => this.handlePress('itemTitle')}>
                       <Text style={[styles.whiteClr, { fontSize: 26, marginBottom: 10 }]}>
                         {itemTitle}
                       </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={this.close}>
+                    <TouchableOpacity onPress={() => this.handlePress('itemSubTitle')}>
                       <Text style={detailsEditPageStyles.paragraphBody}>
                         {itemSubTitle}
                       </Text>
                     </TouchableOpacity>
                   </View>
-                  <TouchableOpacity onPress={this.close}>
+                  <TouchableOpacity onPress={this.reschedule}>
                     <View style={detailsEditPageStyles.paragraph}>
                       <Text style={detailsEditPageStyles.paragraphTitle}>
                         SCHEDULE
@@ -197,7 +216,7 @@ export default class DetailsEditPage extends React.Component {
                   )} */}
                 </View>
                 <View style={detailsEditPageStyles.deleteButtonContainer}>
-                  <TouchableOpacity onPress={() => {}}>
+                  <TouchableOpacity oonPress={this.delete}>
                     <View style={detailsEditPageStyles.deleteButton}>
                       <Text
                         style={[

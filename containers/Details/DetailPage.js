@@ -268,29 +268,27 @@ export default class DetailPage extends React.Component {
                           image={absentee.image}
                           data2={`${absentee.name} ${absentee.lastName}`}
                           key={absentee.id}
-                          disablePress={!isFullScreen}
-                          onPress={() => this.editPage.open(
-                            'absentee',
-                            `${absentee.name} ${absentee.lastName}`,
-                            'Absentee',
-                          )}
+                          disablePress
+                          onPress={() => {}}
                         />
                       ))
                     )}
-                    <Animated.View
-                      style={{
-                        width: '100%',
-                        opacity: animatedOpacity,
-                        transform: [{
-                          translateY: animatedOpacity.interpolate({
-                            inputRange: [0, 1],
-                            outputRange: [-80, 0],
-                          }),
-                        }],
-                      }}
-                    >
-                      <DetailsItem data1="" data2="" onPress={this.openAddItem} isAddItemButton />
-                    </Animated.View>
+                    {(pageTitle === 'Roles' || pageTitle === 'Songs') && (
+                      <Animated.View
+                        style={{
+                          width: '100%',
+                          opacity: animatedOpacity,
+                          transform: [{
+                            translateY: animatedOpacity.interpolate({
+                              inputRange: [0, 1],
+                              outputRange: [-80, 0],
+                            }),
+                          }],
+                        }}
+                      >
+                        <DetailsItem data1="" data2="" onPress={this.openAddItem} isAddItemButton />
+                      </Animated.View>
+                    )}
                   </ScrollView>
                 </Animated.View>
                 <View style={[styles.rowContainer, detailPageStyles.footer]}>
@@ -322,7 +320,7 @@ export default class DetailPage extends React.Component {
               </View>
             </TouchableWithoutFeedback>
           </Animated.View>
-          {isFullScreen && (
+          {isFullScreen && (pageTitle === 'Roles' || pageTitle === 'Songs') && (
             <Animated.View
               style={{
                 height: animatedAddItem.interpolate({
@@ -337,7 +335,11 @@ export default class DetailPage extends React.Component {
                 }}
                 closeAddItem={this.closeAddItem}
                 title={pageTitle.toUpperCase()}
-                subTitle={'Once added, you\'ll be able to assign a person.'}
+                subTitle={
+                  pageTitle === 'Roles'
+                    ? 'Once added, you\'ll be able to assign a person.'
+                    : 'Select a song from the list, or create a new one'
+                }
                 itemSubTitle={`Add this new ${Pluralize.singular(pageTitle.toLowerCase())}`}
               />
             </Animated.View>
