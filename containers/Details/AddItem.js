@@ -22,14 +22,38 @@ export default class AddItem extends React.Component {
   static propTypes = {
     addItemSearchBox: PropTypes.func.isRequired,
     closeAddItem: PropTypes.func.isRequired,
+    onceItemIsAdded: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
     subTitle: PropTypes.string.isRequired,
     itemSubTitle: PropTypes.string.isRequired,
   };
 
-  state = {
-    query: '',
-    dataSource: this.initalData,
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      query: '',
+      dataSource: this.initalData,
+      title: props.title,
+      subTitle: props.subTitle,
+      itemSubTitle: props.itemSubTitle,
+    };
+  }
+
+  componentWillReceiveProps(newProps) {
+    const { title, subTitle, itemSubTitle } = this.props;
+    console.log(newProps);
+    if (
+      title !== newProps.title
+      || subTitle !== newProps.subTitle
+      || itemSubTitle !== newProps.itemSubTitle
+    ) {
+      this.setState({
+        title: newProps.title,
+        subTitle: newProps.subTitle,
+        itemSubTitle: newProps.itemSubTitle,
+      });
+    }
   }
 
   filterData = (text, subTitle) => (
@@ -46,11 +70,17 @@ export default class AddItem extends React.Component {
       ]
   )
 
+  addItem = () => {
+    const { onceItemIsAdded } = this.props;
+    // Send data to server here.
+    onceItemIsAdded();
+  }
+
   render() {
-    const { query, dataSource } = this.state;
     const {
-      addItemSearchBox, closeAddItem, title, subTitle, itemSubTitle,
-    } = this.props;
+      query, dataSource, title, subTitle, itemSubTitle,
+    } = this.state;
+    const { addItemSearchBox, closeAddItem } = this.props;
 
     return (
       <KeyboardAvoidingView
@@ -120,7 +150,7 @@ export default class AddItem extends React.Component {
             )}
             data={dataSource}
             renderItem={({ item, index }) => (
-              <TouchableOpacity onPress={closeAddItem}>
+              <TouchableOpacity onPress={this.addItem}>
                 <View style={[addItemStyles.addItemRow, index !== 0 && { borderTopWidth: 1 }]}>
                   {item.id === -1 && (
                     <Ionicons
@@ -157,9 +187,6 @@ export default class AddItem extends React.Component {
   }
 }
 
-AddItem.propTypes = {
-};
-
 const addItemStyles = StyleSheet.create({
   container: {
     flex: 1,
@@ -174,14 +201,6 @@ const addItemStyles = StyleSheet.create({
     marginTop: 3,
   },
   inputText: {
-    // ...Platform.select({
-    //   ios: {
-    //     marginTop: 20,
-    //   },
-    //   android: {
-    //     marginTop: 16,
-    //   },
-    // }),
     marginTop: 20,
     marginRight: 43,
     fontSize: 20,

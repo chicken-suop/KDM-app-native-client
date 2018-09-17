@@ -23,6 +23,12 @@ const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 
 export default class DetailPage extends React.Component {
+  rolesAddItemSubTitle = 'Once added, you\'ll be able to assign a person.'
+
+  songsAddItemSubTitle = 'Select a song from the list, or add a new one'
+
+  peopleAddItemSubTitle = 'Select a person from the list, or add a new one'
+
   panResponder = PanResponder.create({
     onMoveShouldSetPanResponderCapture: (e, { moveX }) => {
       const { isFullScreen } = this.props;
@@ -91,6 +97,10 @@ export default class DetailPage extends React.Component {
       animatedOpacity: new Animated.Value(0),
       animatedChangePage: new Animated.Value(0),
       pageTitle: props.pageTitle,
+      addItemTitle: props.pageTitle.toUpperCase(),
+      addItemSubTitle: props.pageTitle === 'Roles'
+        ? this.rolesAddItemSubTitle
+        : this.songsAddItemSubTitle,
     };
     if (props.isFullScreen) {
       const { animatedOpacity } = this.state;
@@ -111,9 +121,15 @@ export default class DetailPage extends React.Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     const {
-      item, isFullScreen,
+      item,
+      isFullScreen,
     } = this.props;
-    const { animatedOpacity, pageTitle } = this.state;
+    const {
+      animatedOpacity,
+      pageTitle,
+      addItemTitle,
+      addItemSubTitle,
+    } = this.state;
 
     if (!isFullScreen) {
       return false;
@@ -121,6 +137,8 @@ export default class DetailPage extends React.Component {
     return (
       nextState.animatedOpacity !== animatedOpacity
         || nextState.pageTitle !== pageTitle
+        || nextState.addItemTitle !== addItemTitle
+        || nextState.addItemSubTitle !== addItemSubTitle
         || nextProps.item !== item
         || nextProps.isFullScreen !== isFullScreen
     );
@@ -172,7 +190,7 @@ export default class DetailPage extends React.Component {
     });
   }
 
-  closeAddItem = () => {
+  closeAddItem = (callback) => {
     // Reverse of above this.openAddItem()
     const { animatedAddItem } = this.state;
     Keyboard.dismiss();
@@ -181,7 +199,9 @@ export default class DetailPage extends React.Component {
         toValue: 0,
         duration: 300,
       }),
-    ], { useNativeDriver: true }).start();
+    ], { useNativeDriver: true }).start(() => {
+      if (typeof callback === 'function') callback();
+    });
   }
 
   render() {
@@ -196,6 +216,8 @@ export default class DetailPage extends React.Component {
       pageTitle,
       animatedAddItem,
       animatedChangePage,
+      addItemTitle,
+      addItemSubTitle,
     } = this.state;
     const absentees = this.getAbsentees();
 
@@ -333,14 +355,33 @@ export default class DetailPage extends React.Component {
                 addItemSearchBox={(addItemSearchBox) => {
                   this.addItemSearchBox = addItemSearchBox;
                 }}
-                closeAddItem={this.closeAddItem}
-                title={pageTitle.toUpperCase()}
-                subTitle={
-                  pageTitle === 'Roles'
-                    ? 'Once added, you\'ll be able to assign a person.'
-                    : 'Select a song from the list, or create a new one'
-                }
-                itemSubTitle={`Add this new ${Pluralize.singular(pageTitle.toLowerCase())}`}
+                closeAddItem={() => this.closeAddItem(() => {
+                  if (pageTitle === 'Roles' && addItemTitle === 'PEOPLE') {
+                    this.setState({
+                      addItemTitle: 'ROLES',
+                      addItemSubTitle: this.rolesAddItemSubTitle,
+                    });
+                  }
+                })}
+                onceItemIsAdded={() => this.closeAddItem(() => {
+                  if (pageTitle === 'Roles' && addItemTitle === 'ROLES') {
+                    this.setState({
+                      addItemTitle: 'PEOPLE',
+                      addItemSubTitle: this.peopleAddItemSubTitle,
+                    }, () => setTimeout(this.openAddItem, 100));
+                  } else if (pageTitle === 'Roles' && addItemTitle === 'PEOPLE') {
+                    this.setState({
+                      addItemTitle: 'ROLES',
+                      addItemSubTitle: this.rolesAddItemSubTitle,
+                    });
+                  }
+                })}
+                help={pageTitle === 'Roles' && addItemTitle === 'PEOPLE' && (
+                  'Now assign a person to that role'
+                )}
+                title={addItemTitle}
+                subTitle={addItemSubTitle}
+                itemSubTitle={`Add this new ${Pluralize.singular(addItemTitle.toLowerCase())}`}
               />
             </Animated.View>
           )}
