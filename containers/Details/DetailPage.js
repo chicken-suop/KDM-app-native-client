@@ -13,7 +13,8 @@ import {
   PanResponder,
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import styles, { secondaryColor } from '../../Styles';
+import Snackbar from 'react-native-snackbar';
+import styles, { activeColor, secondaryColor } from '../../Styles';
 import { daysData } from '../../helpers/propTypes';
 import DetailsItem from './DetailsItem';
 import AddItem from './AddItem';
@@ -365,10 +366,18 @@ export default class DetailPage extends React.Component {
                 })}
                 onceItemIsAdded={() => this.closeAddItem(() => {
                   if (pageTitle === 'Roles' && addItemTitle === 'ROLES') {
-                    this.setState({
-                      addItemTitle: 'PEOPLE',
-                      addItemSubTitle: this.peopleAddItemSubTitle,
-                    }, () => setTimeout(this.openAddItem, 100));
+                    Snackbar.show({
+                      title: 'Role added',
+                      duration: Snackbar.LENGTH_LONG,
+                      action: {
+                        title: 'ASSIGN PERSON',
+                        color: activeColor,
+                        onPress: () => this.setState({
+                          addItemTitle: 'PEOPLE',
+                          addItemSubTitle: this.peopleAddItemSubTitle,
+                        }, this.openAddItem()),
+                      },
+                    });
                   } else if (pageTitle === 'Roles' && addItemTitle === 'PEOPLE') {
                     this.setState({
                       addItemTitle: 'ROLES',
