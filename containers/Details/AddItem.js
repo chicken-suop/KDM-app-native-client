@@ -107,7 +107,7 @@ export default class AddItem extends React.Component {
             <TextInput
               style={[styles.centerText, addItemStyles.inputText]}
               placeholder="Try ProPresenter"
-              placeholderTextColor="#777"
+              placeholderTextColor="#ccc"
               underlineColorAndroid="transparent"
               autoCorrect={false}
               value={query}
