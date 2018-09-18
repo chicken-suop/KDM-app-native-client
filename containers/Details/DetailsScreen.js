@@ -11,7 +11,7 @@ import {
   Dimensions,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import styles, { secondaryColor, trinaryColor } from '../../Styles';
+import styles, { secondaryColor, primaryColor } from '../../Styles';
 import DetailPage from './DetailPage';
 import ToggleButton from '../../components/ToggleButton';
 
@@ -246,7 +246,7 @@ export default class DetailsScreen extends React.Component {
     if (loading) {
       // Display minimal view for quicker, less laggy loading (I think, need to test it)
       return (
-        <View style={{ flex: 1, backgroundColor: trinaryColor }}>
+        <View style={{ flex: 1, backgroundColor: primaryColor }}>
           <Animated.View
             style={{
               flex: 1,
@@ -292,13 +292,13 @@ export default class DetailsScreen extends React.Component {
       <View
         style={{
           flex: 1,
-          backgroundColor: trinaryColor,
+          backgroundColor: primaryColor,
         }}
       >
         <Animated.View
           style={{
             flex: 1,
-            backgroundColor: trinaryColor,
+            backgroundColor: primaryColor,
             transform: [{
               // Using interpolate so no state transitions are needed because of panResponder
               scale: goBackAV.interpolate({
@@ -345,7 +345,7 @@ export default class DetailsScreen extends React.Component {
                 message="ATTENDING"
                 options={['YES', 'NO']}
                 chosenOption={this.getAttendance() ? 'YES' : 'NO'}
-                activeTextColor={trinaryColor}
+                activeTextColor={primaryColor}
               />
             </View>
             <TouchableWithoutFeedback onPress={this.goBack}>

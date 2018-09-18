@@ -92,7 +92,7 @@ export default class ScrollButton extends React.Component {
             scrollButtonStyles.button,
           ]}
         >
-          <Ionicons name={name} size={32} color="white" />
+          <Ionicons name={name} size={32} color="black" />
         </Animated.View>
       </TouchableWithoutFeedback>
     );

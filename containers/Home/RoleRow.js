@@ -12,7 +12,7 @@ const RoleRow = ({
       <Text
         style={[
           { fontSize, textAlignVertical: 'center' },
-          styles.whiteClr,
+          styles.primaryText,
           !alignLeft && styles.textAlignRight,
         ]}
       >
@@ -24,7 +24,7 @@ const RoleRow = ({
     <Text
       style={[
         { fontSize, textAlignVertical: 'center' },
-        styles.whiteClr,
+        styles.primaryText,
         !alignLeft && styles.textAlignRight,
       ]}
     >

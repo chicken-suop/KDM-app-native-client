@@ -1,11 +1,22 @@
 import { StyleSheet } from 'react-native';
 
-export const activeColor = '#ca3724';
-export const primaryColor = '#2A454C';
-export const primaryColorBorder = '#253E44';
-export const secondaryColor = '#274047';
-export const secondaryColorBorder = '#253E44';
-export const trinaryColor = '#304E56';
+// Dark blue:
+// export const activeColor = '#ca3724';
+// export const primaryColor = '#2A454C';
+// export const secondaryColor = '#274047';
+// export const trinaryColor = '#304E56';
+
+// Red, dark blue
+// export const activeColor = '#C52820';
+// export const primaryColor = '#252832';
+// export const secondaryColor = '#1E232C';
+// export const trinaryColor = '#20272E';
+
+// Orange, yellow
+export const activeColor = '#E9D758';
+export const primaryColor = '#E55F34';
+export const secondaryColor = '#FB6839';
+export const trinaryColor = '#FB754B';
 
 export const hexToRgbA = (hex, alpha = 1) => {
   const [r, g, b] = hex.match(/\w\w/g).map(x => parseInt(x, 16));
@@ -13,6 +24,9 @@ export const hexToRgbA = (hex, alpha = 1) => {
 };
 
 export default StyleSheet.create({
+  primaryText: {
+    color: '#fff',
+  },
   container: {
     flex: 1,
     justifyContent: 'center',

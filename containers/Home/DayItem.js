@@ -54,21 +54,21 @@ export default class DayItem extends React.Component {
   }
 
   // Temporary code to open detail view on load
-  componentWillMount() {
-    const {
-      item,
-      index,
-      isActiveDayItem,
-      navigation,
-    } = this.props;
-
-    if (isActiveDayItem) {
-      navigation.push('Details', {
-        id: index,
-        item,
-      });
-    }
-  }
+  // componentWillMount() {
+  //   const {
+  //     item,
+  //     index,
+  //     isActiveDayItem,
+  //     navigation,
+  //   } = this.props;
+  //
+  //   if (isActiveDayItem) {
+  //     navigation.push('Details', {
+  //       id: index,
+  //       item,
+  //     });
+  //   }
+  // }
 
   shouldComponentUpdate(nextProps, nextState) {
     const { itemId } = this.state;

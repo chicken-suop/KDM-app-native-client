@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import moment from 'moment';
 import SideMenu from '../../node_modules/react-native-side-menu';
-import styles, { activeColor, trinaryColor } from '../../Styles';
+import styles, { activeColor } from '../../Styles';
 import daysData from '../../DaysData';
 import DayItem from './DayItem';
 import elemHeight from '../../helpers/elemHeight';
@@ -48,7 +48,7 @@ export default class HomeScreen extends React.Component {
     const { isAbove } = this.state;
 
     return (
-      <View style={[styles.container, { backgroundColor: trinaryColor }]}>
+      <View style={styles.container}>
         <SideMenu
           menu={<SidebarScreen activeDayItem={this.activeDayItem} />}
           openMenuOffset={windowWidth - (windowWidth * 0.1)}

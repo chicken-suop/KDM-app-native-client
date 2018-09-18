@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { daysData } from '../../helpers/propTypes';
-import styles, { activeColor, secondaryColor } from '../../Styles';
+import styles, { activeColor } from '../../Styles';
 import RoleRow from './RoleRow';
 import NameRow from './NameRow';
 
 const sidebarScreenStyles = StyleSheet.create({
   main: {
-    backgroundColor: secondaryColor,
+    backgroundColor: 'black',
     flex: 1,
     padding: '10%',
   },

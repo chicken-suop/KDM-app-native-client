@@ -8,7 +8,7 @@ const NameRow = ({ person, fontSize }) => (
   <Text
     numberOfLines={1}
     style={[
-      styles.whiteClr,
+      styles.primaryText,
       {
         textAlignVertical: 'center', lineHeight: fontSize, fontSize, flex: 1,
       },

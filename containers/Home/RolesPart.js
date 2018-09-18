@@ -4,8 +4,6 @@ import { View } from 'react-native';
 import {
   primaryColor,
   secondaryColor,
-  primaryColorBorder,
-  secondaryColorBorder,
 } from '../../Styles';
 
 const RolesPart = ({ isOdd, children }) => (
@@ -15,12 +13,9 @@ const RolesPart = ({ isOdd, children }) => (
         flex: 8,
         justifyContent: 'center',
         backgroundColor: primaryColor,
-        borderBottomWidth: 1,
-        borderColor: primaryColorBorder,
       },
       isOdd && {
         backgroundColor: secondaryColor,
-        borderColor: secondaryColorBorder,
       },
     ]}
   >

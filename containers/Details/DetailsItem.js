@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { Feather } from '@expo/vector-icons';
-import styles, { primaryColor } from '../../Styles';
+import styles, { trinaryColor } from '../../Styles';
 
 export default class DetailsItem extends React.Component {
   static propTypes = {
@@ -118,7 +118,7 @@ export default class DetailsItem extends React.Component {
 
 const detailsItemStyles = StyleSheet.create({
   container: {
-    backgroundColor: primaryColor,
+    backgroundColor: trinaryColor,
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
