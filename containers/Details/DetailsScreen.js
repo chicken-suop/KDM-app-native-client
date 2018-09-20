@@ -327,6 +327,7 @@ export default class DetailsScreen extends React.Component {
             >
               {detailPages.map((pageTitle, index) => (
                 <DetailPage
+                  navigation={navigation}
                   key={pageTitle}
                   item={item}
                   pageTitle={pageTitle}
@@ -377,6 +378,7 @@ export default class DetailsScreen extends React.Component {
             >
               {!!activeDetailPage && (
                 <DetailPage
+                  navigation={navigation}
                   detailPageRef={() => {}}
                   item={item}
                   pageTitle={activeDetailPage}

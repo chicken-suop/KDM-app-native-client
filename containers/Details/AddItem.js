@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-  // KeyboardAvoidingView,
   View,
   StyleSheet,
   Text,
@@ -26,13 +25,10 @@ export default class AddItem extends React.Component {
   }));
 
   static propTypes = {
-    // addItemSearchBox: PropTypes.func.isRequired,
-    visible: PropTypes.bool.isRequired,
-    onceItemIsAdded: PropTypes.func.isRequired,
-    title: PropTypes.string.isRequired,
-    subTitle: PropTypes.string.isRequired,
-    itemSubTitle: PropTypes.string.isRequired,
-    closeAddItem: PropTypes.func.isRequired,
+    navigation: PropTypes.shape({
+      navigate: PropTypes.func.isRequired,
+      getParam: PropTypes.func.isRequired,
+    }).isRequired,
   };
 
   constructor(props) {
@@ -41,61 +37,49 @@ export default class AddItem extends React.Component {
     this.state = {
       query: '',
       dataSource: this.initalData,
-      title: props.title,
-      subTitle: props.subTitle,
-      itemSubTitle: props.itemSubTitle,
+      title: props.navigation.getParam('title'),
+      itemSubTitle: props.navigation.getParam('itemSubTitle'),
       translateValue: new Animated.Value(0),
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    const {
-      visible,
-      title,
-      subTitle,
-      itemSubTitle,
-    } = this.props;
-
-    if (nextProps.visible && !visible) {
-      this.show();
-    } else if (!nextProps.visible && visible) {
-      this.dismiss();
-    }
-
-    if (
-      title !== nextProps.title
-      || subTitle !== nextProps.subTitle
-      || itemSubTitle !== nextProps.itemSubTitle
-    ) {
-      this.setState({
-        title: nextProps.title,
-        subTitle: nextProps.subTitle,
-        itemSubTitle: nextProps.itemSubTitle,
-      });
-    }
-  }
-
-  show = () => {
+  componentWillMount() {
     const { translateValue } = this.state;
-    this.addItemSearchBox.focus();
     Animated.timing(translateValue, {
       toValue: -windowHeight,
-      duration: 500,
+      duration: 0, // 300,
     }).start();
-    // setTimeout(this.addItemSearchBox.focus, 300);
   }
 
-  dismiss = () => {
+  componentDidMount() {
+    this.searchInput.focus();
+  }
+
+  close = () => {
     const { translateValue } = this.state;
-    const { closeAddItem } = this.props;
+    const { navigation } = this.props;
     Keyboard.dismiss();
-    Animated.parallel([
-      Animated.timing(translateValue, {
-        toValue: 0,
-        duration: 400,
-      }),
-    ], { useNativeDriver: true }).start(closeAddItem);
-    // setTimeout(Keyboard.dismiss, 300);
+    Animated.timing(translateValue, {
+      toValue: 0,
+      duration: 0, // 300,
+    }).start(() => {
+      navigation.state.params.onClose();
+      navigation.goBack();
+    });
+  }
+
+  addItem = () => {
+    const { translateValue } = this.state;
+    const { navigation } = this.props;
+    // Send data to server here.
+    Keyboard.dismiss();
+    Animated.timing(translateValue, {
+      toValue: 0,
+      duration: 0, // 300,
+    }).start(() => {
+      navigation.state.params.onChoose();
+      navigation.goBack();
+    });
   }
 
   filterData = (text, subTitle) => (
@@ -112,18 +96,11 @@ export default class AddItem extends React.Component {
       ]
   )
 
-  addItem = () => {
-    const { onceItemIsAdded } = this.props;
-    // Send data to server here.
-    onceItemIsAdded();
-  }
-
   render() {
     const {
       query,
       dataSource,
       title,
-      subTitle,
       itemSubTitle,
       translateValue,
     } = this.state;
@@ -154,13 +131,10 @@ export default class AddItem extends React.Component {
                 styles.whiteClr,
                 styles.centerText,
                 styles.fntWt600,
-                { fontSize: 22, marginBottom: 10 },
+                { fontSize: 22 },
               ]}
             >
               {title}
-            </Text>
-            <Text style={[styles.whiteClr, styles.centerText, { fontSize: 16 }]}>
-              {subTitle}
             </Text>
             <View style={styles.searchInput}>
               <TextInput
@@ -170,7 +144,7 @@ export default class AddItem extends React.Component {
                 underlineColorAndroid="transparent"
                 autoCorrect={false}
                 value={query}
-                ref={(ref) => { this.addItemSearchBox = ref; }}
+                ref={(ref) => { this.searchInput = ref; }}
                 onChangeText={(text) => {
                   this.setState({
                     query: text,
@@ -233,7 +207,7 @@ export default class AddItem extends React.Component {
             />
           </View>
           <View style={addItemStyles.closeButtonContainer}>
-            <TouchableOpacity onPress={this.dismiss}>
+            <TouchableOpacity onPress={this.close}>
               <View style={addItemStyles.closeButton}>
                 <Text
                   style={[

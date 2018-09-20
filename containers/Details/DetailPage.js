@@ -16,19 +16,11 @@ import Snackbar from '../../components/Snackbar';
 import styles, { activeColor, secondaryColor } from '../../Styles';
 import { daysData } from '../../helpers/propTypes';
 import DetailsItem from './DetailsItem';
-import AddItem from './AddItem';
-import DetailsEditPage from './DetailsEditPage';
 
-const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 
 export default class DetailPage extends React.Component {
-  rolesAddItemSubTitle = 'Once added, you\'ll be able to assign a person.'
-
-  songsAddItemSubTitle = 'Select a song from the list, or add a new one'
-
-  peopleAddItemSubTitle = 'Select a person from the list, or add a new one'
-
+  // panResponder for swiping between pages
   panResponder = PanResponder.create({
     onMoveShouldSetPanResponderCapture: (e, { moveX }) => {
       const { isFullScreen } = this.props;
@@ -59,8 +51,6 @@ export default class DetailPage extends React.Component {
             toValue: dx < 0 ? windowWidth : -windowWidth,
             duration: 0,
           }),
-          // A little delay to give setState enough time to update without seeing its effects
-          Animated.delay(10),
           // Move the "next page" into view (really same page, but updated data);
           Animated.timing(animatedChangePage, {
             toValue: 0,
@@ -84,6 +74,9 @@ export default class DetailPage extends React.Component {
     closeDetailPage: PropTypes.func.isRequired,
     changePage: PropTypes.func.isRequired,
     isFullScreen: PropTypes.bool,
+    navigation: PropTypes.shape({
+      navigate: PropTypes.func.isRequired,
+    }).isRequired,
   };
 
   static defaultProps = {
@@ -93,18 +86,17 @@ export default class DetailPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      animatedAddItem: new Animated.Value(0),
       animatedOpacity: new Animated.Value(0),
       animatedChangePage: new Animated.Value(0),
       pageTitle: props.pageTitle,
       addItemTitle: props.pageTitle.toUpperCase(),
-      addItemSubTitle: props.pageTitle === 'Roles'
-        ? this.rolesAddItemSubTitle
-        : this.songsAddItemSubTitle,
       snackbarVisibile: false,
-      addItemVisibile: false,
     };
-    if (props.isFullScreen) {
+  }
+
+  componentWillMount() {
+    const { isFullScreen } = this.props;
+    if (isFullScreen) {
       const { animatedOpacity } = this.state;
       Animated.timing(animatedOpacity, {
         toValue: 1,
@@ -117,37 +109,36 @@ export default class DetailPage extends React.Component {
   componentWillReceiveProps(nextProps) {
     const { pageTitle } = this.props;
     if (pageTitle !== nextProps.pageTitle) {
-      this.setState({ pageTitle: nextProps.pageTitle });
+      this.setState({
+        pageTitle: nextProps.pageTitle,
+        addItemTitle: nextProps.pageTitle.toUpperCase(),
+      });
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    const {
-      item,
-      isFullScreen,
-    } = this.props;
-    const {
-      animatedOpacity,
-      pageTitle,
-      addItemTitle,
-      addItemSubTitle,
-      snackbarVisibile,
-      addItemVisibile,
-    } = this.state;
-
-    if (!isFullScreen) {
-      return false;
+  onCloseAddItem = () => {
+    // Reset the title after selecting a person
+    const { pageTitle, addItemTitle } = this.state;
+    if (pageTitle === 'Roles' && addItemTitle === 'PEOPLE') {
+      this.setState({
+        addItemTitle: 'ROLES',
+      });
     }
-    return (
-      nextState.animatedOpacity !== animatedOpacity
-        || nextState.pageTitle !== pageTitle
-        || nextState.addItemTitle !== addItemTitle
-        || nextState.addItemSubTitle !== addItemSubTitle
-        || nextState.snackbarVisibile !== snackbarVisibile
-        || nextState.addItemVisibile !== addItemVisibile
-        || nextProps.item !== item
-        || nextProps.isFullScreen !== isFullScreen
-    );
+  }
+
+  onChooseAddItem = () => {
+    // Update server here.
+    const { pageTitle, addItemTitle } = this.state;
+    if (pageTitle === 'Roles' && addItemTitle === 'ROLES') {
+      this.setState({
+        snackbarVisibile: true,
+      });
+    } else if (pageTitle === 'Roles' && addItemTitle === 'PEOPLE') {
+      // Reset the title after selecting a person
+      this.setState({
+        addItemTitle: 'ROLES',
+      });
+    }
   }
 
   getAbsentees = () => [
@@ -171,7 +162,6 @@ export default class DetailPage extends React.Component {
     },
   ]
 
-
   closeDetailPage = () => {
     const { closeDetailPage } = this.props;
     const { animatedOpacity } = this.state;
@@ -189,16 +179,14 @@ export default class DetailPage extends React.Component {
       detailPageRef,
       isFullScreen,
       openDetailPage,
+      navigation,
     } = this.props;
     const {
       animatedOpacity,
       pageTitle,
-      animatedAddItem,
       animatedChangePage,
       addItemTitle,
-      addItemSubTitle,
       snackbarVisibile,
-      addItemVisibile,
     } = this.state;
     const absentees = this.getAbsentees();
 
@@ -220,11 +208,7 @@ export default class DetailPage extends React.Component {
             style={{
               flex: 1,
               position: 'relative',
-              transform: [{ translateX: animatedChangePage }, { translateY: animatedAddItem }],
-              opacity: animatedAddItem.interpolate({
-                inputRange: [-windowHeight * 0.5, 0],
-                outputRange: [0, 1],
-              }),
+              transform: [{ translateX: animatedChangePage }],
             }}
             {...this.panResponder.panHandlers}
           >
@@ -242,11 +226,12 @@ export default class DetailPage extends React.Component {
                           data2={role.name}
                           key={role.id}
                           disablePress={!isFullScreen}
-                          onPress={() => this.editPage.open(
-                            'role',
-                            `${role.person.name} ${role.person.lastName}`,
-                            role.name,
-                          )}
+                          onPress={() => navigation.navigate('DetailsEdit', {
+                            date: item.date.fullDate,
+                            itemType: 'role',
+                            itemTitle: `${role.person.name} ${role.person.lastName}`,
+                            itemSubTitle: role.name,
+                          })}
                         />
                       ))
                     )}
@@ -257,11 +242,12 @@ export default class DetailPage extends React.Component {
                           data2={song.name}
                           key={song.id}
                           disablePress={!isFullScreen}
-                          onPress={() => this.editPage.open(
-                            'song',
-                            song.name,
-                            song.artist,
-                          )}
+                          onPress={() => navigation.navigate('DetailsEdit', {
+                            date: item.date.fullDate,
+                            itemType: 'song',
+                            itemTitle: song.name,
+                            itemSubTitle: song.artist,
+                          })}
                         />
                       ))
                     )}
@@ -293,10 +279,16 @@ export default class DetailPage extends React.Component {
                           isAddItemButton
                           data1=""
                           data2=""
-                          onPress={() => this.setState({
-                            snackbarVisibile: false,
-                            addItemVisibile: true,
-                          })}
+                          onPress={() => {
+                            this.setState({ snackbarVisibile: false });
+                            const type = Pluralize.singular(addItemTitle.toLowerCase());
+                            navigation.navigate('AddItem', {
+                              title: addItemTitle,
+                              itemSubTitle: `Add this new ${type}`,
+                              onClose: this.onCloseAddItem,
+                              onChoose: this.onChooseAddItem,
+                            });
+                          }}
                         />
                       </Animated.View>
                     )}
@@ -308,15 +300,13 @@ export default class DetailPage extends React.Component {
                       {pageTitle}
                     </Text>
                   </View>
-                  {isFullScreen
-                    && (
+                  {isFullScreen && (
                     <TouchableWithoutFeedback onPress={() => this.closeDetailPage()}>
-                      <Animated.View style={[
-                        detailPageStyles.closeButton,
-                        {
-                          opacity: animatedOpacity,
-                        },
-                      ]}
+                      <Animated.View
+                        style={[
+                          detailPageStyles.closeButton,
+                          { opacity: animatedOpacity },
+                        ]}
                       >
                         <Feather
                           name="minimize-2"
@@ -325,63 +315,29 @@ export default class DetailPage extends React.Component {
                         />
                       </Animated.View>
                     </TouchableWithoutFeedback>
-                    )
-                  }
+                  )}
                 </View>
               </View>
             </TouchableWithoutFeedback>
           </Animated.View>
-          {isFullScreen && (pageTitle === 'Roles' || pageTitle === 'Songs') && (
-            <AddItem
-              visible={addItemVisibile}
-              help={pageTitle === 'Roles' && addItemTitle === 'PEOPLE' && (
-                'Now assign a person to that role'
-              )}
-              title={addItemTitle}
-              subTitle={addItemSubTitle}
-              itemSubTitle={`Add this new ${Pluralize.singular(addItemTitle.toLowerCase())}`}
-              closeAddItem={() => {
-                this.setState({ addItemVisibile: false });
-                if (pageTitle === 'Roles' && addItemTitle === 'PEOPLE') {
-                  this.setState({
-                    addItemTitle: 'ROLES',
-                    addItemSubTitle: this.rolesAddItemSubTitle,
-                  });
-                }
-              }}
-              onceItemIsAdded={() => {
-                this.setState({ addItemVisibile: false });
-                if (pageTitle === 'Roles' && addItemTitle === 'ROLES') {
-                  this.setState({
-                    snackbarVisibile: true,
-                  });
-                } else if (pageTitle === 'Roles' && addItemTitle === 'PEOPLE') {
-                  this.setState({
-                    addItemTitle: 'ROLES',
-                    addItemSubTitle: this.rolesAddItemSubTitle,
-                  });
-                }
-              }}
-            />
-          )}
         </View>
-        {isFullScreen && (
-          <DetailsEditPage
-            ref={(editPage) => { this.editPage = editPage; }}
-            date={item.date.fullDate}
-          />
-        )}
         <Snackbar
           visible={snackbarVisibile}
           textMessage="Role added"
           actionText="ASSIGN PERSON"
           actionColor={activeColor}
-          actionHandler={() => this.setState({
-            snackbarVisibile: false,
-            addItemVisibile: true,
-            addItemTitle: 'PEOPLE',
-            addItemSubTitle: this.peopleAddItemSubTitle,
-          })}
+          actionHandler={() => {
+            this.setState({
+              snackbarVisibile: false,
+              addItemTitle: 'PEOPLE',
+            });
+            navigation.navigate('AddItem', {
+              title: 'PEOPLE',
+              itemSubTitle: 'Add this new person',
+              onClose: this.onCloseAddItem,
+              onChoose: this.onChooseAddItem,
+            });
+          }}
           onDismiss={() => this.setState({
             snackbarVisibile: false,
           })}

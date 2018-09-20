@@ -9,72 +9,51 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Dimensions,
+  Easing,
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import styles, { secondaryColor } from '../../Styles';
 import getLyrics from '../../api/musixmatch/getLyrics';
-// import HeatMap from '../../components/HeatMap';
 
 const windowHeight = Dimensions.get('window').height;
 
 export default class DetailsEditPage extends React.Component {
   static propTypes = {
-    date: PropTypes.string.isRequired,
+    navigation: PropTypes.shape({
+      navigate: PropTypes.func.isRequired,
+      getParam: PropTypes.func.isRequired,
+    }).isRequired,
   };
 
-  state = {
-    // sameNameTasks: null,
-    animatedEditPage: new Animated.Value(0),
-    lyrics: '...',
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      animatedEditPage: new Animated.Value(0),
+      lyrics: '...',
+      itemType: props.navigation.getParam('itemType'),
+      itemTitle: props.navigation.getParam('itemTitle'),
+      itemSubTitle: props.navigation.getParam('itemSubTitle'),
+    };
   }
 
-  // componentDidMount() {
-  //   this.setState({ sameNameTasks: [{ id: 0, name: 'Welcome' }, { id: 1, name: 'Setup' }] });
-  // }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    const {
-      // sameNameTasks,
-      animatedEditPage,
-      itemType,
-      itemTitle,
-      itemSubTitle,
-      lyrics,
-    } = this.state;
-
-    return (
-      nextState.animatedEditPage !== animatedEditPage
-      // || nextState.sameNameTasks !== sameNameTasks
-      || nextState.itemType !== itemType
-      || nextState.itemTitle !== itemTitle
-      || nextState.itemSubTitle !== itemSubTitle
-      || nextState.lyrics !== lyrics
-    );
-  }
-
-  open = (itemType, itemTitle, itemSubTitle) => {
-    if (itemType === 'song') {
-      this.loadLyrics(itemTitle, itemSubTitle);
-    }
-    this.setState({ itemType, itemTitle, itemSubTitle }, () => {
-      const { animatedEditPage } = this.state;
-      Animated.parallel([
-        Animated.timing(animatedEditPage, {
-          toValue: 1,
-          duration: 250,
-        }),
-      ], { useNativeDriver: true }).start();
-    });
+  componentWillMount() {
+    const { animatedEditPage } = this.state;
+    Animated.timing(animatedEditPage, {
+      toValue: 1,
+      easing: Easing.out(Easing.quad),
+      duration: 200,
+    }).start();
   }
 
   close = () => {
     const { animatedEditPage } = this.state;
-    Animated.parallel([
-      Animated.timing(animatedEditPage, {
-        toValue: 0,
-        duration: 200,
-      }),
-    ], { useNativeDriver: true }).start(() => this.setState({ itemType: '' }));
+    const { navigation } = this.props;
+    Animated.timing(animatedEditPage, {
+      toValue: 0,
+      easing: Easing.in(Easing.quad),
+      duration: 200,
+    }).start(() => navigation.goBack());
   }
 
   reschedule = () => {
@@ -87,17 +66,21 @@ export default class DetailsEditPage extends React.Component {
 
   handlePress = (type) => {
     const { itemType } = this.state;
+    const { navigation } = this.props;
     if (itemType === 'role' && type === 'itemTitle') {
       // Open person selector
     } else if (itemType === 'role' && type === 'itemSubTitle') {
-      // Open role selector
+      navigation.navigate('AddItem', {
+        title: 'ROLES',
+        itemSubTitle: 'Add this new role',
+        onChoose: () => {},
+      });
     } else if (itemType === 'song') {
-      // Open song selector for both
+      // Open song selector
     }
   }
 
   async loadLyrics(itemTitle, itemSubTitle) {
-    console.log('Getting lyrics');
     this.setState({ lyrics: '...' });
 
     const newLyrics = await getLyrics({
@@ -106,139 +89,133 @@ export default class DetailsEditPage extends React.Component {
     });
 
     this.setState({ lyrics: newLyrics });
-    console.log('Updated lyrics');
   }
 
   render() {
     const {
-      // sameNameTasks,
       animatedEditPage,
       itemType,
       itemTitle,
       itemSubTitle,
       lyrics,
     } = this.state;
-    const { date } = this.props;
+    const { navigation } = this.props;
+    const date = navigation.getParam('date');
 
-    if (itemType) {
-      return (
-        <TouchableWithoutFeedback onPress={this.close}>
-          <Animated.View
-            style={[
-              styles.absView,
-              detailsEditPageStyles.background,
-              {
-                backgroundColor: animatedEditPage.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: ['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.4)'],
-                }),
-              },
-            ]}
-          >
-            <TouchableWithoutFeedback>
-              <Animated.View
-                style={[
-                  detailsEditPageStyles.panel,
-                  {
-                    transform: [{
-                      translateY: animatedEditPage.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [windowHeight, 0],
-                      }),
-                    }],
-                  },
-                ]}
+    return (
+      <TouchableWithoutFeedback onPress={this.close}>
+        <Animated.View
+          style={[
+            styles.absView,
+            detailsEditPageStyles.background,
+            {
+              backgroundColor: animatedEditPage.interpolate({
+                inputRange: [0, 1],
+                outputRange: ['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.4)'],
+              }),
+            },
+          ]}
+        >
+          <TouchableWithoutFeedback>
+            <Animated.View
+              style={[
+                detailsEditPageStyles.panel,
+                {
+                  transform: [{
+                    translateY: animatedEditPage.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [windowHeight, 0],
+                    }),
+                  }],
+                },
+              ]}
+            >
+              <View
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  right: 0,
+                  zIndex: 1,
+                }}
               >
-                <View
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    right: 0,
-                    zIndex: 1,
-                  }}
-                >
-                  <TouchableOpacity onPress={this.close}>
-                    <Feather
-                      name="arrow-down"
-                      size={28}
-                      color="#fff"
-                      style={{ padding: 20 }}
-                    />
+                <TouchableOpacity onPress={this.close}>
+                  <Feather
+                    name="arrow-down"
+                    size={28}
+                    color="#fff"
+                    style={{ padding: 20 }}
+                  />
+                </TouchableOpacity>
+              </View>
+              <View style={detailsEditPageStyles.topPart}>
+                <View style={[detailsEditPageStyles.paragraph, { marginTop: 0 }]}>
+                  <TouchableOpacity onPress={() => this.handlePress('itemTitle')}>
+                    <Text style={[styles.whiteClr, { fontSize: 26, marginBottom: 10 }]}>
+                      {itemTitle}
+                    </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => this.handlePress('itemSubTitle')}>
+                    <Text style={detailsEditPageStyles.paragraphBody}>
+                      {itemSubTitle}
+                    </Text>
                   </TouchableOpacity>
                 </View>
-                <View style={detailsEditPageStyles.topPart}>
-                  <View style={[detailsEditPageStyles.paragraph, { marginTop: 0 }]}>
-                    <TouchableOpacity onPress={() => this.handlePress('itemTitle')}>
-                      <Text style={[styles.whiteClr, { fontSize: 26, marginBottom: 10 }]}>
-                        {itemTitle}
-                      </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.handlePress('itemSubTitle')}>
-                      <Text style={detailsEditPageStyles.paragraphBody}>
-                        {itemSubTitle}
-                      </Text>
-                    </TouchableOpacity>
+                <TouchableOpacity onPress={this.reschedule}>
+                  <View style={detailsEditPageStyles.paragraph}>
+                    <Text style={detailsEditPageStyles.paragraphTitle}>
+                      SCHEDULE
+                    </Text>
+                    <Text style={detailsEditPageStyles.paragraphBody}>
+                      {moment(date).format('ddd D MMM')}
+                    </Text>
                   </View>
-                  <TouchableOpacity onPress={this.reschedule}>
-                    <View style={detailsEditPageStyles.paragraph}>
-                      <Text style={detailsEditPageStyles.paragraphTitle}>
-                        SCHEDULE
-                      </Text>
-                      <Text style={detailsEditPageStyles.paragraphBody}>
-                        {moment(date).format('ddd D MMM')}
-                      </Text>
-                    </View>
-                  </TouchableOpacity>
-                  {itemType === 'song' && (
+                </TouchableOpacity>
+                {itemType === 'song' && (
+                  lyrics === '...' ? (
+                    <TouchableOpacity onPress={() => this.loadLyrics(itemTitle, itemSubTitle)}>
+                      <View style={detailsEditPageStyles.paragraph}>
+                        <Text style={detailsEditPageStyles.paragraphTitle}>
+                          Lyrics
+                        </Text>
+                        <Text style={detailsEditPageStyles.paragraphBody}>
+                          Get lyrics...
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
+                  ) : (
                     <View style={detailsEditPageStyles.paragraph}>
                       <Text style={detailsEditPageStyles.paragraphTitle}>
                         Lyrics
                       </Text>
                       <Text style={detailsEditPageStyles.paragraphBody}>
-                        {(lyrics === '...' || lyrics === 'No lyrics found.'
+                        {(lyrics === 'No lyrics found.'
                           ? lyrics
                           : `${lyrics.substring(0, 97)}...`)}
                       </Text>
                     </View>
-                  )}
-                  {/* {itemType === 'role' && !!sameNameTasks && (
-                    <View style={detailsEditPageStyles.paragraph}>
-                      <Text style={detailsEditPageStyles.paragraphTitle}>
-                        ALSO DOING
-                      </Text>
-                      <Text style={detailsEditPageStyles.paragraphBody}>
-                        {sameNameTasks.map(task => task.name).join(', ')}
-                      </Text>
-                    </View>
-                  )}
-                  {itemType === 'role' && (
-                    <HeatMap user={0} />
-                  )} */}
-                </View>
-                <View style={detailsEditPageStyles.deleteButtonContainer}>
-                  <TouchableOpacity oonPress={this.delete}>
-                    <View style={detailsEditPageStyles.deleteButton}>
-                      <Text
-                        style={[
-                          styles.whiteClr,
-                          styles.centerText,
-                          styles.fntWt600,
-                          { fontSize: 18 },
-                        ]}
-                      >
-                        DELETE
-                      </Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-              </Animated.View>
-            </TouchableWithoutFeedback>
-          </Animated.View>
-        </TouchableWithoutFeedback>
-      );
-    }
-    return (
-      <View />
+                  )
+                )}
+              </View>
+              <View style={detailsEditPageStyles.deleteButtonContainer}>
+                <TouchableOpacity oonPress={this.delete}>
+                  <View style={detailsEditPageStyles.deleteButton}>
+                    <Text
+                      style={[
+                        styles.whiteClr,
+                        styles.centerText,
+                        styles.fntWt600,
+                        { fontSize: 18 },
+                      ]}
+                    >
+                      DELETE
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+            </Animated.View>
+          </TouchableWithoutFeedback>
+        </Animated.View>
+      </TouchableWithoutFeedback>
     );
   }
 }
