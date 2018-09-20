@@ -2,7 +2,6 @@ import Pluralize from 'pluralize';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-  Keyboard,
   View,
   StyleSheet,
   Text,
@@ -13,7 +12,8 @@ import {
   PanResponder,
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import styles, { secondaryColor } from '../../Styles';
+import Snackbar from '../../components/Snackbar';
+import styles, { activeColor, secondaryColor } from '../../Styles';
 import { daysData } from '../../helpers/propTypes';
 import DetailsItem from './DetailsItem';
 import AddItem from './AddItem';
@@ -101,6 +101,8 @@ export default class DetailPage extends React.Component {
       addItemSubTitle: props.pageTitle === 'Roles'
         ? this.rolesAddItemSubTitle
         : this.songsAddItemSubTitle,
+      snackbarVisibile: false,
+      addItemVisibile: false,
     };
     if (props.isFullScreen) {
       const { animatedOpacity } = this.state;
@@ -112,10 +114,10 @@ export default class DetailPage extends React.Component {
     }
   }
 
-  componentWillReceiveProps(newProps) {
+  componentWillReceiveProps(nextProps) {
     const { pageTitle } = this.props;
-    if (pageTitle !== newProps.pageTitle) {
-      this.setState({ pageTitle: newProps.pageTitle });
+    if (pageTitle !== nextProps.pageTitle) {
+      this.setState({ pageTitle: nextProps.pageTitle });
     }
   }
 
@@ -129,6 +131,8 @@ export default class DetailPage extends React.Component {
       pageTitle,
       addItemTitle,
       addItemSubTitle,
+      snackbarVisibile,
+      addItemVisibile,
     } = this.state;
 
     if (!isFullScreen) {
@@ -139,6 +143,8 @@ export default class DetailPage extends React.Component {
         || nextState.pageTitle !== pageTitle
         || nextState.addItemTitle !== addItemTitle
         || nextState.addItemSubTitle !== addItemSubTitle
+        || nextState.snackbarVisibile !== snackbarVisibile
+        || nextState.addItemVisibile !== addItemVisibile
         || nextProps.item !== item
         || nextProps.isFullScreen !== isFullScreen
     );
@@ -177,33 +183,6 @@ export default class DetailPage extends React.Component {
     closeDetailPage();
   }
 
-  openAddItem = () => {
-    // Animation: Scroll view up and make it opaque
-    const { animatedAddItem } = this.state;
-    Animated.parallel([
-      Animated.timing(animatedAddItem, {
-        toValue: -windowHeight,
-        duration: 300,
-      }),
-    ], { useNativeDriver: true }).start(() => {
-      this.addItemSearchBox.focus();
-    });
-  }
-
-  closeAddItem = (callback) => {
-    // Reverse of above this.openAddItem()
-    const { animatedAddItem } = this.state;
-    Keyboard.dismiss();
-    Animated.parallel([
-      Animated.timing(animatedAddItem, {
-        toValue: 0,
-        duration: 300,
-      }),
-    ], { useNativeDriver: true }).start(() => {
-      if (typeof callback === 'function') callback();
-    });
-  }
-
   render() {
     const {
       item,
@@ -218,6 +197,8 @@ export default class DetailPage extends React.Component {
       animatedChangePage,
       addItemTitle,
       addItemSubTitle,
+      snackbarVisibile,
+      addItemVisibile,
     } = this.state;
     const absentees = this.getAbsentees();
 
@@ -249,7 +230,7 @@ export default class DetailPage extends React.Component {
           >
             <TouchableWithoutFeedback onPress={openDetailPage}>
               <View style={{ flex: 1 }}>
-                <Animated.View style={{ height: '80%' }}>
+                <View style={{ height: '80%' }}>
                   <ScrollView
                     scrollEnabled={isFullScreen}
                     contentContainerStyle={detailPageStyles.scrollView}
@@ -308,11 +289,19 @@ export default class DetailPage extends React.Component {
                           }],
                         }}
                       >
-                        <DetailsItem data1="" data2="" onPress={this.openAddItem} isAddItemButton />
+                        <DetailsItem
+                          isAddItemButton
+                          data1=""
+                          data2=""
+                          onPress={() => this.setState({
+                            snackbarVisibile: false,
+                            addItemVisibile: true,
+                          })}
+                        />
                       </Animated.View>
                     )}
                   </ScrollView>
-                </Animated.View>
+                </View>
                 <View style={[styles.rowContainer, detailPageStyles.footer]}>
                   <View style={detailPageStyles.pageTitle}>
                     <Text style={[styles.whiteClr, styles.centerText, { fontSize: 24 }]}>
@@ -343,47 +332,37 @@ export default class DetailPage extends React.Component {
             </TouchableWithoutFeedback>
           </Animated.View>
           {isFullScreen && (pageTitle === 'Roles' || pageTitle === 'Songs') && (
-            <Animated.View
-              style={{
-                height: animatedAddItem.interpolate({
-                  inputRange: [-windowHeight, 0],
-                  outputRange: [windowHeight, 0],
-                }),
+            <AddItem
+              visible={addItemVisibile}
+              help={pageTitle === 'Roles' && addItemTitle === 'PEOPLE' && (
+                'Now assign a person to that role'
+              )}
+              title={addItemTitle}
+              subTitle={addItemSubTitle}
+              itemSubTitle={`Add this new ${Pluralize.singular(addItemTitle.toLowerCase())}`}
+              closeAddItem={() => {
+                this.setState({ addItemVisibile: false });
+                if (pageTitle === 'Roles' && addItemTitle === 'PEOPLE') {
+                  this.setState({
+                    addItemTitle: 'ROLES',
+                    addItemSubTitle: this.rolesAddItemSubTitle,
+                  });
+                }
               }}
-            >
-              <AddItem
-                addItemSearchBox={(addItemSearchBox) => {
-                  this.addItemSearchBox = addItemSearchBox;
-                }}
-                closeAddItem={() => this.closeAddItem(() => {
-                  if (pageTitle === 'Roles' && addItemTitle === 'PEOPLE') {
-                    this.setState({
-                      addItemTitle: 'ROLES',
-                      addItemSubTitle: this.rolesAddItemSubTitle,
-                    });
-                  }
-                })}
-                onceItemIsAdded={() => this.closeAddItem(() => {
-                  if (pageTitle === 'Roles' && addItemTitle === 'ROLES') {
-                    this.setState({
-                      addItemTitle: 'PEOPLE',
-                      addItemSubTitle: this.peopleAddItemSubTitle,
-                    }, () => setTimeout(this.openAddItem, 100));
-                  } else if (pageTitle === 'Roles' && addItemTitle === 'PEOPLE') {
-                    this.setState({
-                      addItemTitle: 'ROLES',
-                      addItemSubTitle: this.rolesAddItemSubTitle,
-                    });
-                  }
-                })}
-                help={pageTitle === 'Roles' && addItemTitle === 'PEOPLE' && (
-                  'Now assign a person to that role'
-                )}
-                title={addItemTitle}
-                subTitle={addItemSubTitle}
-                itemSubTitle={`Add this new ${Pluralize.singular(addItemTitle.toLowerCase())}`}
-              />
-            </Animated.View>
+              onceItemIsAdded={() => {
+                this.setState({ addItemVisibile: false });
+                if (pageTitle === 'Roles' && addItemTitle === 'ROLES') {
+                  this.setState({
+                    snackbarVisibile: true,
+                  });
+                } else if (pageTitle === 'Roles' && addItemTitle === 'PEOPLE') {
+                  this.setState({
+                    addItemTitle: 'ROLES',
+                    addItemSubTitle: this.rolesAddItemSubTitle,
+                  });
+                }
+              }}
+            />
           )}
         </View>
         {isFullScreen && (
@@ -392,6 +371,21 @@ export default class DetailPage extends React.Component {
             date={item.date.fullDate}
           />
         )}
+        <Snackbar
+          visible={snackbarVisibile}
+          textMessage="Role added"
+          actionText="ASSIGN PERSON"
+          actionColor={activeColor}
+          actionHandler={() => this.setState({
+            snackbarVisibile: false,
+            addItemVisibile: true,
+            addItemTitle: 'PEOPLE',
+            addItemSubTitle: this.peopleAddItemSubTitle,
+          })}
+          onDismiss={() => this.setState({
+            snackbarVisibile: false,
+          })}
+        />
       </View>
     );
   }

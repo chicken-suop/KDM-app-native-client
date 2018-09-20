@@ -37,14 +37,14 @@ export default class ScrollButton extends React.Component {
     };
   }
 
-  componentWillReceiveProps(newProps) {
+  componentWillReceiveProps(nextProps) {
     const { opacity, isAbove } = this.state;
-    if (isAbove !== newProps.isAbove) {
+    if (isAbove !== nextProps.isAbove) {
       opacity.setValue(0);
       this.setState({
-        isAbove: newProps.isAbove,
+        isAbove: nextProps.isAbove,
       }, () => {
-        if (newProps.isAbove === true || newProps.isAbove === false) {
+        if (nextProps.isAbove === true || nextProps.isAbove === false) {
           Animated.timing(
             opacity,
             {

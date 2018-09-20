@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-  KeyboardAvoidingView,
+  // KeyboardAvoidingView,
   View,
   StyleSheet,
   Text,
@@ -10,9 +10,15 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Platform,
+  Animated,
+  Dimensions,
+  Keyboard,
 } from 'react-native';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 import { Ionicons } from '@expo/vector-icons';
 import styles, { secondaryColor } from '../../Styles';
+
+const windowHeight = Dimensions.get('window').height;
 
 export default class AddItem extends React.Component {
   initalData = Array(20).fill().map((_, index) => ({
@@ -20,12 +26,13 @@ export default class AddItem extends React.Component {
   }));
 
   static propTypes = {
-    addItemSearchBox: PropTypes.func.isRequired,
-    closeAddItem: PropTypes.func.isRequired,
+    // addItemSearchBox: PropTypes.func.isRequired,
+    visible: PropTypes.bool.isRequired,
     onceItemIsAdded: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
     subTitle: PropTypes.string.isRequired,
     itemSubTitle: PropTypes.string.isRequired,
+    closeAddItem: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -37,23 +44,58 @@ export default class AddItem extends React.Component {
       title: props.title,
       subTitle: props.subTitle,
       itemSubTitle: props.itemSubTitle,
+      translateValue: new Animated.Value(0),
     };
   }
 
-  componentWillReceiveProps(newProps) {
-    const { title, subTitle, itemSubTitle } = this.props;
-    console.log(newProps);
+  componentWillReceiveProps(nextProps) {
+    const {
+      visible,
+      title,
+      subTitle,
+      itemSubTitle,
+    } = this.props;
+
+    if (nextProps.visible && !visible) {
+      this.show();
+    } else if (!nextProps.visible && visible) {
+      this.dismiss();
+    }
+
     if (
-      title !== newProps.title
-      || subTitle !== newProps.subTitle
-      || itemSubTitle !== newProps.itemSubTitle
+      title !== nextProps.title
+      || subTitle !== nextProps.subTitle
+      || itemSubTitle !== nextProps.itemSubTitle
     ) {
       this.setState({
-        title: newProps.title,
-        subTitle: newProps.subTitle,
-        itemSubTitle: newProps.itemSubTitle,
+        title: nextProps.title,
+        subTitle: nextProps.subTitle,
+        itemSubTitle: nextProps.itemSubTitle,
       });
     }
+  }
+
+  show = () => {
+    const { translateValue } = this.state;
+    this.addItemSearchBox.focus();
+    Animated.timing(translateValue, {
+      toValue: -windowHeight,
+      duration: 500,
+    }).start();
+    // setTimeout(this.addItemSearchBox.focus, 300);
+  }
+
+  dismiss = () => {
+    const { translateValue } = this.state;
+    const { closeAddItem } = this.props;
+    Keyboard.dismiss();
+    Animated.parallel([
+      Animated.timing(translateValue, {
+        toValue: 0,
+        duration: 400,
+      }),
+    ], { useNativeDriver: true }).start(closeAddItem);
+    // setTimeout(Keyboard.dismiss, 300);
   }
 
   filterData = (text, subTitle) => (
@@ -78,111 +120,137 @@ export default class AddItem extends React.Component {
 
   render() {
     const {
-      query, dataSource, title, subTitle, itemSubTitle,
+      query,
+      dataSource,
+      title,
+      subTitle,
+      itemSubTitle,
+      translateValue,
     } = this.state;
-    const { addItemSearchBox, closeAddItem } = this.props;
 
     return (
-      <KeyboardAvoidingView
-        style={addItemStyles.container}
-        behavior="padding"
-        enabled
-        keyboardVerticalOffset={-35}
+      <Animated.View
+        style={{
+          zIndex: 1,
+          backgroundColor: secondaryColor,
+          position: 'absolute',
+          overflow: 'hidden',
+          left: 0,
+          right: 0,
+          bottom: translateValue.interpolate({
+            inputRange: [-windowHeight, 0],
+            outputRange: [0, -windowHeight],
+          }),
+          height: translateValue.interpolate({
+            inputRange: [-windowHeight, 0],
+            outputRange: [windowHeight, 0],
+          }),
+        }}
       >
-        <View>
-          <Text
-            style={[
-              styles.whiteClr,
-              styles.centerText,
-              styles.fntWt600,
-              { fontSize: 22, marginBottom: 10 },
-            ]}
-          >
-            {title}
-          </Text>
-          <Text style={[styles.whiteClr, styles.centerText, { fontSize: 16 }]}>
-            {subTitle}
-          </Text>
-          <View style={styles.searchInput}>
-            <TextInput
-              style={[styles.centerText, addItemStyles.inputText]}
-              placeholder="Try ProPresenter"
-              placeholderTextColor="#ccc"
-              underlineColorAndroid="transparent"
-              autoCorrect={false}
-              value={query}
-              ref={addItemSearchBox}
-              onChangeText={(text) => {
-                this.setState({
-                  query: text,
-                  dataSource: this.filterData(text, itemSubTitle),
-                });
-              }}
-            />
-            {!!query && (
-              <View style={addItemStyles.clearButton}>
-                <TouchableWithoutFeedback
-                  onPress={() => this.setState({
-                    query: '',
-                    dataSource: this.filterData(''),
-                  })}
-                >
-                  <Ionicons
-                    name={Platform.OS === 'ios' ? 'ios-close-circle' : 'md-close-circle'}
-                    size={18}
-                    color="#000"
-                    style={{ padding: 10 }}
-                  />
-                </TouchableWithoutFeedback>
-              </View>
-            )}
-          </View>
-        </View>
-        <View style={addItemStyles.bottomPart}>
-          <FlatList
-            keyboardDismissMode="none"
-            keyboardShouldPersistTaps="always"
-            removeClippedSubviews
-            ref={(list) => { this.flatListRef = list; }}
-            keyExtractor={item => item.id.toString()}
-            getItemLayout={(data, index) => (
-              { length: 70, offset: 70 * index, index }
-            )}
-            data={dataSource}
-            renderItem={({ item, index }) => (
-              <TouchableOpacity onPress={this.addItem}>
-                <View style={[addItemStyles.addItemRow, index !== 0 && { borderTopWidth: 1 }]}>
-                  {item.id === -1 && (
+        <View style={addItemStyles.container}>
+          <View>
+            <Text
+              style={[
+                styles.whiteClr,
+                styles.centerText,
+                styles.fntWt600,
+                { fontSize: 22, marginBottom: 10 },
+              ]}
+            >
+              {title}
+            </Text>
+            <Text style={[styles.whiteClr, styles.centerText, { fontSize: 16 }]}>
+              {subTitle}
+            </Text>
+            <View style={styles.searchInput}>
+              <TextInput
+                style={[styles.centerText, addItemStyles.inputText]}
+                placeholder="Try ProPresenter"
+                placeholderTextColor="#ccc"
+                underlineColorAndroid="transparent"
+                autoCorrect={false}
+                value={query}
+                ref={(ref) => { this.addItemSearchBox = ref; }}
+                onChangeText={(text) => {
+                  this.setState({
+                    query: text,
+                    dataSource: this.filterData(text, itemSubTitle),
+                  });
+                }}
+              />
+              {!!query && (
+                <View style={addItemStyles.clearButton}>
+                  <TouchableWithoutFeedback
+                    onPress={() => this.setState({
+                      query: '',
+                      dataSource: this.filterData(''),
+                    })}
+                  >
                     <Ionicons
-                      name={Platform.OS === 'ios' ? 'ios-add-circle' : 'md-add-circle'}
-                      size={20}
-                      color="#fff"
+                      name={Platform.OS === 'ios' ? 'ios-close-circle' : 'md-close-circle'}
+                      size={18}
+                      color="#000"
                       style={{ padding: 10 }}
                     />
-                  )}
-                  <View style={[addItemStyles.addItemRowInner]}>
-                    <Text style={[styles.whiteClr, { fontSize: 20 }]}>
-                      {item.title}
-                    </Text>
-                    <Text style={[styles.whiteClr, { fontSize: 12 }]}>
-                      {item.subTitle}
-                    </Text>
-                  </View>
+                  </TouchableWithoutFeedback>
                 </View>
-              </TouchableOpacity>
-            )}
-          />
-        </View>
-        <View style={addItemStyles.closeButtonContainer}>
-          <TouchableOpacity onPress={closeAddItem}>
-            <View style={addItemStyles.closeButton}>
-              <Text style={[styles.whiteClr, styles.centerText, styles.fntWt600, { fontSize: 18 }]}>
-                CLOSE
-              </Text>
+              )}
             </View>
-          </TouchableOpacity>
+          </View>
+          <View style={addItemStyles.bottomPart}>
+            <FlatList
+              keyboardDismissMode="none"
+              keyboardShouldPersistTaps="always"
+              removeClippedSubviews
+              ref={(list) => { this.flatListRef = list; }}
+              keyExtractor={item => item.id.toString()}
+              getItemLayout={(data, index) => (
+                { length: 70, offset: 70 * index, index }
+              )}
+              data={dataSource}
+              renderItem={({ item, index }) => (
+                <TouchableOpacity onPress={this.addItem}>
+                  <View style={[addItemStyles.addItemRow, index !== 0 && { borderTopWidth: 1 }]}>
+                    {item.id === -1 && (
+                      <Ionicons
+                        name={Platform.OS === 'ios' ? 'ios-add-circle' : 'md-add-circle'}
+                        size={20}
+                        color="#fff"
+                        style={{ padding: 10 }}
+                      />
+                    )}
+                    <View style={[addItemStyles.addItemRowInner]}>
+                      <Text style={[styles.whiteClr, { fontSize: 20 }]}>
+                        {item.title}
+                      </Text>
+                      <Text style={[styles.whiteClr, { fontSize: 12 }]}>
+                        {item.subTitle}
+                      </Text>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              )}
+            />
+          </View>
+          <View style={addItemStyles.closeButtonContainer}>
+            <TouchableOpacity onPress={this.dismiss}>
+              <View style={addItemStyles.closeButton}>
+                <Text
+                  style={[
+                    styles.whiteClr,
+                    styles.centerText,
+                    styles.fntWt600,
+                    { fontSize: 18 },
+                  ]}
+                >
+                  CLOSE
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+          <KeyboardSpacer topSpacing={-35} />
         </View>
-      </KeyboardAvoidingView>
+      </Animated.View>
     );
   }
 }
@@ -193,7 +261,6 @@ const addItemStyles = StyleSheet.create({
     marginTop: '10%',
     overflow: 'hidden',
     alignItems: 'center',
-    position: 'relative',
   },
   searchInput: {
     height: 45,
