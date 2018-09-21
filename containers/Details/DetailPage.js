@@ -1,4 +1,3 @@
-import Pluralize from 'pluralize';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
@@ -89,7 +88,7 @@ export default class DetailPage extends React.Component {
       animatedOpacity: new Animated.Value(0),
       animatedChangePage: new Animated.Value(0),
       pageTitle: props.pageTitle,
-      addItemTitle: props.pageTitle.toUpperCase(),
+      addItemType: props.pageTitle.toLowerCase(),
       snackbarVisibile: false,
     };
   }
@@ -111,32 +110,32 @@ export default class DetailPage extends React.Component {
     if (pageTitle !== nextProps.pageTitle) {
       this.setState({
         pageTitle: nextProps.pageTitle,
-        addItemTitle: nextProps.pageTitle.toUpperCase(),
+        addItemType: nextProps.pageTitle.toLowerCase(),
       });
     }
   }
 
   onCloseAddItem = () => {
     // Reset the title after selecting a person
-    const { pageTitle, addItemTitle } = this.state;
-    if (pageTitle === 'Roles' && addItemTitle === 'PEOPLE') {
+    const { pageTitle, addItemType } = this.state;
+    if (pageTitle === 'Roles' && addItemType === 'people') {
       this.setState({
-        addItemTitle: 'ROLES',
+        addItemType: 'roles',
       });
     }
   }
 
   onChooseAddItem = () => {
     // Update server here.
-    const { pageTitle, addItemTitle } = this.state;
-    if (pageTitle === 'Roles' && addItemTitle === 'ROLES') {
+    const { pageTitle, addItemType } = this.state;
+    if (pageTitle === 'Roles' && addItemType === 'roles') {
       this.setState({
         snackbarVisibile: true,
       });
-    } else if (pageTitle === 'Roles' && addItemTitle === 'PEOPLE') {
+    } else if (pageTitle === 'Roles' && addItemType === 'people') {
       // Reset the title after selecting a person
       this.setState({
-        addItemTitle: 'ROLES',
+        addItemType: 'roles',
       });
     }
   }
@@ -185,7 +184,7 @@ export default class DetailPage extends React.Component {
       animatedOpacity,
       pageTitle,
       animatedChangePage,
-      addItemTitle,
+      addItemType,
       snackbarVisibile,
     } = this.state;
     const absentees = this.getAbsentees();
@@ -281,10 +280,8 @@ export default class DetailPage extends React.Component {
                           data2=""
                           onPress={() => {
                             this.setState({ snackbarVisibile: false });
-                            const type = Pluralize.singular(addItemTitle.toLowerCase());
                             navigation.navigate('AddItem', {
-                              title: addItemTitle,
-                              itemSubTitle: `Add this new ${type}`,
+                              type: addItemType,
                               onClose: this.onCloseAddItem,
                               onChoose: this.onChooseAddItem,
                             });
@@ -329,11 +326,10 @@ export default class DetailPage extends React.Component {
           actionHandler={() => {
             this.setState({
               snackbarVisibile: false,
-              addItemTitle: 'PEOPLE',
+              addItemType: 'people',
             });
             navigation.navigate('AddItem', {
-              title: 'PEOPLE',
-              itemSubTitle: 'Add this new person',
+              type: 'people',
               onClose: this.onCloseAddItem,
               onChoose: this.onChooseAddItem,
             });

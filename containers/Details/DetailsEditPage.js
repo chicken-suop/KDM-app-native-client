@@ -71,12 +71,18 @@ export default class DetailsEditPage extends React.Component {
       // Open person selector
     } else if (itemType === 'role' && type === 'itemSubTitle') {
       navigation.navigate('AddItem', {
-        title: 'ROLES',
-        itemSubTitle: 'Add this new role',
-        onChoose: () => {},
+        type: 'roles',
+        onChoose: () => {
+          // Send to server
+        },
       });
     } else if (itemType === 'song') {
-      // Open song selector
+      navigation.navigate('AddItem', {
+        type: 'songs',
+        onChoose: () => {
+          // Send to server
+        },
+      });
     }
   }
 

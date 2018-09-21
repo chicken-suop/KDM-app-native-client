@@ -34,11 +34,21 @@ export default class AddItem extends React.Component {
   constructor(props) {
     super(props);
 
+    this.type = props.navigation.getParam('type');
+    if (this.type === 'roles') {
+      this.title = 'ROLES';
+      this.itemSubTitle = 'Add this new role';
+    } else if (this.type === 'songs') {
+      this.title = 'SONGS';
+      this.itemSubTitle = 'Add this new song';
+    } else if (this.type === 'people') {
+      this.title = 'PEOPLE';
+      this.itemSubTitle = 'Add this new person';
+    }
+
     this.state = {
       query: '',
       dataSource: this.initalData,
-      title: props.navigation.getParam('title'),
-      itemSubTitle: props.navigation.getParam('itemSubTitle'),
       translateValue: new Animated.Value(0),
     };
   }
@@ -63,7 +73,7 @@ export default class AddItem extends React.Component {
       toValue: 0,
       duration: 0, // 300,
     }).start(() => {
-      navigation.state.params.onClose();
+      if (navigation.state.params.onClose) navigation.state.params.onClose();
       navigation.goBack();
     });
   }
@@ -77,7 +87,7 @@ export default class AddItem extends React.Component {
       toValue: 0,
       duration: 0, // 300,
     }).start(() => {
-      navigation.state.params.onChoose();
+      if (navigation.state.params.onChoose) navigation.state.params.onChoose();
       navigation.goBack();
     });
   }
@@ -100,8 +110,6 @@ export default class AddItem extends React.Component {
     const {
       query,
       dataSource,
-      title,
-      itemSubTitle,
       translateValue,
     } = this.state;
 
@@ -134,7 +142,7 @@ export default class AddItem extends React.Component {
                 { fontSize: 22 },
               ]}
             >
-              {title}
+              {this.title}
             </Text>
             <View style={styles.searchInput}>
               <TextInput
@@ -148,7 +156,7 @@ export default class AddItem extends React.Component {
                 onChangeText={(text) => {
                   this.setState({
                     query: text,
-                    dataSource: this.filterData(text, itemSubTitle),
+                    dataSource: this.filterData(text, this.itemSubTitle),
                   });
                 }}
               />
