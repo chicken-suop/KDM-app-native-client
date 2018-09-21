@@ -385,17 +385,17 @@ export default class DetailsScreen extends React.Component {
                   openDetailPage={() => {}}
                   closeDetailPage={() => { this.closeDetailPage(); }}
                   isFullScreen
-                  changePage={(isForwards, delay) => {
+                  changePage={(isForwards) => {
                     const index = detailPages.indexOf(activeDetailPage);
                     if (isForwards) {
                       this.scrollToIndex(
                         index + 1 < detailPages.length ? index + 1 : 0,
-                        delay,
+                        0,
                       );
                     } else {
                       this.scrollToIndex(
                         index - 1 >= 0 ? index - 1 : detailPages.length - 1,
-                        delay,
+                        0,
                       );
                     }
                   }}

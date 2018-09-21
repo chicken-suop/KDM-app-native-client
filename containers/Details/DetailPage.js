@@ -17,6 +17,7 @@ import { daysData } from '../../helpers/propTypes';
 import DetailsItem from './DetailsItem';
 
 const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 export default class DetailPage extends React.Component {
   // panResponder for swiping between pages
@@ -34,32 +35,20 @@ export default class DetailPage extends React.Component {
     },
     onPanResponderRelease: (e, { vx, dx }) => {
       const { animatedChangePage } = this.state;
-      if (Math.abs(vx) >= 0.5 || Math.abs(dx) >= 30) {
+      if (Math.abs(vx) >= 0.5 || Math.abs(dx) >= windowWidth / 3) {
         const { changePage } = this.props;
-        const durationOfAnimation = 100;
         // Delay state change until page is off screen
-        changePage(dx < 0, durationOfAnimation);
-        Animated.sequence([
-          // Transition page to off screen
-          Animated.timing(animatedChangePage, {
-            toValue: dx < 0 ? -windowWidth : windowWidth,
-            duration: durationOfAnimation,
-          }),
-          // Move the page to the other side of the screen
-          Animated.timing(animatedChangePage, {
-            toValue: dx < 0 ? windowWidth : -windowWidth,
-            duration: 0,
-          }),
-          // Move the "next page" into view (really same page, but updated data);
-          Animated.timing(animatedChangePage, {
-            toValue: 0,
-            duration: durationOfAnimation,
-          }),
-        ], { useNativeDriver: true }).start();
+        changePage(dx < 0);
+        Animated.timing(animatedChangePage, {
+          toValue: 0,
+          duration: 250,
+          useNativeDriver: true,
+        }).start();
       } else {
         Animated.spring(animatedChangePage, {
           toValue: 0,
           bounciness: 10,
+          useNativeDriver: true,
         }).start();
       }
     },
@@ -87,6 +76,7 @@ export default class DetailPage extends React.Component {
     this.state = {
       animatedOpacity: new Animated.Value(0),
       animatedChangePage: new Animated.Value(0),
+      item: props.item,
       pageTitle: props.pageTitle,
       addItemType: props.pageTitle.toLowerCase(),
       snackbarVisibile: false,
@@ -109,6 +99,7 @@ export default class DetailPage extends React.Component {
     const { pageTitle } = this.props;
     if (pageTitle !== nextProps.pageTitle) {
       this.setState({
+        item: nextProps.item,
         pageTitle: nextProps.pageTitle,
         addItemType: nextProps.pageTitle.toLowerCase(),
       });
@@ -174,13 +165,13 @@ export default class DetailPage extends React.Component {
 
   render() {
     const {
-      item,
       detailPageRef,
       isFullScreen,
       openDetailPage,
       navigation,
     } = this.props;
     const {
+      item,
       animatedOpacity,
       pageTitle,
       animatedChangePage,
@@ -203,17 +194,32 @@ export default class DetailPage extends React.Component {
           ]}
           ref={detailPageRef}
         >
-          <Animated.View
+          <View
             style={{
               flex: 1,
               position: 'relative',
-              transform: [{ translateX: animatedChangePage }],
             }}
             {...this.panResponder.panHandlers}
           >
             <TouchableWithoutFeedback onPress={openDetailPage}>
               <View style={{ flex: 1 }}>
-                <View style={{ height: '80%' }}>
+                <Animated.View
+                  style={{
+                    height: '80%',
+                    opacity: animatedChangePage.interpolate({
+                      inputRange: [-windowWidth / 2, 0, windowWidth / 2],
+                      outputRange: [0, 1, 0],
+                      extrapolate: 'clamp',
+                    }),
+                    transform: [{
+                      translateY: animatedChangePage.interpolate({
+                        inputRange: [-windowWidth / 2, 0, windowWidth / 2],
+                        outputRange: [-windowHeight / 3, 0, -windowHeight / 3],
+                        extrapolate: 'clamp',
+                      }),
+                    }],
+                  }}
+                >
                   <ScrollView
                     scrollEnabled={isFullScreen}
                     contentContainerStyle={detailPageStyles.scrollView}
@@ -290,7 +296,7 @@ export default class DetailPage extends React.Component {
                       </Animated.View>
                     )}
                   </ScrollView>
-                </View>
+                </Animated.View>
                 <View style={[styles.rowContainer, detailPageStyles.footer]}>
                   <View style={detailPageStyles.pageTitle}>
                     <Text style={[styles.whiteClr, styles.centerText, { fontSize: 24 }]}>
@@ -316,7 +322,7 @@ export default class DetailPage extends React.Component {
                 </View>
               </View>
             </TouchableWithoutFeedback>
-          </Animated.View>
+          </View>
         </View>
         <Snackbar
           visible={snackbarVisibile}
