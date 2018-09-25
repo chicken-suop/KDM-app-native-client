@@ -1,17 +1,5 @@
 import { StyleSheet } from 'react-native';
 
-// Dark blue:
-// export const activeColor = '#ca3724';
-// export const primaryColor = '#2A454C';
-// export const secondaryColor = '#274047';
-// export const trinaryColor = '#304E56';
-
-// Red, dark blue
-// export const activeColor = '#C52820';
-// export const primaryColor = '#252832';
-// export const secondaryColor = '#1E232C';
-// export const trinaryColor = '#20272E';
-
 // Orange, yellow
 export const activeColor = '#E9D758';
 export const primaryColor = '#E55F34';
