@@ -49,15 +49,16 @@ export default class AddItem extends React.Component {
     this.state = {
       query: '',
       dataSource: this.initalData,
-      translateValue: new Animated.Value(0),
+      animatedRender: new Animated.Value(0),
     };
   }
 
   componentWillMount() {
-    const { translateValue } = this.state;
-    Animated.timing(translateValue, {
-      toValue: -windowHeight,
-      duration: 0, // 300,
+    const { animatedRender } = this.state;
+    Animated.timing(animatedRender, {
+      toValue: 1,
+      duration: 200,
+      useNativeDriver: true,
     }).start();
   }
 
@@ -66,12 +67,13 @@ export default class AddItem extends React.Component {
   }
 
   close = () => {
-    const { translateValue } = this.state;
+    const { animatedRender } = this.state;
     const { navigation } = this.props;
     Keyboard.dismiss();
-    Animated.timing(translateValue, {
+    Animated.timing(animatedRender, {
       toValue: 0,
-      duration: 0, // 300,
+      duration: 200,
+      useNativeDriver: true,
     }).start(() => {
       if (navigation.state.params.onClose) navigation.state.params.onClose();
       navigation.goBack();
@@ -79,13 +81,14 @@ export default class AddItem extends React.Component {
   }
 
   addItem = () => {
-    const { translateValue } = this.state;
+    const { animatedRender } = this.state;
     const { navigation } = this.props;
     // Send data to server here.
     Keyboard.dismiss();
-    Animated.timing(translateValue, {
+    Animated.timing(animatedRender, {
       toValue: 0,
-      duration: 0, // 300,
+      duration: 200,
+      useNativeDriver: true,
     }).start(() => {
       if (navigation.state.params.onChoose) navigation.state.params.onChoose();
       navigation.goBack();
@@ -110,75 +113,71 @@ export default class AddItem extends React.Component {
     const {
       query,
       dataSource,
-      translateValue,
+      animatedRender,
     } = this.state;
 
     return (
       <Animated.View
-        style={{
-          zIndex: 1,
-          backgroundColor: secondaryColor,
-          position: 'absolute',
-          overflow: 'hidden',
-          left: 0,
-          right: 0,
-          bottom: translateValue.interpolate({
-            inputRange: [-windowHeight, 0],
-            outputRange: [0, -windowHeight],
-          }),
-          height: translateValue.interpolate({
-            inputRange: [-windowHeight, 0],
-            outputRange: [windowHeight, 0],
-          }),
-        }}
+        style={[
+          styles.absView,
+          {
+            flex: 1,
+            backgroundColor: secondaryColor,
+            overflow: 'hidden',
+            transform: [{
+              translateY: animatedRender.interpolate({
+                inputRange: [0, 1],
+                outputRange: [windowHeight, 0],
+              }),
+            }],
+          },
+        ]}
       >
         <View style={addItemStyles.container}>
-          <View>
-            <Text
-              style={[
-                styles.whiteClr,
-                styles.centerText,
-                styles.fntWt600,
-                { fontSize: 22 },
-              ]}
-            >
-              {this.title}
-            </Text>
-            <View style={styles.searchInput}>
-              <TextInput
-                style={[styles.centerText, addItemStyles.inputText]}
-                placeholder="Try ProPresenter"
-                placeholderTextColor="#ccc"
-                underlineColorAndroid="transparent"
-                autoCorrect={false}
-                value={query}
-                ref={(ref) => { this.searchInput = ref; }}
-                onChangeText={(text) => {
-                  this.setState({
-                    query: text,
-                    dataSource: this.filterData(text, this.itemSubTitle),
-                  });
-                }}
-              />
-              {!!query && (
-                <View style={addItemStyles.clearButton}>
-                  <TouchableWithoutFeedback
-                    onPress={() => this.setState({
-                      query: '',
-                      dataSource: this.filterData(''),
-                    })}
-                  >
-                    <Ionicons
-                      name={Platform.OS === 'ios' ? 'ios-close-circle' : 'md-close-circle'}
-                      size={18}
-                      color="#000"
-                      style={{ padding: 10 }}
-                    />
-                  </TouchableWithoutFeedback>
-                </View>
-              )}
-            </View>
+          <Text
+            style={[
+              styles.whiteClr,
+              styles.centerText,
+              styles.fntWt600,
+              { fontSize: 22 },
+            ]}
+          >
+            {this.title}
+          </Text>
+          <View style={styles.searchInput}>
+            <TextInput
+              style={[styles.centerText, addItemStyles.inputText]}
+              placeholder="Search for something"
+              placeholderTextColor="#ddd"
+              underlineColorAndroid="transparent"
+              autoCorrect={false}
+              value={query}
+              ref={(ref) => { this.searchInput = ref; }}
+              onChangeText={(text) => {
+                this.setState({
+                  query: text,
+                  dataSource: this.filterData(text, this.itemSubTitle),
+                });
+              }}
+            />
           </View>
+          {!!query && (
+            <View style={addItemStyles.clearButton}>
+              <TouchableWithoutFeedback
+                onPress={() => this.setState({
+                  query: '',
+                  dataSource: this.filterData(''),
+                })}
+              >
+                <Ionicons
+                  name={Platform.OS === 'ios' ? 'ios-close-circle' : 'md-close-circle'}
+                  size={18}
+                  color="#000"
+                  style={{ padding: 10 }}
+                />
+              </TouchableWithoutFeedback>
+            </View>
+          )}
           <View style={addItemStyles.bottomPart}>
             <FlatList
               keyboardDismissMode="none"
@@ -251,6 +250,8 @@ const addItemStyles = StyleSheet.create({
   },
   inputText: {
     marginTop: 20,
+    marginBottom: 20,
+    marginLeft: 43,
     marginRight: 43,
     fontSize: 20,
     color: '#fff',
@@ -258,26 +259,19 @@ const addItemStyles = StyleSheet.create({
   clearButton: {
     position: 'absolute',
     right: 13,
-    top: 12,
+    top: 30,
     opacity: 0.5,
   },
   closeButtonContainer: {
-    height: 45,
     width: '100%',
     backgroundColor: secondaryColor,
-    shadowRadius: 2,
-    shadowOffset: {
-      width: 0,
-      height: -1,
-    },
-    shadowColor: '#000',
-    shadowOpacity: 0.3,
-    elevation: 2,
+    borderTopWidth: 1,
+    borderTopColor: 'rgba(0, 0, 0, 0.1)',
   },
   closeButton: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 10,
+    paddingVertical: 20,
   },
   bottomPart: {
     flex: 1,

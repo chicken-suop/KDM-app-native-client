@@ -209,14 +209,9 @@ export default class DetailPage extends React.Component {
                     opacity: animatedChangePage.interpolate({
                       inputRange: [-windowWidth / 2, 0, windowWidth / 2],
                       outputRange: [0, 1, 0],
-                      extrapolate: 'clamp',
                     }),
                     transform: [{
-                      translateY: animatedChangePage.interpolate({
-                        inputRange: [-windowWidth / 2, 0, windowWidth / 2],
-                        outputRange: [-windowHeight / 3, 0, -windowHeight / 3],
-                        extrapolate: 'clamp',
-                      }),
+                      translateX: animatedChangePage,
                     }],
                   }}
                 >

@@ -6,8 +6,9 @@ import {
 import { createStackNavigator } from 'react-navigation';
 import HomeScreen from './containers/Home/HomeScreen';
 import DetailsScreen from './containers/Details/DetailsScreen';
-import DetailsEditPage from './containers/Details/DetailsEditPage';
-import AddItem from './containers/Details/AddItem';
+import DetailsEditScreen from './containers/Details/DetailsEditPage';
+import AddItemScreen from './containers/Details/AddItem';
+import ScheduleScreen from './containers/Details/Schedule';
 
 const MainStack = createStackNavigator(
   {
@@ -50,8 +51,9 @@ const MainStack = createStackNavigator(
 const RootStack = createStackNavigator(
   {
     Main: MainStack,
-    DetailsEdit: DetailsEditPage,
-    AddItem,
+    DetailsEdit: DetailsEditScreen,
+    Schedule: ScheduleScreen,
+    AddItem: AddItemScreen,
   },
   {
     navigationOptions: {

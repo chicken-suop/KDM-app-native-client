@@ -8,7 +8,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -23,7 +23,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -76,7 +76,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -91,7 +91,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -144,7 +144,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -159,7 +159,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -212,7 +212,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -227,7 +227,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -280,7 +280,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -295,7 +295,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -348,7 +348,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -363,7 +363,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -416,7 +416,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -431,7 +431,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -484,7 +484,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -499,7 +499,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -552,7 +552,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -567,7 +567,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -620,7 +620,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -635,7 +635,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -688,7 +688,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -703,7 +703,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -756,7 +756,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -771,7 +771,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -824,7 +824,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -839,7 +839,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -892,7 +892,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -907,7 +907,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -960,7 +960,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -975,7 +975,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -1028,7 +1028,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -1043,7 +1043,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -1096,7 +1096,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -1111,7 +1111,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -1164,7 +1164,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -1179,7 +1179,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -1232,7 +1232,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -1247,7 +1247,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -1300,7 +1300,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -1315,7 +1315,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -1368,7 +1368,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -1383,7 +1383,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -1436,7 +1436,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -1451,7 +1451,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -1504,7 +1504,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -1519,7 +1519,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -1572,7 +1572,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -1587,7 +1587,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -1640,7 +1640,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -1655,7 +1655,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -1708,7 +1708,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -1723,7 +1723,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -1776,7 +1776,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -1791,7 +1791,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -1844,7 +1844,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -1859,7 +1859,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -1912,7 +1912,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -1927,7 +1927,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -1980,7 +1980,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -1995,7 +1995,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -2048,7 +2048,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -2063,7 +2063,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -2116,7 +2116,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -2131,7 +2131,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -2184,7 +2184,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -2199,7 +2199,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -2270,7 +2270,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -2285,7 +2285,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -2320,7 +2320,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -2335,7 +2335,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -2388,7 +2388,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -2403,7 +2403,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -2465,7 +2465,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -2480,7 +2480,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -2533,7 +2533,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -2548,7 +2548,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -2601,7 +2601,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -2616,7 +2616,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -2669,7 +2669,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -2684,7 +2684,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -2737,7 +2737,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -2752,7 +2752,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -2805,7 +2805,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -2820,7 +2820,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -2873,7 +2873,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -2888,7 +2888,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -2941,7 +2941,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -2956,7 +2956,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -3009,7 +3009,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -3024,7 +3024,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -3077,7 +3077,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -3092,7 +3092,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -3145,7 +3145,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -3160,7 +3160,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -3213,7 +3213,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -3228,7 +3228,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -3281,7 +3281,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -3296,7 +3296,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -3349,7 +3349,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -3364,7 +3364,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -3417,7 +3417,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -3432,7 +3432,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
@@ -3485,7 +3485,7 @@ const daysData = [
     songs: [
       {
         id: 0,
-        name: 'Ogłaszam to (Prophesy)',
+        name: 'Prophesy',
         artist: 'Planetshakers',
       },
       {
@@ -3500,7 +3500,7 @@ const daysData = [
       },
       {
         id: 3,
-        name: 'To I ja (So will I )',
+        name: 'So will I',
         artist: 'Hillsong',
       },
     ],
