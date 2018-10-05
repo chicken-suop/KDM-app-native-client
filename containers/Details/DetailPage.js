@@ -17,7 +17,6 @@ import { daysData } from '../../helpers/propTypes';
 import DetailsItem from './DetailsItem';
 
 const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
 
 export default class DetailPage extends React.Component {
   // panResponder for swiping between pages

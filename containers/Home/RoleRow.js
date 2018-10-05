@@ -5,13 +5,13 @@ import styles from '../../Styles';
 import { daysDataItemRole } from '../../helpers/propTypes';
 
 const RoleRow = ({
-  itemRole, fontSize, alignLeft, restrictLen,
+  itemRole, fontSize, alignLeft, restrictLen, active,
 }) => {
   if (typeof itemRole !== 'string') {
     return (
       <Text
         style={[
-          { fontSize, textAlignVertical: 'center' },
+          { fontSize, textAlignVertical: 'center', fontWeight: active ? 'bold' : '400' },
           styles.primaryText,
           !alignLeft && styles.textAlignRight,
         ]}
@@ -23,7 +23,7 @@ const RoleRow = ({
   return (
     <Text
       style={[
-        { fontSize, textAlignVertical: 'center' },
+        { fontSize, textAlignVertical: 'center', fontWeight: active ? 'bold' : '400' },
         styles.primaryText,
         !alignLeft && styles.textAlignRight,
       ]}
@@ -41,12 +41,14 @@ RoleRow.propTypes = {
   fontSize: PropTypes.number,
   alignLeft: PropTypes.bool,
   restrictLen: PropTypes.bool,
+  active: PropTypes.bool,
 };
 
 RoleRow.defaultProps = {
-  fontSize: 12,
+  fontSize: 14,
   alignLeft: false,
   restrictLen: true,
+  active: false,
 };
 
 export default RoleRow;

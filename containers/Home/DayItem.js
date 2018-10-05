@@ -90,15 +90,17 @@ export default class DayItem extends React.Component {
       const tmp2 = [];
 
       // Every four items
-      item.roles.slice(i, i + 4).forEach((role) => {
+      item.roles.slice(i, i + 4).forEach((role, index) => {
         tmp1.push(
           <RoleRow
+            active={index === 0}
             itemRole={role}
             key={role.id}
           />,
         );
         tmp2.push(
           <NameRow
+            active={index === 0}
             person={role.person}
             key={role.id}
           />,
@@ -163,7 +165,7 @@ export default class DayItem extends React.Component {
               {item.date.number}
             </Text>
           </View>
-          <RolesPart isOdd={index % 2 !== 0}>
+          <RolesPart isActiveDayItem={isActiveDayItem}>
             <Fade visible disableScale duration={200}>
               {this.roleRows && this.roleRows[itemId]}
             </Fade>

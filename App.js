@@ -3,24 +3,43 @@ import {
   Animated,
   Easing,
 } from 'react-native';
-import { createStackNavigator } from 'react-navigation';
+import { createMaterialTopTabNavigator, createStackNavigator } from 'react-navigation';
 import HomeScreen from './containers/Home/HomeScreen';
+import WeeksScreen from './containers/Home/Weeks';
 import DetailsScreen from './containers/Details/DetailsScreen';
 import DetailsEditScreen from './containers/Details/DetailsEditPage';
 import AddItemScreen from './containers/Details/AddItem';
 import ScheduleScreen from './containers/Details/Schedule';
 
-const MainStack = createStackNavigator(
+const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
+  },
+  {
+    headerMode: 'none',
+  },
+);
+
+HomeStack.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+  const { routeName } = navigation.state.routes[navigation.state.index];
+
+  if (routeName === 'Home') {
+    tabBarVisible = false;
+  }
+  return {
+    tabBarVisible,
+    gesturesEnabled: false,
+    header: null,
+  };
+};
+
+const WeeksStack = createStackNavigator(
+  {
+    Weeks: WeeksScreen,
     Details: DetailsScreen,
   },
   {
-    initialRootName: 'Home',
-    navigationOptions: {
-      gesturesEnabled: false,
-      header: null,
-    },
     cardStyle: { backgroundColor: 'transparent' },
     mode: 'modal',
     headerMode: 'none',
@@ -48,29 +67,53 @@ const MainStack = createStackNavigator(
   },
 );
 
-const RootStack = createStackNavigator(
+WeeksStack.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+  const { routeName } = navigation.state.routes[navigation.state.index];
+
+  if (routeName === 'Weeks' || routeName === 'Details') {
+    tabBarVisible = false;
+  }
+  return {
+    tabBarVisible,
+    // gesturesEnabled: false,
+    header: null,
+  };
+};
+
+// const RootStack = createStackNavigator(
+//   {
+//     Main: MainStack,
+//     DetailsEdit: DetailsEditScreen,
+//     Schedule: ScheduleScreen,
+//     AddItem: AddItemScreen,
+//   },
+//   {
+//     navigationOptions: {
+//       gesturesEnabled: false,
+//       header: null,
+//     },
+//     cardStyle: { backgroundColor: 'transparent', opacity: 1 },
+//     mode: 'modal',
+//     headerMode: 'none',
+//     // Disable transition (handling it in the component)
+//     transitionConfig: () => ({
+//       transitionSpec: {
+//         duration: 0,
+//         timing: Animated.timing,
+//         easing: Easing.step0,
+//       },
+//     }),
+//   },
+// );
+
+const RootStack = createMaterialTopTabNavigator(
   {
-    Main: MainStack,
-    DetailsEdit: DetailsEditScreen,
-    Schedule: ScheduleScreen,
-    AddItem: AddItemScreen,
+    Home: HomeStack,
+    Weeks: WeeksStack,
   },
   {
-    navigationOptions: {
-      gesturesEnabled: false,
-      header: null,
-    },
-    cardStyle: { backgroundColor: 'transparent', opacity: 1 },
-    mode: 'modal',
-    headerMode: 'none',
-    // Disable transition (handling it in the component)
-    transitionConfig: () => ({
-      transitionSpec: {
-        duration: 0,
-        timing: Animated.timing,
-        easing: Easing.step0,
-      },
-    }),
+    swipeEnabled: true,
   },
 );
 

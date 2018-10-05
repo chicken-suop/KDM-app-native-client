@@ -6,7 +6,7 @@ import {
   secondaryColor,
 } from '../../Styles';
 
-const RolesPart = ({ isOdd, children }) => (
+const RolesPart = ({ isActiveDayItem, children }) => (
   <View
     style={[
       {
@@ -14,7 +14,7 @@ const RolesPart = ({ isOdd, children }) => (
         justifyContent: 'center',
         backgroundColor: primaryColor,
       },
-      isOdd && {
+      isActiveDayItem && {
         backgroundColor: secondaryColor,
       },
     ]}
@@ -26,7 +26,7 @@ const RolesPart = ({ isOdd, children }) => (
 );
 
 RolesPart.propTypes = {
-  isOdd: PropTypes.bool.isRequired,
+  isActiveDayItem: PropTypes.bool.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,

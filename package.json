@@ -17,7 +17,6 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-29.0.0.tar.gz",
     "react-native-keyboard-spacer": "0.4.1",
     "react-native-pose": "0.3.0",
-    "react-native-side-menu": "1.1.3",
     "react-navigation": "2.11.2",
     "react-navigation-fluid-transitions": "0.2.5"
   },

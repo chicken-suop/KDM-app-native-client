@@ -1,32 +1,36 @@
 {
-    "expo": {
-        "name": "KDM App",
-        "description": "Native client",
-        "slug": "kdm-app",
-        "privacy": "public",
-        "sdkVersion": "29.0.0",
-        "platforms": ["ios", "android"],
-        "version": "1.0.0",
-        "orientation": "portrait",
-        "icon": "./assets/icon-ios.png",
-        "splash": {
-            "image": "./assets/splash.png",
-            "resizeMode": "cover",
-        },
-        "updates": {
-            "fallbackToCacheTimeout": 0
-        },
-        "assetBundlePatterns": [
-            "**/*"
-        ],
-        "ios": {
-            "supportsTablet": true
-        },
-        "android": {
-            "adaptiveIcon": {
-                "foregroundImage": "./assets/foreground.png",
-                "backgroundImage": "./assets/background.png",
-            },
-        },
-    }
+  "expo": {
+    "name": "KDM App",
+    "description": "Kościół dla Miasta: Kraków offical app",
+    "slug": "kdm-app",
+    "privacy": "public",
+    "sdkVersion": "29.0.0",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon-ios.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "cover"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/foreground.png",
+        "backgroundImage": "./assets/background.png"
+      }
+    },
+    "githubUrl": "https://github.com/ratskin/KDM-app-native-client"
+  }
 }
