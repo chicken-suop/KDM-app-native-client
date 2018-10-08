@@ -11,50 +11,56 @@ import moment from 'moment';
 import styles, { secondaryColor } from '../../Styles';
 import VariableHeightModal from '../../components/VariableHeightModal';
 
-const allSundays = () => {
-  const start = moment().startOf('year');
-  if (start.isoWeekday() !== 0) {
-    start.add(1, 'weeks').isoWeekday(0);
-  }
-  const end = moment(start).endOf('year');
-  const months = [];
-  const sundays = {};
-  while (start.isBefore(end)) {
-    const month = start.format('MMM');
-
-    if (months.indexOf(month) === -1) {
-      months.push(month);
-    }
-
-    if (sundays[month]) {
-      sundays[month].push(start.format('D'));
-    } else {
-      sundays[month] = [start.format('D')];
-    }
-
-    start.add(1, 'weeks');
-  }
-  return { sundays, months };
-};
-
-const isThisSunday = (day, month) => moment(
-  `${day} ${month}`,
-  'D MMM',
-).isSame(moment(), 'isoWeek');
-
 export default class Schedule extends React.Component {
   constructor() {
     super();
 
-    const { sundays, months } = allSundays();
+    const { sundays, months } = this.getAllSundays();
+    this.sundays = sundays;
+    this.months = months;
+
+    let selectedD;
+    let selectedM;
+    this.months.forEach((m) => {
+      const d = this.sundays[m].find(sd => this.isThisSunday(sd, m));
+      if (d && m) {
+        selectedD = d;
+        selectedM = m;
+      }
+    });
+
     this.state = {
-      sundays,
-      months,
       // Selected date from server
-      selected: { sunday: '', month: '' },
+      selected: { sunday: selectedD, month: selectedM },
     };
   }
 
+  getAllSundays = () => {
+    const start = moment().startOf('month');
+    if (start.isoWeekday() !== 0) {
+      start.add(1, 'weeks').isoWeekday(0);
+    }
+    const end = moment(start).endOf('year');
+    const months = [];
+    const sundays = {};
+    while (start.isBefore(end)) {
+      const month = start.format('MMM');
+
+      if (months.indexOf(month) === -1) {
+        months.push(month);
+      }
+
+      if (sundays[month]) {
+        sundays[month].push(start.format('D'));
+      } else {
+        sundays[month] = [start.format('D')];
+      }
+
+      start.add(1, 'weeks');
+    }
+
+    return { sundays, months };
+  }
 
   select = (sunday, month) => {
     // Update server
@@ -62,8 +68,13 @@ export default class Schedule extends React.Component {
     this.setState({ selected: { sunday, month } });
   }
 
+  isThisSunday = (day, month) => moment(
+    `${day} ${month}`,
+    'D MMM',
+  ).isSame(moment(), 'isoWeek')
+
   render() {
-    const { sundays, months, selected } = this.state;
+    const { selected } = this.state;
     const { navigation } = this.props;
 
     return (
@@ -75,7 +86,7 @@ export default class Schedule extends React.Component {
           contentContainerStyle={scheduleStyles.scrollView}
           horizontal
         >
-          {months.map(month => (
+          {this.months.map(month => (
             <View
               style={scheduleStyles.monthCol}
               key={month}
@@ -86,7 +97,7 @@ export default class Schedule extends React.Component {
                   {month.toUpperCase()}
                 </Text>
               </View>
-              {sundays[month].map(sunday => (
+              {this.sundays[month].map(sunday => (
                 <TouchableWithoutFeedback
                   onPress={() => this.select(sunday, month)}
                   key={sunday}
@@ -104,7 +115,7 @@ export default class Schedule extends React.Component {
                     <View
                       style={[
                         scheduleStyles.day,
-                        isThisSunday(sunday, month) && { backgroundColor: 'white' },
+                        this.isThisSunday(sunday, month) && { backgroundColor: 'white' },
                       ]}
                     >
                       <Text
@@ -112,7 +123,7 @@ export default class Schedule extends React.Component {
                           styles.whiteClr,
                           styles.centerText,
                           scheduleStyles.sunday,
-                          isThisSunday(sunday, month) && { color: secondaryColor },
+                          this.isThisSunday(sunday, month) && { color: secondaryColor },
                         ]}
                       >
                         {sunday}
@@ -141,6 +152,7 @@ const scheduleStyles = StyleSheet.create({
     flexDirection: 'row',
   },
   monthCol: {
+    flex: 1,
     marginHorizontal: 5,
     alignItems: 'center',
   },
