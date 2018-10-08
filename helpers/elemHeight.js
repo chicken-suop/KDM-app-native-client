@@ -1,3 +1,4 @@
 import { Dimensions } from 'react-native';
 
-export default numRows => Math.trunc(Dimensions.get('window').height / numRows);
+export const numRows = 5;
+export default () => Math.trunc(Dimensions.get('window').height / numRows);

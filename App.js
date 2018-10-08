@@ -53,7 +53,6 @@ const WeeksStack = createStackNavigator(
     transitionConfig: () => ({
       transitionSpec: {
         duration: 400,
-        easing: Easing.out(Easing.poly(4)),
         timing: Animated.timing,
         useNativeDriver: true,
       },

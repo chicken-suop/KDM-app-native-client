@@ -13,13 +13,13 @@ import Songs from './Songs';
 import PullDownView from '../../components/PullDownView';
 
 const HomeScreen = () => {
-  const activeDayItem = daysData.find(e => (
+  const activeWeekItem = daysData.find(e => (
     moment(e.date.fullDate).isSameOrAfter(moment(), 'day') // This comming Sunday
   ));
 
   const roles = {};
-  Object.keys(activeDayItem.roles).forEach((k) => {
-    const { category, person } = activeDayItem.roles[k];
+  Object.keys(activeWeekItem.roles).forEach((k) => {
+    const { category, person } = activeWeekItem.roles[k];
     roles[category] = roles[category] || [];
     roles[category].push(`${person.name} ${person.lastName}`);
   });
@@ -58,7 +58,7 @@ const HomeScreen = () => {
 
   return (
     <PullDownView
-      view={<Songs songs={activeDayItem.songs} />}
+      view={<Songs songs={activeWeekItem.songs} />}
       style={{
         backgroundColor: 'black',
         flex: 1,
@@ -68,11 +68,11 @@ const HomeScreen = () => {
       <StatusBar hidden />
       <View style={homeScreenStyles.header}>
         <Text style={[styles.fntWt700, { fontSize: 60, color: activeColor }]}>
-          {activeDayItem.date.number}
+          {activeWeekItem.date.number}
         </Text>
         <View>
           <Text style={[styles.fntWt700, { fontSize: 20, color: activeColor }]}>
-            {`${activeDayItem.date.month}`.toUpperCase()}
+            {`${activeWeekItem.date.month}`.toUpperCase()}
           </Text>
           <Text style={[styles.fntWt300, { fontSize: 20, color: activeColor }]}>
             TODAY
