@@ -45,13 +45,13 @@ export default class VariableHeightModal extends React.Component {
     Animated.parallel([
       Animated.timing(animatedEditPage, {
         toValue: 1,
-        duration: 200,
+        duration: 300,
         useNativeDriver: true,
       }),
       // Can't use native driver for backgroundColor
       Animated.timing(animatedEditPageColor, {
         toValue: 1,
-        duration: 200,
+        duration: 300,
       }),
     ]).start();
   }
@@ -69,13 +69,13 @@ export default class VariableHeightModal extends React.Component {
     Animated.parallel([
       Animated.timing(animatedEditPage, {
         toValue: 0,
-        duration: 200,
+        duration: 300,
         useNativeDriver: true,
       }),
       // Can't use native driver for backgroundColor
       Animated.timing(animatedEditPageColor, {
         toValue: 0,
-        duration: 200,
+        duration: 300,
       }),
     ]).start(goBack);
   }

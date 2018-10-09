@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import styles, { secondaryColor } from '../../Styles';
 import getLyrics from '../../api/musixmatch/getLyrics';
@@ -35,7 +36,16 @@ export default class DetailsEditPage extends React.Component {
     navigation.navigate('Schedule');
   }
 
-  delete = () => {}
+  delete = () => {
+    Alert.alert(
+      'Are you sure?',
+      '',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        { text: 'Delete', onPress: () => this.variableHeightModal.close() },
+      ],
+    );
+  }
 
   handlePress = (type) => {
     const { itemType } = this.state;
@@ -86,7 +96,10 @@ export default class DetailsEditPage extends React.Component {
     const date = navigation.getParam('date');
 
     return (
-      <VariableHeightModal goBack={() => navigation.goBack()}>
+      <VariableHeightModal
+        goBack={() => navigation.goBack()}
+        ref={(ref) => { this.variableHeightModal = ref; }}
+      >
         <View style={detailsEditPageStyles.topPart}>
           <View style={[detailsEditPageStyles.paragraph, { marginTop: 0 }]}>
             <TouchableOpacity onPress={() => this.handlePress('itemTitle')}>
@@ -137,7 +150,7 @@ export default class DetailsEditPage extends React.Component {
           )}
         </View>
         <View style={detailsEditPageStyles.deleteButtonContainer}>
-          <TouchableOpacity oonPress={this.delete}>
+          <TouchableOpacity onPress={this.delete}>
             <View style={detailsEditPageStyles.deleteButton}>
               <Text
                 style={[
