@@ -75,7 +75,7 @@ const HomeScreen = () => {
             {`${activeWeekItem.date.month}`.toUpperCase()}
           </Text>
           <Text style={[styles.fntWt300, { fontSize: 20, color: activeColor }]}>
-            TODAY
+            Sunday
           </Text>
         </View>
       </View>

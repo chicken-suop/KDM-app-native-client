@@ -24,10 +24,10 @@ const Songs = ({ songs }) => (
           </View>
           <View style={songsStyles.container}>
             <Text style={songsStyles.mainText}>
-              {song.artist}
+              {song.name}
             </Text>
             <Text style={songsStyles.secondaryText}>
-              {song.name}
+              {song.artist}
             </Text>
           </View>
         </View>
