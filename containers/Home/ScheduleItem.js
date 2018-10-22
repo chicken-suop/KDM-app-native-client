@@ -23,11 +23,11 @@ const fastSpring = {
   },
 };
 
-export default class WeekItem extends React.Component {
+export default class ScheduleItem extends React.Component {
   static propTypes = {
     item: daysData.item.isRequired,
     index: PropTypes.number.isRequired,
-    isActiveWeekItem: PropTypes.bool.isRequired,
+    isActiveScheduleItem: PropTypes.bool.isRequired,
     navigation: PropTypes.shape({
       navigate: PropTypes.func.isRequired,
     }).isRequired,
@@ -50,11 +50,11 @@ export default class WeekItem extends React.Component {
     // const {
     //   item,
     //   index,
-    //   isActiveWeekItem,
+    //   isActiveScheduleItem,
     //   navigation,
     // } = this.props;
     //
-    // if (isActiveWeekItem) {
+    // if (isActiveScheduleItem) {
     //   navigation.push('Details', {
     //     id: index,
     //     item,
@@ -116,7 +116,7 @@ export default class WeekItem extends React.Component {
     const {
       item,
       index,
-      isActiveWeekItem,
+      isActiveScheduleItem,
       navigation,
     } = this.props;
     const {
@@ -131,17 +131,17 @@ export default class WeekItem extends React.Component {
         })}
         onLongPress={this.showActions}
       >
-        <View style={weekItemStyles.container}>
+        <View style={scheduleItemStyles.container}>
           <View
             style={[
-              weekItemStyles.datePart,
-              isActiveWeekItem && weekItemStyles.datePartActive,
+              scheduleItemStyles.datePart,
+              isActiveScheduleItem && scheduleItemStyles.datePartActive,
             ]}
           >
             <Text
               style={[
                 styles.fntWt300,
-                isActiveWeekItem ? weekItemStyles.datePartActiveText : styles.whiteClr,
+                isActiveScheduleItem ? scheduleItemStyles.datePartActiveText : styles.whiteClr,
               ]}
             >
               {item.date.month}
@@ -149,8 +149,8 @@ export default class WeekItem extends React.Component {
             <Text
               style={[
                 styles.fntWt600,
-                isActiveWeekItem ? weekItemStyles.datePartActiveText : styles.whiteClr,
-                weekItemStyles.datePartNumber,
+                isActiveScheduleItem ? scheduleItemStyles.datePartActiveText : styles.whiteClr,
+                scheduleItemStyles.datePartNumber,
               ]}
             >
               {item.date.number}
@@ -158,15 +158,15 @@ export default class WeekItem extends React.Component {
           </View>
           <View
             style={[
-              weekItemStyles.rolesPart,
-              { backgroundColor: isActiveWeekItem ? secondaryColor : primaryColor },
+              scheduleItemStyles.rolesPart,
+              { backgroundColor: isActiveScheduleItem ? secondaryColor : primaryColor },
             ]}
           >
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
               <View>
                 {roleRows}
               </View>
-              <View style={StyleSheet.flatten(weekItemStyles.rolesPartNameCol)}>
+              <View style={StyleSheet.flatten(scheduleItemStyles.rolesPartNameCol)}>
                 {nameRows}
               </View>
             </View>
@@ -177,7 +177,7 @@ export default class WeekItem extends React.Component {
                   message="AVAILABLE"
                   options={['YES', 'NO']}
                   chosenOption={available ? 'YES' : 'NO'}
-                  activeTextColor={isActiveWeekItem ? secondaryColor : primaryColor}
+                  activeTextColor={isActiveScheduleItem ? secondaryColor : primaryColor}
                 />
               </View>
             )}
@@ -188,7 +188,7 @@ export default class WeekItem extends React.Component {
   }
 }
 
-const weekItemStyles = StyleSheet.create({
+const scheduleItemStyles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     height: elemHeight(),

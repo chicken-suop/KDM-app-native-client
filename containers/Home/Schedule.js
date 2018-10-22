@@ -9,20 +9,20 @@ import {
 import moment from 'moment';
 import styles, { activeColor } from '../../Styles';
 import daysData from '../../DaysData';
-import WeekItem from './WeekItem';
+import ScheduleItem from './ScheduleItem';
 import elemHeightFunc from '../../helpers/elemHeight';
 // import ScrollButton from './ScrollButton';
 
 const elemHeight = elemHeightFunc();
 
-export default class WeeksScreen extends React.Component {
-  activeWeekItem = daysData.find(e => (
+export default class ScheduleScreen extends React.Component {
+  activeScheduleItem = daysData.find(e => (
     moment(e.date.fullDate).isSameOrAfter(moment(), 'day') // This comming Sunday
   ));
 
-  activeWeekItemIndex = daysData.indexOf(this.activeWeekItem);
+  activeScheduleItemIndex = daysData.indexOf(this.activeScheduleItem);
 
-  // currentIndex = this.activeWeekItemIndex;
+  // currentIndex = this.activeScheduleItemIndex;
 
   static propTypes = {
     navigation: PropTypes.shape({
@@ -36,7 +36,7 @@ export default class WeeksScreen extends React.Component {
   // };
 
   scrollToActiveDay = () => {
-    this.flatListRef.scrollToIndex({ animated: true, index: this.activeWeekItemIndex });
+    this.flatListRef.scrollToIndex({ animated: true, index: this.activeScheduleItemIndex });
   }
 
   render() {
@@ -64,7 +64,7 @@ export default class WeeksScreen extends React.Component {
               },
             ]}
           >
-            {moment(this.activeWeekItem.date.fullDate).year()}
+            {moment(this.activeScheduleItem.date.fullDate).year()}
           </Text>
         </View>
         <View style={{ flex: 1 }}>
@@ -76,14 +76,14 @@ export default class WeeksScreen extends React.Component {
             ref={(list) => { this.flatListRef = list; }}
             data={daysData}
             renderItem={({ item, index }) => (
-              <WeekItem
+              <ScheduleItem
                 item={item}
                 index={index}
-                isActiveWeekItem={(this.activeWeekItem === item)}
+                isActiveScheduleItem={(this.activeScheduleItem === item)}
                 navigation={navigation}
               />
             )}
-            initialScrollIndex={this.activeWeekItemIndex}
+            initialScrollIndex={this.activeScheduleItemIndex}
             keyExtractor={item => item.date.fullDate}
             getItemLayout={(data, index) => (
               { length: elemHeight, offset: elemHeight * index, index }
@@ -93,9 +93,9 @@ export default class WeeksScreen extends React.Component {
             // and calculating the index you'll end on
             // onScroll={(e) => {
             //   this.currentIndex = parseInt(e.nativeEvent.contentOffset.y / elemHeight, 10);
-            //   if (this.currentIndex > this.activeWeekItemIndex) {
+            //   if (this.currentIndex > this.activeScheduleItemIndex) {
             //     this.setState({ isAbove: true });
-            //   } else if (this.currentIndex < this.activeWeekItemIndex) {
+            //   } else if (this.currentIndex < this.activeScheduleItemIndex) {
             //     this.setState({ isAbove: false });
             //   } else if (isAbove !== 0) {
             //     this.setState({ isAbove: 0 });

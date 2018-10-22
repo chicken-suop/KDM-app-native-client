@@ -111,7 +111,7 @@ export default class DetailPage extends React.Component {
       duration: 200,
       useNativeDriver: true,
     }).start();
-    navigation.navigate('Weeks');
+    navigation.navigate('Schedule');
   }
 
   render() {

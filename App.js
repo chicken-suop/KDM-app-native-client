@@ -5,13 +5,13 @@ import {
 } from 'react-native';
 import { createMaterialTopTabNavigator, createStackNavigator } from 'react-navigation';
 import TodayPage from './containers/Home/TodayPage';
-import WeeksScreen from './containers/Home/Weeks';
+import ScheduleScreen from './containers/Home/Schedule';
 import RolesScreen from './containers/Details/RolesScreen';
 import SongsScreen from './containers/Details/SongsScreen';
 import UnavailablePeopleScreen from './containers/Details/UnavailablePeopleScreen';
 import DetailsEditScreen from './containers/Details/DetailsEditPage';
 import AddItemScreen from './containers/Details/AddItem';
-import ScheduleScreen from './containers/Details/Schedule';
+import RescheduleScreen from './containers/Details/Rescheduler';
 
 const TodayStack = createStackNavigator(
   {
@@ -41,9 +41,9 @@ const DetailsStack = createMaterialTopTabNavigator(
   },
 );
 
-const WeeksStack = createStackNavigator(
+const ScheduleStack = createStackNavigator(
   {
-    Weeks: WeeksScreen,
+    Schedule: ScheduleScreen,
     Details: DetailsStack,
   },
   {
@@ -76,9 +76,9 @@ const WeeksStack = createStackNavigator(
 
 const MainStack = createStackNavigator(
   {
-    WeeksStack,
+    ScheduleStack,
     DetailsEdit: DetailsEditScreen,
-    Schedule: ScheduleScreen,
+    Rescheduler: RescheduleScreen,
     AddItem: AddItemScreen,
   },
   {

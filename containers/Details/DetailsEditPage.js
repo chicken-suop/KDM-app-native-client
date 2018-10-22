@@ -33,7 +33,7 @@ export default class DetailsEditPage extends React.Component {
 
   reschedule = () => {
     const { navigation } = this.props;
-    navigation.navigate('Schedule');
+    navigation.navigate('Rescheduler');
   }
 
   delete = () => {
