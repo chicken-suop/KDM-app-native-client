@@ -5,15 +5,14 @@ import {
   Text,
   FlatList,
   StatusBar,
+  StyleSheet,
+  TouchableWithoutFeedback,
 } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 import moment from 'moment';
 import styles, { activeColor } from '../../Styles';
 import daysData from '../../DaysData';
 import ScheduleItem from './ScheduleItem';
-import elemHeightFunc from '../../helpers/elemHeight';
-// import ScrollButton from './ScrollButton';
-
-const elemHeight = elemHeightFunc();
 
 export default class ScheduleScreen extends React.Component {
   activeScheduleItem = daysData.find(e => (
@@ -22,57 +21,54 @@ export default class ScheduleScreen extends React.Component {
 
   activeScheduleItemIndex = daysData.indexOf(this.activeScheduleItem);
 
-  // currentIndex = this.activeScheduleItemIndex;
-
   static propTypes = {
     navigation: PropTypes.shape({
       navigate: PropTypes.func.isRequired,
     }).isRequired,
   };
 
-  // state = {
-  //   isAbove: 0,
-  //   notScrolling: true,
-  // };
-
-  scrollToActiveDay = () => {
+  scrollToToday = () => {
     this.flatListRef.scrollToIndex({ animated: true, index: this.activeScheduleItemIndex });
   }
 
   render() {
     const { navigation } = this.props;
-    // const { isAbove, notScrolling } = this.state;
 
     return (
       <View
         style={[
-          styles.rowContainer,
           styles.blackBkgrnd,
           styles.absView,
+          { flex: 1 },
         ]}
       >
         <StatusBar hidden />
-        <View style={{ justifyContent: 'flex-start', paddingTop: 45 }}>
-          <Text
-            style={[
-              styles.fntWt400,
-              styles.centerText,
-              {
-                fontSize: 18,
-                color: activeColor,
-                transform: [{ rotate: '-90deg' }],
-              },
-            ]}
-          >
-            {moment(this.activeScheduleItem.date.fullDate).year()}
+        <View style={scheduleScreenStyles.header}>
+          <Text style={[styles.fntWt700, { fontSize: 24, color: activeColor }]}>
+            SEPTEMBER
           </Text>
+          <View style={{ position: 'absolute', right: 30, flexDirection: 'row' }}>
+            <TouchableWithoutFeedback onPress={this.scrollToToday}>
+              <Feather
+                name="sun"
+                size={24}
+                color="white"
+                style={{ paddingRight: 20 }}
+              />
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress={this.addEvent}>
+              <Feather
+                name="plus"
+                size={24}
+                color="white"
+              />
+            </TouchableWithoutFeedback>
+          </View>
         </View>
         <View style={{ flex: 1 }}>
           <FlatList
             removeClippedSubviews
-            maxToRenderPerBatch={7} // Default: 10
-            initialNumToRender={7} // Default: 10
-            windowSize={11} // Default: 21
+            maxToRenderPerBatch={3} // Default: 10
             ref={(list) => { this.flatListRef = list; }}
             data={daysData}
             renderItem={({ item, index }) => (
@@ -85,34 +81,18 @@ export default class ScheduleScreen extends React.Component {
             )}
             initialScrollIndex={this.activeScheduleItemIndex}
             keyExtractor={item => item.date.fullDate}
-            getItemLayout={(data, index) => (
-              { length: elemHeight, offset: elemHeight * index, index }
-            )}
-            snapToInterval={elemHeight}
-            // May be performance issues with this. Could look at using onScrollEndDrag,
-            // and calculating the index you'll end on
-            // onScroll={(e) => {
-            //   this.currentIndex = parseInt(e.nativeEvent.contentOffset.y / elemHeight, 10);
-            //   if (this.currentIndex > this.activeScheduleItemIndex) {
-            //     this.setState({ isAbove: true });
-            //   } else if (this.currentIndex < this.activeScheduleItemIndex) {
-            //     this.setState({ isAbove: false });
-            //   } else if (isAbove !== 0) {
-            //     this.setState({ isAbove: 0 });
-            //   }
-            // }}
           />
         </View>
-        {/*
-          Not using this because onTouch isn't triggered while
-          scrolling causeing what looks like "lag".
-
-          <ScrollButton
-            scrollToActiveDay={this.scrollToActiveDay}
-            isAbove={notScrolling ? isAbove : 0}
-          />
-        */}
       </View>
     );
   }
 }
+
+const scheduleScreenStyles = StyleSheet.create({
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 30,
+    paddingVertical: 15,
+  },
+});
