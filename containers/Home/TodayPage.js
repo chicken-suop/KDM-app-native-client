@@ -8,11 +8,11 @@ import {
 import moment from 'moment';
 import daysData from '../../DaysData';
 import styles, { activeColor } from '../../Styles';
-import HomeScreenParagraph from './HomeScreenParagraph';
+import TodayPageParagraph from './TodayPageParagraph';
 import Songs from './Songs';
 import PullDownView from '../../components/PullDownView';
 
-const HomeScreen = () => {
+const TodayPage = () => {
   const activeWeekItem = daysData.find(e => (
     moment(e.date.fullDate).isSameOrAfter(moment(), 'day') // This comming Sunday
   ));
@@ -66,7 +66,7 @@ const HomeScreen = () => {
       }}
     >
       <StatusBar hidden />
-      <View style={homeScreenStyles.header}>
+      <View style={TodayPageStyles.header}>
         <Text style={[styles.fntWt700, { fontSize: 60, color: activeColor }]}>
           {activeWeekItem.date.number}
         </Text>
@@ -80,7 +80,7 @@ const HomeScreen = () => {
         </View>
       </View>
       {Object.entries(paragraphs).map(([time, data]) => (
-        <HomeScreenParagraph
+        <TodayPageParagraph
           key={time}
           title={time}
           data={data}
@@ -90,7 +90,7 @@ const HomeScreen = () => {
   );
 };
 
-const homeScreenStyles = StyleSheet.create({
+const TodayPageStyles = StyleSheet.create({
   header: {
     alignItems: 'center',
     flexDirection: 'row',
@@ -98,4 +98,4 @@ const homeScreenStyles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default TodayPage;

@@ -4,12 +4,12 @@ import { View, StyleSheet, Text } from 'react-native';
 import RoleRow from './RoleRow';
 import NameRow from './NameRow';
 
-const HomeScreenParagraph = ({ title, data }) => (
-  <View style={homeScreenParagraphStyles.main}>
-    <Text style={homeScreenParagraphStyles.title}>
+const TodayPageParagraph = ({ title, data }) => (
+  <View style={TodayPageParagraphStyles.main}>
+    <Text style={TodayPageParagraphStyles.title}>
       {title}
     </Text>
-    <View style={homeScreenParagraphStyles.body}>
+    <View style={TodayPageParagraphStyles.body}>
       <View>
         {data.map(arr => <RoleRow key={arr[0]} itemRole={arr[0]} alignLeft restrictLen={false} />)}
       </View>
@@ -20,7 +20,7 @@ const HomeScreenParagraph = ({ title, data }) => (
   </View>
 );
 
-const homeScreenParagraphStyles = StyleSheet.create({
+const TodayPageParagraphStyles = StyleSheet.create({
   main: {
     marginTop: 25,
     paddingLeft: '8%',
@@ -36,9 +36,9 @@ const homeScreenParagraphStyles = StyleSheet.create({
   },
 });
 
-HomeScreenParagraph.propTypes = {
+TodayPageParagraph.propTypes = {
   title: PropTypes.string.isRequired,
   data: PropTypes.arrayOf(PropTypes.array).isRequired,
 };
 
-export default HomeScreenParagraph;
+export default TodayPageParagraph;

@@ -4,7 +4,7 @@ import {
   Easing,
 } from 'react-native';
 import { createMaterialTopTabNavigator, createStackNavigator } from 'react-navigation';
-import HomeScreen from './containers/Home/HomeScreen';
+import TodayPage from './containers/Home/TodayPage';
 import WeeksScreen from './containers/Home/Weeks';
 import RolesScreen from './containers/Details/RolesScreen';
 import SongsScreen from './containers/Details/SongsScreen';
@@ -13,16 +13,16 @@ import DetailsEditScreen from './containers/Details/DetailsEditPage';
 import AddItemScreen from './containers/Details/AddItem';
 import ScheduleScreen from './containers/Details/Schedule';
 
-const HomeStack = createStackNavigator(
+const TodayStack = createStackNavigator(
   {
-    Home: HomeScreen,
+    Home: TodayPage,
   },
   {
     headerMode: 'none',
   },
 );
 
-HomeStack.navigationOptions = () => ({
+TodayStack.navigationOptions = () => ({
   gesturesEnabled: false,
 });
 
@@ -102,10 +102,11 @@ const MainStack = createStackNavigator(
 
 const RootStack = createMaterialTopTabNavigator(
   {
-    Home: HomeStack,
+    Home: TodayStack,
     Main: MainStack,
   },
   {
+    initialRouteName: 'Main',
     swipeEnabled: true,
     navigationOptions: {
       tabBarVisible: false,
