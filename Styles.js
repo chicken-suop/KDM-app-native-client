@@ -15,6 +15,10 @@ export default StyleSheet.create({
   primaryText: {
     color: '#fff',
   },
+  startContainer: {
+    flex: 1,
+    alignItems: 'center',
+  },
   container: {
     flex: 1,
     justifyContent: 'center',

@@ -1,122 +1,94 @@
 import React from 'react';
-import {
-  Animated,
-  Easing,
-} from 'react-native';
-import { createMaterialTopTabNavigator, createStackNavigator } from 'react-navigation';
-import TodayPage from './containers/Home/TodayPage';
-import ScheduleScreen from './containers/Home/Schedule';
-import RolesScreen from './containers/Details/RolesScreen';
-import SongsScreen from './containers/Details/SongsScreen';
-import UnavailablePeopleScreen from './containers/Details/UnavailablePeopleScreen';
-import DetailsEditScreen from './containers/Details/DetailsEditPage';
-import AddItemScreen from './containers/Details/AddItem';
-import RescheduleScreen from './containers/Details/Rescheduler';
+import { Image, AsyncStorage } from 'react-native';
+import { ApolloProvider } from 'react-apollo';
+import { ApolloClient } from 'apollo-client';
+import { HttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { ApolloLink } from 'apollo-link';
+import Home from './Home';
+import graphQLEndpoint from './config';
+import { storeSession, fetchSession } from './helpers/actions';
+import AuthHome from './containers/Auth/AuthHome';
 
-const TodayStack = createStackNavigator(
-  {
-    Home: TodayPage,
-  },
-  {
-    headerMode: 'none',
-  },
-);
+export default class Index extends React.Component {
+  httpLink = new HttpLink({ uri: graphQLEndpoint });
 
-TodayStack.navigationOptions = () => ({
-  gesturesEnabled: false,
-});
-
-const DetailsStack = createMaterialTopTabNavigator(
-  {
-    Roles: RolesScreen,
-    Songs: SongsScreen,
-    UnavailablePeople: UnavailablePeopleScreen,
-  },
-  {
-    swipeEnabled: true,
-    navigationOptions: {
-      tabBarVisible: false,
-      header: null,
-    },
-  },
-);
-
-const ScheduleStack = createStackNavigator(
-  {
-    Schedule: ScheduleScreen,
-    Details: DetailsStack,
-  },
-  {
-    cardStyle: { backgroundColor: 'transparent' },
-    mode: 'modal',
-    headerMode: 'none',
-    transitionConfig: () => ({
-      transitionSpec: {
-        duration: 400,
-        timing: Animated.timing,
-        useNativeDriver: true,
+  // Adding auth headers
+  authMiddleware = new ApolloLink(async (operation, forward) => {
+    const sessionInfo = await fetchSession();
+    operation.setContext({
+      headers: {
+        authorization: sessionInfo ? `Bearer ${sessionInfo.token}` : null,
       },
-      screenInterpolator: ({ position, scene }) => ({
-        zIndex: scene.index === 1 ? 0 : 1,
-        position: 'absolute',
-        opacity: scene.index === 1 ? 1 : position.interpolate({
-          inputRange: [0, 0.6],
-          outputRange: [1, 0],
-        }),
-        transform: [{
-          scale: scene.index === 1 ? 1 : position.interpolate({
-            inputRange: [0, 1],
-            outputRange: [1, 1.6],
-          }),
-        }],
-      }),
+    });
+    return forward(operation);
+  });
+
+  // Creating a client instance
+  client = new ApolloClient({
+    link: this.authMiddleware.concat(this.httpLink),
+    cache: new InMemoryCache({
+      addTypename: false,
     }),
-  },
-);
+  });
 
-const MainStack = createStackNavigator(
-  {
-    ScheduleStack,
-    DetailsEdit: DetailsEditScreen,
-    Rescheduler: RescheduleScreen,
-    AddItem: AddItemScreen,
-  },
-  {
-    navigationOptions: {
-      gesturesEnabled: false,
-      header: null,
-    },
-    cardStyle: { backgroundColor: 'transparent', opacity: 1 },
-    mode: 'modal',
-    headerMode: 'none',
-    // Disable transition (handling it in the component)
-    transitionConfig: () => ({
-      transitionSpec: {
-        duration: 0,
-        timing: Animated.timing,
-        easing: Easing.step0,
-      },
-    }),
-  },
-);
+  state = {
+    sessionInfo: {},
+  }
 
-const RootStack = createMaterialTopTabNavigator(
-  {
-    Home: TodayStack,
-    Main: MainStack,
-  },
-  {
-    initialRouteName: 'Main',
-    swipeEnabled: true,
-    navigationOptions: {
-      tabBarVisible: false,
-      header: null,
-    },
-  },
-);
+  async componentWillMount() {
+    try {
+      const sessionInfo = await fetchSession();
+      if (sessionInfo) {
+        this.setState({ isLoggedIn: true, sessionInfo });
+      } else {
+        this.setState({ isLoggedIn: false });
+      }
+    } catch (e) {
+      console.log(e);
+      this.setState({ isLoggedIn: false });
+    }
+  }
 
-const App = () => (
-  <RootStack />
-);
+  completeLogin = (sessionInfo) => {
+    this.setState({ isLoggedIn: true, sessionInfo });
+    storeSession(sessionInfo);
+  }
 
-export default App;
+  logout = async () => {
+    await AsyncStorage.removeItem('@kdmApp:localSession');
+    this.setState(
+      { isLoggedIn: false, sessionInfo: null },
+      this.client.resetStore,
+    );
+  }
+
+  render() {
+    const { isLoggedIn, sessionInfo } = this.state;
+    // if (isLoggedIn === true) {
+    //   return (
+    //     <ApolloProvider client={this.client}>
+    //       <Home
+    //         logoutCallback={this.logout}
+    //         sessionInfo={sessionInfo}
+    //       />
+    //     </ApolloProvider>
+    //   );
+    // } if (isLoggedIn === false) {
+    //   return (
+    //     <ApolloProvider client={this.client}>
+    //       <AuthHome loginCallback={this.completeLogin} />
+    //     </ApolloProvider>
+    //   );
+    // }
+
+    return (
+      <ApolloProvider client={this.client}>
+        <Home
+          logoutCallback={this.logout}
+          sessionInfo={sessionInfo}
+        />
+      </ApolloProvider>
+    );
+  }
+}
