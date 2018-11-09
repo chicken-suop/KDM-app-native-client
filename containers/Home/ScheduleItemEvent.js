@@ -3,6 +3,8 @@ import React from 'react';
 import {
   View, StyleSheet, Text, ImageBackground,
 } from 'react-native';
+import { Feather } from '@expo/vector-icons';
+import Swipeout from 'react-native-swipeout';
 import { secondaryColor } from '../../Styles';
 
 const Event = (props) => {
@@ -42,14 +44,26 @@ const Event = (props) => {
   }
 
   return (
-    <View style={[styles.event, isLast && { marginBottom: 0 }]}>
-      <Text style={styles.eventText}>
-        {title}
-      </Text>
-      <Text style={styles.eventTextNormal}>
-        {`${start}-${end} in ${location}`}
-      </Text>
-    </View>
+    <Swipeout
+      autoClose
+      right={[{
+        text: 'Delete',
+        backgroundColor: 'red',
+        underlayColor: 'rgba(0, 0, 1, 0.6)',
+        // onPress: () => this.deleteNote(rowData)
+      }]}
+      backgroundColor={secondaryColor}
+      style={{ marginBottom: 5 }}
+    >
+      <View style={[styles.event, isLast && { marginBottom: 0 }]}>
+        <Text style={styles.eventText}>
+          {title}
+        </Text>
+        <Text style={styles.eventTextNormal}>
+          {`${start}-${end} in ${location}`}
+        </Text>
+      </View>
+    </Swipeout>
   );
 };
 
@@ -74,7 +88,6 @@ const styles = StyleSheet.create({
   event: {
     flex: 1,
     padding: 10,
-    marginBottom: 5,
     backgroundColor: secondaryColor,
   },
   eventText: {

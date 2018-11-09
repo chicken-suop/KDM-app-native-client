@@ -26,13 +26,16 @@ export default class ScheduleScreen extends React.Component {
     super(props);
 
     this.months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
-    this.schMntRefs = {};
+    this.offset = 0;
+    this.handleViewableItemsChanged = this.handleViewableItemsChanged.bind(this);
+    this.viewabilityConfig = { viewAreaCoveragePercentThreshold: 80 };
 
     const scheduleDays = this.generateData();
 
     this.state = {
       // scrollPosition: 0,
       scheduleDays,
+      currentMonth: 'October',
     };
   }
 
@@ -64,12 +67,42 @@ export default class ScheduleScreen extends React.Component {
     return arrDays;
   }
 
+  handleScroll = (event) => {
+    const currentOffset = event.nativeEvent.contentOffset.y;
+    this.direction = currentOffset > this.offset ? 'down' : 'up';
+    this.offset = currentOffset;
+  }
+
+  handleViewableItemsChanged({ viewableItems }) {
+    /* Updates the month in the header */
+
+    // Select only months (we've got dates and months mixed in)
+    const viewableMonth = viewableItems.filter(obj => !obj.item.includes('-'))[0];
+
+    // this.direction is updated on scroll in the this.handleScroll method
+    if (this.direction === 'down') {
+      if (viewableMonth) {
+        // We can see the month, but but don't update yet, cause it's at the bottom of the page
+        this.nextMonth = viewableMonth.item;
+      } else {
+        // Okay, the month is no longer visible, so update header
+        this.setState({ currentMonth: this.nextMonth });
+      }
+    } else if (this.direction === 'up') {
+      if (viewableMonth) {
+        // We can see the month so update it stright away
+        this.nextMonth = moment().month(viewableMonth.item).subtract(1, 'months').format('MMMM');
+        this.setState({ currentMonth: this.nextMonth });
+      }
+    }
+  }
+
   // scrollToToday = () => {
   //   this.flatListRef.scrollToIndex({ animated: true, index: this.activeItemIndex });
   // }
 
   render() {
-    const { scheduleDays } = this.state;
+    const { scheduleDays, currentMonth } = this.state;
     const { navigation } = this.props;
 
     return (
@@ -83,9 +116,10 @@ export default class ScheduleScreen extends React.Component {
         <StatusBar barStyle="light-content" />
         <View style={styles.header}>
           <Text style={styles.headerTitle}>
-            SEPTEMBER
+            {currentMonth.toUpperCase()}
           </Text>
           <View style={styles.headerButtons}>
+            {/* This doesn't work with variable height renderItems in flatlist */}
             {/* <TouchableWithoutFeedback onPress={this.scrollToToday}>
               <Feather
                 name="sun"
@@ -111,19 +145,18 @@ export default class ScheduleScreen extends React.Component {
             data={Object.keys(scheduleDays)}
             showsVerticalScrollIndicator={false}
             keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item }) => {
-              const isMonth = this.months.indexOf(item.substring(0, 3).toLowerCase()) !== -1;
-              return (
-                <ScheduleItem
-                  date={item}
-                  scheduleDay={scheduleDays[item]}
-                  isActive={this.activeItemIndex === Object.keys(scheduleDays).indexOf(item)}
-                  isMonth={isMonth}
-                  isFreeDay={scheduleDays[item].length === 0}
-                  navigation={navigation}
-                />
-              );
-            }}
+            onViewableItemsChanged={this.handleViewableItemsChanged}
+            viewabilityConfig={this.viewabilityConfig}
+            renderItem={({ item }) => (
+              <ScheduleItem
+                date={item}
+                scheduleDay={scheduleDays[item]}
+                isActive={this.activeItemIndex === Object.keys(scheduleDays).indexOf(item)}
+                isMonth={this.months.indexOf(item.substring(0, 3).toLowerCase()) !== -1}
+                isFreeDay={scheduleDays[item].length === 0}
+                navigation={navigation}
+              />
+            )}
           />
         </View>
       </SafeAreaView>

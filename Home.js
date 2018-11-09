@@ -4,14 +4,16 @@ import {
   Easing,
 } from 'react-native';
 import { createMaterialTopTabNavigator, createStackNavigator } from 'react-navigation';
-import TodayPage from './containers/Home/TodayPage';
-import ScheduleScreen from './containers/Home/Schedule';
-import RolesScreen from './containers/Details/RolesScreen';
-import SongsScreen from './containers/Details/SongsScreen';
-import UnavailablePeopleScreen from './containers/Details/UnavailablePeopleScreen';
-import DetailsEditScreen from './containers/Details/DetailsEditPage';
-import AddItemScreen from './containers/Details/AddItem';
-import RescheduleScreen from './containers/Details/Rescheduler';
+// import TodayPage from './containers/Home/TodayPage';
+// import RolesScreen from './containers/Details/RolesScreen';
+// import SongsScreen from './containers/Details/SongsScreen';
+// import UnavailablePeopleScreen from './containers/Details/UnavailablePeopleScreen';
+// import DetailsEditScreen from './containers/Details/DetailsEditPage';
+// import AddItemScreen from './containers/Details/AddItem';
+// import RescheduleScreen from './containers/Details/Rescheduler';
+// import ScheduleScreen from './containers/Home/Schedule';
+import GeneralDetailScreen from './containers/Details/GeneralDetailScreen';
+// import SundayDetailScreen from './containers/Details/SundayDetailScreen';
 
 // const TodayStack = createStackNavigator(
 //   {
@@ -117,10 +119,10 @@ import RescheduleScreen from './containers/Details/Rescheduler';
 
 const RootStack = createStackNavigator(
   {
-    Schedule: ScheduleScreen,
+    GeneralDetail: GeneralDetailScreen,
   },
   {
-    initialRouteName: 'Schedule',
+    initialRouteName: 'GeneralDetail',
     mode: 'modal',
     headerMode: 'none',
   },

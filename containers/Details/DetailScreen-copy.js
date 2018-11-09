@@ -17,7 +17,7 @@ import DetailsItem from './DetailsItem';
 
 const windowWidth = Dimensions.get('window').width;
 
-export default class DetailPage extends React.Component {
+export default class DetailScreen extends React.Component {
   static propTypes = {
     item: daysData.item.isRequired,
     pageTitle: PropTypes.string.isRequired,
@@ -103,7 +103,7 @@ export default class DetailPage extends React.Component {
     },
   ]
 
-  closeDetailPage = () => {
+  closeDetailScreen = () => {
     const { navigation } = this.props;
     const { animatedOpacity } = this.state;
     Animated.timing(animatedOpacity, {
@@ -219,7 +219,7 @@ export default class DetailPage extends React.Component {
                 {pageTitle}
               </Text>
             </View>
-            <TouchableWithoutFeedback onPress={() => this.closeDetailPage()}>
+            <TouchableWithoutFeedback onPress={() => this.closeDetailScreen()}>
               <View style={detailPageStyles.closeButton}>
                 <Ionicons
                   name="ios-close"
