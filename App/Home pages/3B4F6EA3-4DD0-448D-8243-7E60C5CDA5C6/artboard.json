@@ -3,13 +3,13 @@
   "backgroundColor": {
     "_class": "color",
     "alpha": 1,
-    "blue": 0.01176470588,
-    "green": 0.01176470588,
-    "red": 0.01176470588
+    "blue": 0.0117647061124444,
+    "green": 0.0117647061124444,
+    "red": 0.0117647061124444
   },
   "booleanOperation": -1,
   "clippingMaskMode": 0,
-  "do_objectID": "476C3530-2D27-4169-AD9A-246994CF4F24",
+  "do_objectID": "3B4F6EA3-4DD0-448D-8243-7E60C5CDA5C6",
   "exportOptions": {
     "_class": "exportOptions",
     "exportFormats": [
@@ -31,9 +31,9 @@
   "frame": {
     "_class": "rect",
     "constrainProportions": false,
-    "height": 893,
+    "height": 736,
     "width": 414,
-    "x": -3548,
+    "x": -2420,
     "y": 360
   },
   "hasBackgroundColor": true,
@@ -56,43 +56,35 @@
   "layerListExpandedType": 2,
   "layers": [
     {
-      "class": "group",
-      "id": "0750F52C-4D39-4F8C-939D-DC52B03CF36D"
-    },
-    {
-      "class": "group",
-      "id": "7D824A9C-465C-456F-85FE-239BB37E3C4E"
-    },
-    {
-      "class": "group",
-      "id": "6637E4A8-33AF-4D21-8D77-4405233EBD73"
-    },
-    {
-      "class": "group",
-      "id": "6DDAA91E-CBBA-4A07-8600-0B72FE1F6260"
-    },
-    {
-      "class": "group",
-      "id": "EDB79CAF-336B-4CB6-94AE-19397646A77C"
-    },
-    {
-      "class": "group",
-      "id": "1CA2A17B-BBC6-400B-A4C1-B6D6342A96BB"
-    },
-    {
       "class": "text",
-      "id": "F3CB93E2-CAA9-42B7-8C1E-AE236D366047"
+      "id": "2BB2DF6E-66AC-482F-95CA-CE06625689C0"
     },
     {
       "class": "symbolInstance",
-      "id": "3D358404-FCF8-4351-B1E5-43783CC1A73B"
+      "id": "A8DADD3A-16E4-43C4-AA0E-FA4746BCF3CE"
     },
     {
       "class": "symbolInstance",
-      "id": "01CD1D69-C5F2-44F7-B53B-D97C7706B88F"
+      "id": "9BA7E81B-61DD-49D2-BC97-7396B5BD7D4D"
+    },
+    {
+      "class": "group",
+      "id": "B8CC34B1-6AFE-476F-BFB5-F7CC5C485F89"
+    },
+    {
+      "class": "group",
+      "id": "AEE6668E-8D65-4AEF-8C10-4E74946C8ACA"
+    },
+    {
+      "class": "group",
+      "id": "37911A32-B1CD-4529-A2A1-F25E42C22065"
+    },
+    {
+      "class": "group",
+      "id": "7E075BE3-E024-4ECD-B77A-A9C26CD8B6C8"
     }
   ],
-  "name": "Schedule Page",
+  "name": "Multi-data input",
   "nameIsFixed": true,
   "presetDictionary": {
     "allowResizedMatching": 1,
@@ -101,7 +93,7 @@
     "offersLandscapeVariant": 1,
     "width": 414
   },
-  "resizesContent": false,
+  "resizesContent": true,
   "resizingConstraint": 63,
   "resizingType": 0,
   "rotation": 0,
@@ -117,12 +109,6 @@
     "_class": "rulerData",
     "base": 0,
     "guides": [
-      826,
-      883,
-      788,
-      688,
-      712,
-      768
     ]
   }
 }

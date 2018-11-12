@@ -2,9 +2,10 @@
   "_class": "symbolInstance",
   "booleanOperation": -1,
   "clippingMaskMode": 0,
-  "do_objectID": "0FF6FA8F-A4ED-4ED8-9A1D-1F4D868D1775",
+  "do_objectID": "3D358404-FCF8-4351-B1E5-43783CC1A73B",
   "exportOptions": {
     "_class": "exportOptions",
+    "do_objectID": "213B31F2-BBEA-4DF5-8C8D-1730CDB225C3",
     "exportFormats": [
     ],
     "includedLayerIds": [
@@ -15,10 +16,11 @@
   "frame": {
     "_class": "rect",
     "constrainProportions": false,
-    "height": 19,
-    "width": 343,
-    "x": 0,
-    "y": 57
+    "do_objectID": "8681C4C6-DC2E-45B8-93A1-FBBE5B400333",
+    "height": 24,
+    "width": 24,
+    "x": 359,
+    "y": 12
   },
   "hasClippingMask": false,
   "horizontalSpacing": 0,
@@ -28,20 +30,14 @@
   "isLocked": false,
   "isVisible": true,
   "layerListExpandedType": 0,
-  "name": "Today Page: Task",
+  "name": "icon / plus",
   "nameIsFixed": false,
   "overrideValues": [
     {
       "_class": "overrideValue",
-      "do_objectID": "A44016C4-03A0-4454-BE21-F07231669C44",
-      "overrideName": "9E0DEC03-60DB-408F-9ACF-60F2AEA7B77A_stringValue",
-      "value": "Worship"
-    },
-    {
-      "_class": "overrideValue",
-      "do_objectID": "F6F61D70-C4B8-43F7-8F27-257A85331A1A",
-      "overrideName": "AE5B97A1-3B9C-4380-B4EC-FF176B4B3CA0_stringValue",
-      "value": "John Doe, Milly Mop, "
+      "do_objectID": "C5971413-BD7E-4B79-8816-DC9D83B99E8B",
+      "overrideName": "C79E9ABC-8195-4C1E-A517-7318528A7440_symbolID",
+      "value": "75E94435-BF2E-43FB-BD91-54747C649AC8"
     }
   ],
   "resizingConstraint": 63,
@@ -51,11 +47,12 @@
   "shouldBreakMaskChain": false,
   "style": {
     "_class": "style",
+    "do_objectID": "F4CDA9C8-3D61-40E3-9269-319404CFD27F",
     "endMarkerType": 0,
     "miterLimit": 10,
     "startMarkerType": 0,
     "windingRule": 1
   },
-  "symbolID": "27E8F388-552C-4351-A0FE-4FEAB012A48F",
+  "symbolID": "191E911C-1AFF-4F82-AEAB-118AAA03428F",
   "verticalSpacing": 0
 }

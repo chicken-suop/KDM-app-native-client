@@ -1,8 +1,8 @@
 {
-  "_class": "group",
+  "_class": "symbolInstance",
   "booleanOperation": -1,
   "clippingMaskMode": 0,
-  "do_objectID": "638A5DE3-3DE4-4167-BC64-4CFC473302C3",
+  "do_objectID": "C4A8253C-40E4-4726-9864-130FF47F12C4",
   "exportOptions": {
     "_class": "exportOptions",
     "exportFormats": [
@@ -15,38 +15,33 @@
   "frame": {
     "_class": "rect",
     "constrainProportions": false,
-    "height": 76,
-    "width": 343,
-    "x": 30,
-    "y": 109
+    "height": 39,
+    "width": 85,
+    "x": 0,
+    "y": 0
   },
-  "hasClickThrough": false,
   "hasClippingMask": false,
+  "horizontalSpacing": 0,
   "isFixedToViewport": false,
   "isFlippedHorizontal": false,
   "isFlippedVertical": false,
   "isLocked": false,
   "isVisible": true,
-  "layerListExpandedType": 2,
-  "layers": [
+  "layerListExpandedType": 0,
+  "name": "Multi-data input: Task",
+  "nameIsFixed": false,
+  "overrideValues": [
     {
-      "class": "symbolInstance",
-      "id": "1876C1C5-0686-4961-91CB-86230D9062C7"
-    },
-    {
-      "class": "symbolInstance",
-      "id": "0FF6FA8F-A4ED-4ED8-9A1D-1F4D868D1775"
-    },
-    {
-      "class": "text",
-      "id": "467FC705-78D8-4CA2-956A-E57F17CF04AA"
+      "_class": "overrideValue",
+      "do_objectID": "CFF28DDF-760A-4107-8883-FE4A7E019472",
+      "overrideName": "C55B3F46-053C-48CF-A950-9465A3F4DBC5_stringValue",
+      "value": "Chikelu Obasea"
     }
   ],
-  "name": "Time",
-  "nameIsFixed": true,
   "resizingConstraint": 63,
   "resizingType": 0,
   "rotation": 0,
+  "scale": 1,
   "shouldBreakMaskChain": false,
   "style": {
     "_class": "style",
@@ -54,5 +49,7 @@
     "miterLimit": 10,
     "startMarkerType": 0,
     "windingRule": 1
-  }
+  },
+  "symbolID": "A3F3425A-806E-4A58-B7E5-88027F047E92",
+  "verticalSpacing": 0
 }

@@ -47,16 +47,8 @@
   "layerListExpandedType": 2,
   "layers": [
     {
-      "class": "bitmap",
-      "id": "19DD1CA2-7004-4B2D-8520-7553B5AFB643"
-    },
-    {
-      "class": "rectangle",
-      "id": "B8934F95-9AEB-4FCE-B567-5116F96137B3"
-    },
-    {
-      "class": "rectangle",
-      "id": "60BDB7FB-1F4D-43AD-A488-475422CD9736"
+      "class": "symbolInstance",
+      "id": "3ACC924D-5122-408F-AFE1-C428DED9D9CD"
     },
     {
       "class": "group",
@@ -77,6 +69,10 @@
     {
       "class": "text",
       "id": "0E7DBFA1-2EA7-45EB-92BE-A7A8165547E0"
+    },
+    {
+      "class": "text",
+      "id": "A6C61F70-1AAA-44D4-B0DC-3ED58731D156"
     },
     {
       "class": "text",

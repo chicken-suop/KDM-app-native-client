@@ -2,7 +2,7 @@
   "_class": "symbolInstance",
   "booleanOperation": -1,
   "clippingMaskMode": 0,
-  "do_objectID": "0FF6FA8F-A4ED-4ED8-9A1D-1F4D868D1775",
+  "do_objectID": "ED206854-10CC-49FD-9DD3-AD83698DA7AF",
   "exportOptions": {
     "_class": "exportOptions",
     "exportFormats": [
@@ -15,10 +15,10 @@
   "frame": {
     "_class": "rect",
     "constrainProportions": false,
-    "height": 19,
-    "width": 343,
+    "height": 26,
+    "width": 85,
     "x": 0,
-    "y": 57
+    "y": 51
   },
   "hasClippingMask": false,
   "horizontalSpacing": 0,
@@ -28,20 +28,20 @@
   "isLocked": false,
   "isVisible": true,
   "layerListExpandedType": 0,
-  "name": "Today Page: Task",
+  "name": "Multi-data input: Task Copy",
   "nameIsFixed": false,
   "overrideValues": [
     {
       "_class": "overrideValue",
-      "do_objectID": "A44016C4-03A0-4454-BE21-F07231669C44",
-      "overrideName": "9E0DEC03-60DB-408F-9ACF-60F2AEA7B77A_stringValue",
-      "value": "Worship"
+      "do_objectID": "473760A9-D8AA-4525-8E5B-1CAD3C09BF45",
+      "overrideName": "28EC6E1D-7BC7-41AA-AF50-F6F84E700B72_stringValue",
+      "value": "Resolume"
     },
     {
       "_class": "overrideValue",
-      "do_objectID": "F6F61D70-C4B8-43F7-8F27-257A85331A1A",
-      "overrideName": "AE5B97A1-3B9C-4380-B4EC-FF176B4B3CA0_stringValue",
-      "value": "John Doe, Milly Mop, "
+      "do_objectID": "DA872A53-D9B1-4898-BA4F-224B81F74233",
+      "overrideName": "C55B3F46-053C-48CF-A950-9465A3F4DBC5_stringValue",
+      "value": "Alicia Stanger"
     }
   ],
   "resizingConstraint": 63,
@@ -56,6 +56,6 @@
     "startMarkerType": 0,
     "windingRule": 1
   },
-  "symbolID": "27E8F388-552C-4351-A0FE-4FEAB012A48F",
+  "symbolID": "A3F3425A-806E-4A58-B7E5-88027F047E92",
   "verticalSpacing": 0
 }

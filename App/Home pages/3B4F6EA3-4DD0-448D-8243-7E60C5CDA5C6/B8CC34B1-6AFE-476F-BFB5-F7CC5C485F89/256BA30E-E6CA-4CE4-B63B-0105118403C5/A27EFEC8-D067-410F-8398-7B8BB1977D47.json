@@ -2,7 +2,7 @@
   "_class": "symbolInstance",
   "booleanOperation": -1,
   "clippingMaskMode": 0,
-  "do_objectID": "0FF6FA8F-A4ED-4ED8-9A1D-1F4D868D1775",
+  "do_objectID": "A27EFEC8-D067-410F-8398-7B8BB1977D47",
   "exportOptions": {
     "_class": "exportOptions",
     "exportFormats": [
@@ -15,10 +15,10 @@
   "frame": {
     "_class": "rect",
     "constrainProportions": false,
-    "height": 19,
-    "width": 343,
+    "height": 39,
+    "width": 85,
     "x": 0,
-    "y": 57
+    "y": 89
   },
   "hasClippingMask": false,
   "horizontalSpacing": 0,
@@ -28,20 +28,20 @@
   "isLocked": false,
   "isVisible": true,
   "layerListExpandedType": 0,
-  "name": "Today Page: Task",
+  "name": "Multi-data input: Task Copy 3",
   "nameIsFixed": false,
   "overrideValues": [
     {
       "_class": "overrideValue",
-      "do_objectID": "A44016C4-03A0-4454-BE21-F07231669C44",
-      "overrideName": "9E0DEC03-60DB-408F-9ACF-60F2AEA7B77A_stringValue",
-      "value": "Worship"
+      "do_objectID": "9F2CE3C3-68DF-4012-A8CE-4C8451BA35D3",
+      "overrideName": "28EC6E1D-7BC7-41AA-AF50-F6F84E700B72_stringValue",
+      "value": "Światła"
     },
     {
       "_class": "overrideValue",
-      "do_objectID": "F6F61D70-C4B8-43F7-8F27-257A85331A1A",
-      "overrideName": "AE5B97A1-3B9C-4380-B4EC-FF176B4B3CA0_stringValue",
-      "value": "John Doe, Milly Mop, "
+      "do_objectID": "B68B0BC1-DA93-4875-A49A-01BA50516FD5",
+      "overrideName": "C55B3F46-053C-48CF-A950-9465A3F4DBC5_stringValue",
+      "value": "Harinder Mondi"
     }
   ],
   "resizingConstraint": 63,
@@ -56,6 +56,6 @@
     "startMarkerType": 0,
     "windingRule": 1
   },
-  "symbolID": "27E8F388-552C-4351-A0FE-4FEAB012A48F",
+  "symbolID": "A3F3425A-806E-4A58-B7E5-88027F047E92",
   "verticalSpacing": 0
 }

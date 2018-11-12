@@ -16,8 +16,8 @@
           "MSAttributedStringFontAttribute": {
             "_class": "fontDescriptor",
             "attributes": {
-              "name": "SFProText-Regular",
-              "size": 16
+              "name": "SFProText-Bold",
+              "size": 12
             }
           },
           "kerning": 0,
@@ -29,19 +29,20 @@
           },
           "textStyleVerticalAlignmentKey": 1
         },
-        "length": 16,
+        "length": 14,
         "location": 0
       }
     ],
-    "string": "Multi-data input"
+    "string": "Amelia Brozyna"
   },
   "automaticallyDrawOnUnderlyingPath": false,
   "booleanOperation": -1,
   "clippingMaskMode": 0,
-  "do_objectID": "0E7DBFA1-2EA7-45EB-92BE-A7A8165547E0",
+  "do_objectID": "C55B3F46-053C-48CF-A950-9465A3F4DBC5",
   "dontSynchroniseWithSymbol": false,
   "exportOptions": {
     "_class": "exportOptions",
+    "do_objectID": "846643B8-E155-4B5C-8CE5-B564084D962D",
     "exportFormats": [
     ],
     "includedLayerIds": [
@@ -49,20 +50,16 @@
     "layerOptions": 0,
     "shouldTrim": false
   },
-  "flow": {
-    "_class": "MSImmutableFlowConnection",
-    "animationType": 0,
-    "destinationArtboardID": "3B4F6EA3-4DD0-448D-8243-7E60C5CDA5C6"
-  },
   "frame": {
     "_class": "rect",
     "constrainProportions": false,
-    "height": 19,
-    "width": 121,
-    "x": 120,
-    "y": 538
+    "do_objectID": "0401DBBA-BBEB-4359-9877-23B205F4333C",
+    "height": 14,
+    "width": 102,
+    "x": 0,
+    "y": 0
   },
-  "glyphBounds": "{{1, 3}, {119, 15}}",
+  "glyphBounds": "{{0, 1}, {94, 13}}",
   "hasClippingMask": false,
   "isFixedToViewport": false,
   "isFlippedHorizontal": false,
@@ -71,19 +68,21 @@
   "isVisible": true,
   "layerListExpandedType": 0,
   "lineSpacingBehaviour": 2,
-  "name": "Button 3",
-  "nameIsFixed": true,
-  "resizingConstraint": 47,
+  "name": "Amelia Brozyna",
+  "nameIsFixed": false,
+  "resizingConstraint": 31,
   "resizingType": 0,
   "rotation": 0,
   "shouldBreakMaskChain": false,
   "style": {
     "_class": "style",
+    "do_objectID": "0E6AEE3C-222B-4A85-BB81-FDD7DB0056FC",
     "endMarkerType": 0,
     "miterLimit": 10,
     "startMarkerType": 0,
     "textStyle": {
       "_class": "textStyle",
+      "do_objectID": "3FC39E24-12E9-4824-AB0F-4B4518C35543",
       "encodedAttributes": {
         "MSAttributedStringColorAttribute": {
           "_class": "color",
@@ -95,8 +94,8 @@
         "MSAttributedStringFontAttribute": {
           "_class": "fontDescriptor",
           "attributes": {
-            "name": "SFProText-Regular",
-            "size": 16
+            "name": "SFProText-Bold",
+            "size": 12
           }
         },
         "kerning": 0,
@@ -108,9 +107,9 @@
         },
         "textStyleVerticalAlignmentKey": 1
       },
-      "verticalAlignment": 1
+      "verticalAlignment": 0
     },
     "windingRule": 1
   },
-  "textBehaviour": 0
+  "textBehaviour": 1
 }

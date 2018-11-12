@@ -49,6 +49,11 @@
     "layerOptions": 0,
     "shouldTrim": false
   },
+  "flow": {
+    "_class": "MSImmutableFlowConnection",
+    "animationType": 0,
+    "destinationArtboardID": "B2DFA95F-4E13-454F-99A6-F1FCAAF6FA58"
+  },
   "frame": {
     "_class": "rect",
     "constrainProportions": false,
@@ -66,7 +71,7 @@
   "isVisible": true,
   "layerListExpandedType": 0,
   "lineSpacingBehaviour": 2,
-  "name": "Button 4",
+  "name": "Button 5",
   "nameIsFixed": true,
   "resizingConstraint": 47,
   "resizingType": 0,

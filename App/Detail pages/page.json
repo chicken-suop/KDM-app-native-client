@@ -97,8 +97,8 @@
       "id": "EF017896-3AAA-4794-824F-067F94980938"
     }
   ],
-  "name": "Page 1",
-  "nameIsFixed": false,
+  "name": "Detail pages",
+  "nameIsFixed": true,
   "resizingConstraint": 63,
   "resizingType": 0,
   "rotation": 0,

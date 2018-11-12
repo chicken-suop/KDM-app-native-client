@@ -2,9 +2,10 @@
   "_class": "symbolInstance",
   "booleanOperation": -1,
   "clippingMaskMode": 0,
-  "do_objectID": "0FF6FA8F-A4ED-4ED8-9A1D-1F4D868D1775",
+  "do_objectID": "D1E07C15-5748-47F1-AC3C-AE69D4DD229C",
   "exportOptions": {
     "_class": "exportOptions",
+    "do_objectID": "BA22DCA7-345F-4338-AA3B-5034CCC2B3D3",
     "exportFormats": [
     ],
     "includedLayerIds": [
@@ -15,10 +16,11 @@
   "frame": {
     "_class": "rect",
     "constrainProportions": false,
-    "height": 19,
-    "width": 343,
+    "do_objectID": "C4248043-18C4-4D71-8BA0-A5262E5A3DD2",
+    "height": 39,
+    "width": 85,
     "x": 0,
-    "y": 57
+    "y": 127
   },
   "hasClippingMask": false,
   "horizontalSpacing": 0,
@@ -28,20 +30,20 @@
   "isLocked": false,
   "isVisible": true,
   "layerListExpandedType": 0,
-  "name": "Today Page: Task",
+  "name": "Multi-data input: Task Copy 2",
   "nameIsFixed": false,
   "overrideValues": [
     {
       "_class": "overrideValue",
-      "do_objectID": "A44016C4-03A0-4454-BE21-F07231669C44",
-      "overrideName": "9E0DEC03-60DB-408F-9ACF-60F2AEA7B77A_stringValue",
-      "value": "Worship"
+      "do_objectID": "BF887128-0D1F-47DB-9827-96663A9BC5EC",
+      "overrideName": "28EC6E1D-7BC7-41AA-AF50-F6F84E700B72_stringValue",
+      "value": "Nagłośnienie"
     },
     {
       "_class": "overrideValue",
-      "do_objectID": "F6F61D70-C4B8-43F7-8F27-257A85331A1A",
-      "overrideName": "AE5B97A1-3B9C-4380-B4EC-FF176B4B3CA0_stringValue",
-      "value": "John Doe, Milly Mop, "
+      "do_objectID": "7FA257F9-19ED-4650-A497-CEB26C50E90F",
+      "overrideName": "C55B3F46-053C-48CF-A950-9465A3F4DBC5_stringValue",
+      "value": "Roman Kutepov"
     }
   ],
   "resizingConstraint": 63,
@@ -51,11 +53,12 @@
   "shouldBreakMaskChain": false,
   "style": {
     "_class": "style",
+    "do_objectID": "F8B905BA-EF97-4C8E-ADE9-3C8DC5E5188F",
     "endMarkerType": 0,
     "miterLimit": 10,
     "startMarkerType": 0,
     "windingRule": 1
   },
-  "symbolID": "27E8F388-552C-4351-A0FE-4FEAB012A48F",
+  "symbolID": "A3F3425A-806E-4A58-B7E5-88027F047E92",
   "verticalSpacing": 0
 }

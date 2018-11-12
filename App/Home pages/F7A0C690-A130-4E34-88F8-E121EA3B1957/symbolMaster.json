@@ -3,14 +3,14 @@
   "backgroundColor": {
     "_class": "color",
     "alpha": 1,
-    "blue": 0.01176470588,
-    "green": 0.01176470588,
-    "red": 0.01176470588
+    "blue": 1,
+    "green": 1,
+    "red": 1
   },
   "booleanOperation": -1,
-  "changeIdentifier": 1022,
+  "changeIdentifier": 521,
   "clippingMaskMode": 0,
-  "do_objectID": "DB6D5D31-BB74-4723-9B5F-31E6847224CA",
+  "do_objectID": "F7A0C690-A130-4E34-88F8-E121EA3B1957",
   "exportOptions": {
     "_class": "exportOptions",
     "exportFormats": [
@@ -23,13 +23,13 @@
   "frame": {
     "_class": "rect",
     "constrainProportions": false,
-    "height": 19,
-    "width": 343,
-    "x": -3510,
-    "y": 244
+    "height": 522,
+    "width": 243,
+    "x": -2936,
+    "y": -259
   },
-  "hasBackgroundColor": true,
-  "hasClickThrough": true,
+  "hasBackgroundColor": false,
+  "hasClickThrough": false,
   "hasClippingMask": false,
   "horizontalRulerData": {
     "_class": "rulerData",
@@ -49,19 +49,19 @@
   "layerListExpandedType": 0,
   "layers": [
     {
-      "class": "group",
-      "id": "EA4C26FC-7B92-410D-B10C-050BFD0E659C"
+      "class": "bitmap",
+      "id": "19DD1CA2-7004-4B2D-8520-7553B5AFB643"
     },
     {
-      "class": "text",
-      "id": "AE5B97A1-3B9C-4380-B4EC-FF176B4B3CA0"
+      "class": "rectangle",
+      "id": "B8934F95-9AEB-4FCE-B567-5116F96137B3"
     },
     {
-      "class": "text",
-      "id": "9E0DEC03-60DB-408F-9ACF-60F2AEA7B77A"
+      "class": "rectangle",
+      "id": "60BDB7FB-1F4D-43AD-A488-475422CD9736"
     }
   ],
-  "name": "Today Page: Task",
+  "name": "Sidebar sched page",
   "nameIsFixed": false,
   "resizesContent": false,
   "resizingConstraint": 63,
@@ -75,7 +75,7 @@
     "startMarkerType": 0,
     "windingRule": 1
   },
-  "symbolID": "27E8F388-552C-4351-A0FE-4FEAB012A48F",
+  "symbolID": "02A2923C-4961-48FC-B517-B2E4D3AEBE07",
   "verticalRulerData": {
     "_class": "rulerData",
     "base": 0,

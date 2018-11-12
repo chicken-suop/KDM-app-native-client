@@ -3,14 +3,14 @@
   "backgroundColor": {
     "_class": "color",
     "alpha": 1,
-    "blue": 0.01176470588,
-    "green": 0.01176470588,
-    "red": 0.01176470588
+    "blue": 0.0117647061124444,
+    "green": 0.0117647061124444,
+    "red": 0.0117647061124444
   },
   "booleanOperation": -1,
-  "changeIdentifier": 1022,
+  "changeIdentifier": 395,
   "clippingMaskMode": 0,
-  "do_objectID": "DB6D5D31-BB74-4723-9B5F-31E6847224CA",
+  "do_objectID": "88F53421-13A1-4262-A9F1-E0DBB5C5E878",
   "exportOptions": {
     "_class": "exportOptions",
     "exportFormats": [
@@ -23,13 +23,13 @@
   "frame": {
     "_class": "rect",
     "constrainProportions": false,
-    "height": 19,
-    "width": 343,
-    "x": -3510,
-    "y": 244
+    "height": 26,
+    "width": 102,
+    "x": -2545,
+    "y": 108
   },
   "hasBackgroundColor": true,
-  "hasClickThrough": true,
+  "hasClickThrough": false,
   "hasClippingMask": false,
   "horizontalRulerData": {
     "_class": "rulerData",
@@ -49,21 +49,17 @@
   "layerListExpandedType": 0,
   "layers": [
     {
-      "class": "group",
-      "id": "EA4C26FC-7B92-410D-B10C-050BFD0E659C"
+      "class": "text",
+      "id": "C55B3F46-053C-48CF-A950-9465A3F4DBC5"
     },
     {
       "class": "text",
-      "id": "AE5B97A1-3B9C-4380-B4EC-FF176B4B3CA0"
-    },
-    {
-      "class": "text",
-      "id": "9E0DEC03-60DB-408F-9ACF-60F2AEA7B77A"
+      "id": "28EC6E1D-7BC7-41AA-AF50-F6F84E700B72"
     }
   ],
-  "name": "Today Page: Task",
+  "name": "Multi-data input: Task",
   "nameIsFixed": false,
-  "resizesContent": false,
+  "resizesContent": true,
   "resizingConstraint": 63,
   "resizingType": 0,
   "rotation": 0,
@@ -75,7 +71,7 @@
     "startMarkerType": 0,
     "windingRule": 1
   },
-  "symbolID": "27E8F388-552C-4351-A0FE-4FEAB012A48F",
+  "symbolID": "A3F3425A-806E-4A58-B7E5-88027F047E92",
   "verticalRulerData": {
     "_class": "rulerData",
     "base": 0,
