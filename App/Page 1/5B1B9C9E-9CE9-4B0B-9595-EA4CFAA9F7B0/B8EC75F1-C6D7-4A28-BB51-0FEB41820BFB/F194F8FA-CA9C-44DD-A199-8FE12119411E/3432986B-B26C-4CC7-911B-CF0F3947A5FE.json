@@ -1,0 +1,68 @@
+{
+  "_class": "symbolInstance",
+  "booleanOperation": -1,
+  "clippingMaskMode": 0,
+  "do_objectID": "3432986B-B26C-4CC7-911B-CF0F3947A5FE",
+  "exportOptions": {
+    "_class": "exportOptions",
+    "do_objectID": "A9035B02-8361-4103-B5B0-18B7E7BF16FD",
+    "exportFormats": [
+    ],
+    "includedLayerIds": [
+    ],
+    "layerOptions": 0,
+    "shouldTrim": false
+  },
+  "frame": {
+    "_class": "rect",
+    "constrainProportions": false,
+    "do_objectID": "8A3B38D1-364A-42AC-B31A-62B80349AFE5",
+    "height": 30,
+    "width": 335,
+    "x": 0,
+    "y": 64
+  },
+  "hasClippingMask": false,
+  "horizontalSpacing": 0,
+  "isFixedToViewport": false,
+  "isFlippedHorizontal": false,
+  "isFlippedVertical": false,
+  "isLocked": false,
+  "isVisible": true,
+  "layerListExpandedType": 0,
+  "name": "Person with job Copy",
+  "nameIsFixed": false,
+  "overrideValues": [
+    {
+      "_class": "overrideValue",
+      "do_objectID": "FB90F5D6-666F-4344-91B9-21503E60454C",
+      "overrideName": "E47623A0-2BA9-45C9-AC56-439CBD35AF0F_stringValue",
+      "value": "Aaron Almaraz"
+    },
+    {
+      "_class": "overrideValue",
+      "do_objectID": "AA485947-3F6D-4408-932E-87C78204A8FC",
+      "overrideName": "20E82B85-50BF-41D6-9DAA-FEFB7A868EEB_image",
+      "value": {
+        "_class": "MSJSONFileReference",
+        "_ref": "images/8eaa80d2f6a9dd470f56b9bf4758348adce90185.png",
+        "_ref_class": "MSImageData"
+      }
+    }
+  ],
+  "resizingConstraint": 63,
+  "resizingType": 0,
+  "rotation": 0,
+  "scale": 1,
+  "shouldBreakMaskChain": false,
+  "style": {
+    "_class": "style",
+    "do_objectID": "66D6D529-92DB-4D07-8037-25E36135B1AF",
+    "endMarkerType": 0,
+    "miterLimit": 10,
+    "startMarkerType": 0,
+    "windingRule": 1
+  },
+  "symbolID": "A2D841D2-1F0D-4BC0-8617-0411E47ED0E3",
+  "verticalSpacing": 0
+}

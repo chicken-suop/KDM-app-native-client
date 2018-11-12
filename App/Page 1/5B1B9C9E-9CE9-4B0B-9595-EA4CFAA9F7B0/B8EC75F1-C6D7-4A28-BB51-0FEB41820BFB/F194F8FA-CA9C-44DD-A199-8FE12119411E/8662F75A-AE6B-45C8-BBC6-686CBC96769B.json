@@ -1,0 +1,68 @@
+{
+  "_class": "symbolInstance",
+  "booleanOperation": -1,
+  "clippingMaskMode": 0,
+  "do_objectID": "8662F75A-AE6B-45C8-BBC6-686CBC96769B",
+  "exportOptions": {
+    "_class": "exportOptions",
+    "do_objectID": "5148D399-F0E2-4F23-B6A5-CAE622D1A0C5",
+    "exportFormats": [
+    ],
+    "includedLayerIds": [
+    ],
+    "layerOptions": 0,
+    "shouldTrim": false
+  },
+  "frame": {
+    "_class": "rect",
+    "constrainProportions": false,
+    "do_objectID": "BB702D45-2780-4F60-B426-B5A1CEF3ECA3",
+    "height": 30,
+    "width": 335,
+    "x": 0,
+    "y": 29
+  },
+  "hasClippingMask": false,
+  "horizontalSpacing": 0,
+  "isFixedToViewport": false,
+  "isFlippedHorizontal": false,
+  "isFlippedVertical": false,
+  "isLocked": false,
+  "isVisible": true,
+  "layerListExpandedType": 0,
+  "name": "Person with job",
+  "nameIsFixed": false,
+  "overrideValues": [
+    {
+      "_class": "overrideValue",
+      "do_objectID": "1200E9C8-AD55-40B6-96F4-7F39D0E1E37C",
+      "overrideName": "E47623A0-2BA9-45C9-AC56-439CBD35AF0F_stringValue",
+      "value": "Foroogh Abdi"
+    },
+    {
+      "_class": "overrideValue",
+      "do_objectID": "C962826C-6FE1-44EB-908A-E5AFBB1099DB",
+      "overrideName": "20E82B85-50BF-41D6-9DAA-FEFB7A868EEB_image",
+      "value": {
+        "_class": "MSJSONFileReference",
+        "_ref": "images/00dcabfb11bb981cc4b42252f6b6f74dca6f0773.png",
+        "_ref_class": "MSImageData"
+      }
+    }
+  ],
+  "resizingConstraint": 63,
+  "resizingType": 0,
+  "rotation": 0,
+  "scale": 1,
+  "shouldBreakMaskChain": false,
+  "style": {
+    "_class": "style",
+    "do_objectID": "9E6B809B-F539-4AEE-89A2-996751A74596",
+    "endMarkerType": 0,
+    "miterLimit": 10,
+    "startMarkerType": 0,
+    "windingRule": 1
+  },
+  "symbolID": "A2D841D2-1F0D-4BC0-8617-0411E47ED0E3",
+  "verticalSpacing": 0
+}

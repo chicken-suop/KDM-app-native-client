@@ -1,0 +1,68 @@
+{
+  "_class": "symbolInstance",
+  "booleanOperation": -1,
+  "clippingMaskMode": 0,
+  "do_objectID": "A7BECE75-8278-4598-B677-D58813548A90",
+  "exportOptions": {
+    "_class": "exportOptions",
+    "do_objectID": "54417105-2E2E-46E3-957D-63A79992493D",
+    "exportFormats": [
+    ],
+    "includedLayerIds": [
+    ],
+    "layerOptions": 0,
+    "shouldTrim": false
+  },
+  "frame": {
+    "_class": "rect",
+    "constrainProportions": false,
+    "do_objectID": "C3A48E01-4C8B-4E67-A264-501E16E223AD",
+    "height": 30,
+    "width": 335,
+    "x": 0,
+    "y": 99
+  },
+  "hasClippingMask": false,
+  "horizontalSpacing": 0,
+  "isFixedToViewport": false,
+  "isFlippedHorizontal": false,
+  "isFlippedVertical": false,
+  "isLocked": false,
+  "isVisible": true,
+  "layerListExpandedType": 0,
+  "name": "Person with job Copy 2",
+  "nameIsFixed": false,
+  "overrideValues": [
+    {
+      "_class": "overrideValue",
+      "do_objectID": "64E5460F-36C9-4C7E-9B1C-11C4C7A2EFE2",
+      "overrideName": "E47623A0-2BA9-45C9-AC56-439CBD35AF0F_stringValue",
+      "value": "Nerte Gronw"
+    },
+    {
+      "_class": "overrideValue",
+      "do_objectID": "B2C7A275-7452-427D-98E6-2FE2F84EB7EC",
+      "overrideName": "20E82B85-50BF-41D6-9DAA-FEFB7A868EEB_image",
+      "value": {
+        "_class": "MSJSONFileReference",
+        "_ref": "images/5433105dcc55eb316c5a310fe2784fb3bbaa22d5.png",
+        "_ref_class": "MSImageData"
+      }
+    }
+  ],
+  "resizingConstraint": 63,
+  "resizingType": 0,
+  "rotation": 0,
+  "scale": 1,
+  "shouldBreakMaskChain": false,
+  "style": {
+    "_class": "style",
+    "do_objectID": "8CA686D0-EC7F-47EA-B656-F32168A91E47",
+    "endMarkerType": 0,
+    "miterLimit": 10,
+    "startMarkerType": 0,
+    "windingRule": 1
+  },
+  "symbolID": "A2D841D2-1F0D-4BC0-8617-0411E47ED0E3",
+  "verticalSpacing": 0
+}

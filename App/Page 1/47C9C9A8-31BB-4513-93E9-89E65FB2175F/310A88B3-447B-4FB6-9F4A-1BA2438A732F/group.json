@@ -1,0 +1,73 @@
+{
+  "_class": "group",
+  "booleanOperation": -1,
+  "clippingMaskMode": 0,
+  "do_objectID": "310A88B3-447B-4FB6-9F4A-1BA2438A732F",
+  "exportOptions": {
+    "_class": "exportOptions",
+    "do_objectID": "691F322F-9003-4A98-9BE6-330B7A271C19",
+    "exportFormats": [
+    ],
+    "includedLayerIds": [
+    ],
+    "layerOptions": 0,
+    "shouldTrim": false
+  },
+  "frame": {
+    "_class": "rect",
+    "constrainProportions": false,
+    "do_objectID": "4C8BABFD-AFDE-4335-8FB5-3AC101F60142",
+    "height": 195,
+    "width": 335,
+    "x": 30,
+    "y": 908
+  },
+  "hasClickThrough": false,
+  "hasClippingMask": false,
+  "isFixedToViewport": false,
+  "isFlippedHorizontal": false,
+  "isFlippedVertical": false,
+  "isLocked": false,
+  "isVisible": true,
+  "layerListExpandedType": 2,
+  "layers": [
+    {
+      "class": "symbolInstance",
+      "id": "6C19393D-F625-4223-B4F3-979D9ABCECB6"
+    },
+    {
+      "class": "symbolInstance",
+      "id": "2543DC34-73FF-4972-BAA6-833EBEE8FDFB"
+    },
+    {
+      "class": "symbolInstance",
+      "id": "055BCD84-EA0F-4D5B-9FF4-85CA61923575"
+    },
+    {
+      "class": "group",
+      "id": "85AA9BC4-4973-48B9-A1E2-AD3B1B127349"
+    },
+    {
+      "class": "group",
+      "id": "2F7F3BBB-0CA9-49A4-AF08-D446CAB80079"
+    },
+    {
+      "class": "text",
+      "id": "B03E0A3E-E11F-42CD-97A7-1A0DC19797EA"
+    }
+  ],
+  "name": "Songs",
+  "nameIsFixed": true,
+  "resizingConstraint": 63,
+  "resizingType": 0,
+  "rotation": 0,
+  "shouldBreakMaskChain": false,
+  "style": {
+    "_class": "style",
+    "do_objectID": "11B8263A-E35F-4C4D-B681-440A0056493E",
+    "endMarkerType": 0,
+    "miterLimit": 10,
+    "startMarkerType": 0,
+    "windingRule": 1
+  }
+}

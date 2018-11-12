@@ -1,0 +1,70 @@
+{
+  "_class": "symbolInstance",
+  "booleanOperation": -1,
+  "clippingMaskMode": 0,
+  "do_objectID": "C7853501-E14C-4024-A46C-C33D5B513210",
+  "exportOptions": {
+    "_class": "exportOptions",
+    "exportFormats": [
+    ],
+    "includedLayerIds": [
+    ],
+    "layerOptions": 0,
+    "shouldTrim": false
+  },
+  "flow": {
+    "_class": "MSImmutableFlowConnection",
+    "animationType": 0,
+    "destinationArtboardID": "5B1B9C9E-9CE9-4B0B-9595-EA4CFAA9F7B0",
+    "do_objectID": "45BA2147-0488-4B32-AF71-9F7FF341E16E"
+  },
+  "frame": {
+    "_class": "rect",
+    "constrainProportions": false,
+    "height": 49,
+    "width": 340,
+    "x": 41,
+    "y": 0
+  },
+  "hasClippingMask": false,
+  "horizontalSpacing": 0,
+  "isFixedToViewport": false,
+  "isFlippedHorizontal": false,
+  "isFlippedVertical": false,
+  "isLocked": false,
+  "isVisible": true,
+  "layerListExpandedType": 0,
+  "name": "Event 1",
+  "nameIsFixed": true,
+  "overrideValues": [
+    {
+      "_class": "overrideValue",
+      "overrideName": "6015FD98-39FD-4A31-AC4D-9254D6999A25_stringValue",
+      "value": "Barista training"
+    },
+    {
+      "_class": "overrideValue",
+      "overrideName": "415F009A-0BEE-41E6-90D3-DF5B745BAEC6_stringValue",
+      "value": "11:30-13:30 in Spotkawie"
+    },
+    {
+      "_class": "overrideValue",
+      "overrideName": "919D7730-45FA-4B4E-919E-C1A4D9479F99_stringValue",
+      "value": "in Spotkawie"
+    }
+  ],
+  "resizingConstraint": 63,
+  "resizingType": 0,
+  "rotation": 0,
+  "scale": 1,
+  "shouldBreakMaskChain": false,
+  "style": {
+    "_class": "style",
+    "endMarkerType": 0,
+    "miterLimit": 10,
+    "startMarkerType": 0,
+    "windingRule": 1
+  },
+  "symbolID": "4D5C0ACF-F537-4B02-8988-95007F3FA6F9",
+  "verticalSpacing": 0
+}

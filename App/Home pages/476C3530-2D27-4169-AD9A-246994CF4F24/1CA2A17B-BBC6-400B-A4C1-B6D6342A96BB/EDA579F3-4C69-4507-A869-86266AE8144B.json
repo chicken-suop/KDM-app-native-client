@@ -1,0 +1,64 @@
+{
+  "_class": "symbolInstance",
+  "booleanOperation": -1,
+  "clippingMaskMode": 0,
+  "do_objectID": "EDA579F3-4C69-4507-A869-86266AE8144B",
+  "exportOptions": {
+    "_class": "exportOptions",
+    "exportFormats": [
+    ],
+    "includedLayerIds": [
+    ],
+    "layerOptions": 0,
+    "shouldTrim": false
+  },
+  "frame": {
+    "_class": "rect",
+    "constrainProportions": false,
+    "height": 49,
+    "width": 340,
+    "x": 41,
+    "y": 162
+  },
+  "hasClippingMask": false,
+  "horizontalSpacing": 0,
+  "isFixedToViewport": false,
+  "isFlippedHorizontal": false,
+  "isFlippedVertical": false,
+  "isLocked": false,
+  "isVisible": true,
+  "layerListExpandedType": 0,
+  "name": "Event 4",
+  "nameIsFixed": true,
+  "overrideValues": [
+    {
+      "_class": "overrideValue",
+      "overrideName": "6015FD98-39FD-4A31-AC4D-9254D6999A25_stringValue",
+      "value": "Band Rehearsal"
+    },
+    {
+      "_class": "overrideValue",
+      "overrideName": "415F009A-0BEE-41E6-90D3-DF5B745BAEC6_stringValue",
+      "value": "19:00-21:00 in Main room"
+    },
+    {
+      "_class": "overrideValue",
+      "overrideName": "919D7730-45FA-4B4E-919E-C1A4D9479F99_stringValue",
+      "value": "in Piano Room"
+    }
+  ],
+  "resizingConstraint": 63,
+  "resizingType": 0,
+  "rotation": 0,
+  "scale": 1,
+  "shouldBreakMaskChain": false,
+  "style": {
+    "_class": "style",
+    "endMarkerType": 0,
+    "miterLimit": 10,
+    "startMarkerType": 0,
+    "windingRule": 1
+  },
+  "symbolID": "4D5C0ACF-F537-4B02-8988-95007F3FA6F9",
+  "verticalSpacing": 0
+}

@@ -1,0 +1,74 @@
+{
+  "_class": "symbolInstance",
+  "booleanOperation": -1,
+  "clippingMaskMode": 0,
+  "do_objectID": "5ABBBD35-F104-4073-B1CB-166E492D6EFE",
+  "exportOptions": {
+    "_class": "exportOptions",
+    "do_objectID": "73B29FD3-CCA0-4D6E-B1B6-C8F695F79ADE",
+    "exportFormats": [
+    ],
+    "includedLayerIds": [
+    ],
+    "layerOptions": 0,
+    "shouldTrim": false
+  },
+  "frame": {
+    "_class": "rect",
+    "constrainProportions": false,
+    "do_objectID": "7F1AB697-89FE-48D1-85E6-04B5F6076805",
+    "height": 30,
+    "width": 335,
+    "x": 0,
+    "y": 134
+  },
+  "hasClippingMask": false,
+  "horizontalSpacing": 0,
+  "isFixedToViewport": false,
+  "isFlippedHorizontal": false,
+  "isFlippedVertical": false,
+  "isLocked": false,
+  "isVisible": true,
+  "layerListExpandedType": 0,
+  "name": "Person with job Copy 3",
+  "nameIsFixed": false,
+  "overrideValues": [
+    {
+      "_class": "overrideValue",
+      "do_objectID": "8251FE85-0AA1-4DF9-80B6-8890881D344A",
+      "overrideName": "8855E3E0-FB19-4892-B108-4D3963FFE85D_image",
+      "value": {
+        "_class": "MSJSONFileReference",
+        "_ref": "images/bc9653c3760fdcf282e81a1c6afaebf53148a302.png",
+        "_ref_class": "MSImageData"
+      }
+    },
+    {
+      "_class": "overrideValue",
+      "do_objectID": "7345D679-3663-46D9-A213-11A85E5C3592",
+      "overrideName": "274E63E1-C7A1-495C-BDEB-8C34F6BF17DC_stringValue",
+      "value": "Yvonne Knight"
+    },
+    {
+      "_class": "overrideValue",
+      "do_objectID": "F3E2E011-FAEC-4691-B006-B7A972D5A859",
+      "overrideName": "E8390C30-5934-4695-989E-8D1E6DB97C05_stringValue",
+      "value": "Drums"
+    }
+  ],
+  "resizingConstraint": 63,
+  "resizingType": 0,
+  "rotation": 0,
+  "scale": 1,
+  "shouldBreakMaskChain": false,
+  "style": {
+    "_class": "style",
+    "do_objectID": "51D24DC3-5043-453B-A37C-F54348CEF634",
+    "endMarkerType": 0,
+    "miterLimit": 10,
+    "startMarkerType": 0,
+    "windingRule": 1
+  },
+  "symbolID": "6AA39455-CE8A-4C41-8035-EEC15FE73495",
+  "verticalSpacing": 0
+}

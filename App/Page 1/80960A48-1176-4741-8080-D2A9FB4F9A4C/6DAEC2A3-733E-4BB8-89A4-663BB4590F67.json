@@ -1,0 +1,74 @@
+{
+  "_class": "symbolInstance",
+  "booleanOperation": -1,
+  "clippingMaskMode": 0,
+  "do_objectID": "6DAEC2A3-733E-4BB8-89A4-663BB4590F67",
+  "exportOptions": {
+    "_class": "exportOptions",
+    "do_objectID": "45E06D1C-D5C8-4D7F-B4FD-38418FD8BD49",
+    "exportFormats": [
+    ],
+    "includedLayerIds": [
+    ],
+    "layerOptions": 0,
+    "shouldTrim": false
+  },
+  "frame": {
+    "_class": "rect",
+    "constrainProportions": false,
+    "do_objectID": "50D7CC59-49D8-4BDA-8D2B-349A045953F6",
+    "height": 30,
+    "width": 335,
+    "x": 25,
+    "y": 165
+  },
+  "hasClippingMask": false,
+  "horizontalSpacing": 0,
+  "isFixedToViewport": false,
+  "isFlippedHorizontal": false,
+  "isFlippedVertical": false,
+  "isLocked": false,
+  "isVisible": true,
+  "layerListExpandedType": 0,
+  "name": "Person with job Copy 2",
+  "nameIsFixed": false,
+  "overrideValues": [
+    {
+      "_class": "overrideValue",
+      "do_objectID": "EAE90CB1-659B-4AF0-9216-4E48B454164B",
+      "overrideName": "8855E3E0-FB19-4892-B108-4D3963FFE85D_image",
+      "value": {
+        "_class": "MSJSONFileReference",
+        "_ref": "images/5433105dcc55eb316c5a310fe2784fb3bbaa22d5.png",
+        "_ref_class": "MSImageData"
+      }
+    },
+    {
+      "_class": "overrideValue",
+      "do_objectID": "0701FD86-F789-4103-A32F-C5C0891E4060",
+      "overrideName": "274E63E1-C7A1-495C-BDEB-8C34F6BF17DC_stringValue",
+      "value": "Nerte Gronw"
+    },
+    {
+      "_class": "overrideValue",
+      "do_objectID": "E462BD93-E4CC-41A9-90F4-BB0F76A96C0D",
+      "overrideName": "E8390C30-5934-4695-989E-8D1E6DB97C05_stringValue",
+      "value": "Sound"
+    }
+  ],
+  "resizingConstraint": 63,
+  "resizingType": 0,
+  "rotation": 0,
+  "scale": 1,
+  "shouldBreakMaskChain": false,
+  "style": {
+    "_class": "style",
+    "do_objectID": "4F3485D8-B915-4B1D-8C44-DFDC823F5E67",
+    "endMarkerType": 0,
+    "miterLimit": 10,
+    "startMarkerType": 0,
+    "windingRule": 1
+  },
+  "symbolID": "6AA39455-CE8A-4C41-8035-EEC15FE73495",
+  "verticalSpacing": 0
+}

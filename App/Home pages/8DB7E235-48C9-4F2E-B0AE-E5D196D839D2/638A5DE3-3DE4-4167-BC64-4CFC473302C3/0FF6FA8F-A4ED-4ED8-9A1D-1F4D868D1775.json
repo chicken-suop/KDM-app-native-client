@@ -1,0 +1,61 @@
+{
+  "_class": "symbolInstance",
+  "booleanOperation": -1,
+  "clippingMaskMode": 0,
+  "do_objectID": "0FF6FA8F-A4ED-4ED8-9A1D-1F4D868D1775",
+  "exportOptions": {
+    "_class": "exportOptions",
+    "exportFormats": [
+    ],
+    "includedLayerIds": [
+    ],
+    "layerOptions": 0,
+    "shouldTrim": false
+  },
+  "frame": {
+    "_class": "rect",
+    "constrainProportions": false,
+    "height": 19,
+    "width": 307,
+    "x": 0,
+    "y": 57
+  },
+  "hasClippingMask": false,
+  "horizontalSpacing": 0,
+  "isFixedToViewport": false,
+  "isFlippedHorizontal": false,
+  "isFlippedVertical": false,
+  "isLocked": false,
+  "isVisible": true,
+  "layerListExpandedType": 0,
+  "name": "Today Page: Task",
+  "nameIsFixed": false,
+  "overrideValues": [
+    {
+      "_class": "overrideValue",
+      "do_objectID": "A44016C4-03A0-4454-BE21-F07231669C44",
+      "overrideName": "9E0DEC03-60DB-408F-9ACF-60F2AEA7B77A_stringValue",
+      "value": "Worship"
+    },
+    {
+      "_class": "overrideValue",
+      "do_objectID": "F6F61D70-C4B8-43F7-8F27-257A85331A1A",
+      "overrideName": "AE5B97A1-3B9C-4380-B4EC-FF176B4B3CA0_stringValue",
+      "value": "John Doe, Milly Mop, "
+    }
+  ],
+  "resizingConstraint": 63,
+  "resizingType": 0,
+  "rotation": 0,
+  "scale": 1,
+  "shouldBreakMaskChain": false,
+  "style": {
+    "_class": "style",
+    "endMarkerType": 0,
+    "miterLimit": 10,
+    "startMarkerType": 0,
+    "windingRule": 1
+  },
+  "symbolID": "27E8F388-552C-4351-A0FE-4FEAB012A48F",
+  "verticalSpacing": 0
+}

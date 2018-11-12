@@ -1,0 +1,68 @@
+{
+  "_class": "symbolInstance",
+  "booleanOperation": -1,
+  "clippingMaskMode": 0,
+  "do_objectID": "0F187804-9EA4-4454-A998-BC177A9041A9",
+  "exportOptions": {
+    "_class": "exportOptions",
+    "do_objectID": "BC3D28C0-AC2C-4B23-A7E4-1197D70BC1C1",
+    "exportFormats": [
+    ],
+    "includedLayerIds": [
+    ],
+    "layerOptions": 0,
+    "shouldTrim": false
+  },
+  "frame": {
+    "_class": "rect",
+    "constrainProportions": false,
+    "do_objectID": "9E166F2A-5E62-4D49-BADC-776ACD83F1C8",
+    "height": 30,
+    "width": 335,
+    "x": 0,
+    "y": 64
+  },
+  "hasClippingMask": false,
+  "horizontalSpacing": 0,
+  "isFixedToViewport": false,
+  "isFlippedHorizontal": false,
+  "isFlippedVertical": false,
+  "isLocked": false,
+  "isVisible": true,
+  "layerListExpandedType": 0,
+  "name": "Person with job Copy",
+  "nameIsFixed": false,
+  "overrideValues": [
+    {
+      "_class": "overrideValue",
+      "do_objectID": "E7F6F67D-4E2A-469A-8B44-D213577A950E",
+      "overrideName": "E47623A0-2BA9-45C9-AC56-439CBD35AF0F_stringValue",
+      "value": "Gleb Ivanovich"
+    },
+    {
+      "_class": "overrideValue",
+      "do_objectID": "EDED2E3F-CC37-4F04-BDE1-F1E019FCB26E",
+      "overrideName": "20E82B85-50BF-41D6-9DAA-FEFB7A868EEB_image",
+      "value": {
+        "_class": "MSJSONFileReference",
+        "_ref": "images/336ea7f775822ac6ecc6dbc2f82709b354943477.png",
+        "_ref_class": "MSImageData"
+      }
+    }
+  ],
+  "resizingConstraint": 63,
+  "resizingType": 0,
+  "rotation": 0,
+  "scale": 1,
+  "shouldBreakMaskChain": false,
+  "style": {
+    "_class": "style",
+    "do_objectID": "BF6A687E-26B8-4AD1-94EA-9745A537B2D5",
+    "endMarkerType": 0,
+    "miterLimit": 10,
+    "startMarkerType": 0,
+    "windingRule": 1
+  },
+  "symbolID": "A2D841D2-1F0D-4BC0-8617-0411E47ED0E3",
+  "verticalSpacing": 0
+}

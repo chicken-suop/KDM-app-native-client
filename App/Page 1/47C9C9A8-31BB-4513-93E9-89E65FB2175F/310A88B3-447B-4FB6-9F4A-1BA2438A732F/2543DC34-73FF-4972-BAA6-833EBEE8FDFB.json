@@ -1,0 +1,70 @@
+{
+  "_class": "symbolInstance",
+  "booleanOperation": -1,
+  "clippingMaskMode": 0,
+  "do_objectID": "2543DC34-73FF-4972-BAA6-833EBEE8FDFB",
+  "exportOptions": {
+    "_class": "exportOptions",
+    "do_objectID": "0BD34439-3720-4E8E-B9DB-F1E301C296CC",
+    "exportFormats": [
+    ],
+    "includedLayerIds": [
+    ],
+    "layerOptions": 0,
+    "shouldTrim": false
+  },
+  "frame": {
+    "_class": "rect",
+    "constrainProportions": false,
+    "do_objectID": "5431099D-D9AB-44A7-8290-563E4330516A",
+    "height": 30,
+    "width": 335,
+    "x": 0,
+    "y": 130
+  },
+  "hasClippingMask": false,
+  "horizontalSpacing": 0,
+  "isFixedToViewport": false,
+  "isFlippedHorizontal": false,
+  "isFlippedVertical": false,
+  "isLocked": false,
+  "isVisible": true,
+  "layerListExpandedType": 0,
+  "name": "Person with job Copy 2",
+  "nameIsFixed": false,
+  "overrideValues": [
+    {
+      "_class": "overrideValue",
+      "do_objectID": "F1D23F3D-2C9F-4C84-83E5-CD3F8E2488D6",
+      "overrideName": "36CFAB4D-EAF1-41A6-BA4F-B8F9B94CEECE_stringValue",
+      "value": "3"
+    },
+    {
+      "_class": "overrideValue",
+      "do_objectID": "947AA575-6B42-4429-846B-0B5B35940439",
+      "overrideName": "C0290F82-7CDF-4A8E-BC99-02C559137B8D_stringValue",
+      "value": "Reckless Love"
+    },
+    {
+      "_class": "overrideValue",
+      "do_objectID": "3BAE8594-1C70-4850-BA09-8DF04DCA4E53",
+      "overrideName": "099DC087-61C3-449F-AC28-C87230109D45_stringValue",
+      "value": "Cory Asbury"
+    }
+  ],
+  "resizingConstraint": 63,
+  "resizingType": 0,
+  "rotation": 0,
+  "scale": 1,
+  "shouldBreakMaskChain": false,
+  "style": {
+    "_class": "style",
+    "do_objectID": "5E97F4FC-83CA-4FAB-B0F9-BDCABD7731D0",
+    "endMarkerType": 0,
+    "miterLimit": 10,
+    "startMarkerType": 0,
+    "windingRule": 1
+  },
+  "symbolID": "3FF08056-C183-4EC3-8A72-F993B0D0F65D",
+  "verticalSpacing": 0
+}

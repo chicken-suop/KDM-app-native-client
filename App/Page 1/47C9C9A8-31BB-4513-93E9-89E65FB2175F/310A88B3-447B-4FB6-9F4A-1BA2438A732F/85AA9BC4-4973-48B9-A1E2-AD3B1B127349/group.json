@@ -1,0 +1,62 @@
+{
+  "_class": "group",
+  "booleanOperation": -1,
+  "clippingMaskMode": 0,
+  "do_objectID": "85AA9BC4-4973-48B9-A1E2-AD3B1B127349",
+  "exportOptions": {
+    "_class": "exportOptions",
+    "exportFormats": [
+    ],
+    "includedLayerIds": [
+    ],
+    "layerOptions": 0,
+    "shouldTrim": false
+  },
+  "frame": {
+    "_class": "rect",
+    "constrainProportions": false,
+    "height": 30,
+    "width": 335,
+    "x": 0,
+    "y": 60
+  },
+  "hasClickThrough": false,
+  "hasClippingMask": false,
+  "isFixedToViewport": false,
+  "isFlippedHorizontal": false,
+  "isFlippedVertical": false,
+  "isLocked": false,
+  "isVisible": true,
+  "layerListExpandedType": 2,
+  "layers": [
+    {
+      "class": "rectangle",
+      "id": "BDB7D30A-3A16-4649-8EB0-C4A8E3B83734"
+    },
+    {
+      "class": "text",
+      "id": "2DCA641B-FCB5-4F4B-8149-462F3F2638F5"
+    },
+    {
+      "class": "text",
+      "id": "9ED1EBED-2854-4864-A50C-525BA156A145"
+    },
+    {
+      "class": "text",
+      "id": "31CE2DBE-9F20-4119-AA3A-BF0B52C3BC5D"
+    }
+  ],
+  "name": "Song changing order",
+  "nameIsFixed": true,
+  "resizingConstraint": 63,
+  "resizingType": 0,
+  "rotation": 0,
+  "shouldBreakMaskChain": false,
+  "style": {
+    "_class": "style",
+    "endMarkerType": 0,
+    "miterLimit": 10,
+    "startMarkerType": 0,
+    "windingRule": 1
+  }
+}

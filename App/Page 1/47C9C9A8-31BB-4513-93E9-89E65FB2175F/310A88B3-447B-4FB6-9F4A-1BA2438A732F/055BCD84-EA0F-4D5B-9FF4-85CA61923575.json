@@ -1,0 +1,70 @@
+{
+  "_class": "symbolInstance",
+  "booleanOperation": -1,
+  "clippingMaskMode": 0,
+  "do_objectID": "055BCD84-EA0F-4D5B-9FF4-85CA61923575",
+  "exportOptions": {
+    "_class": "exportOptions",
+    "do_objectID": "41108F52-0F04-40E7-946C-27EAD9A227F6",
+    "exportFormats": [
+    ],
+    "includedLayerIds": [
+    ],
+    "layerOptions": 0,
+    "shouldTrim": false
+  },
+  "flow": {
+    "_class": "MSImmutableFlowConnection",
+    "animationType": 2,
+    "destinationArtboardID": "0254BD5A-D404-42C8-8176-D2932DE839B8",
+    "do_objectID": "5A79DBBB-3062-46B0-A5AB-4479F2E6DCC5"
+  },
+  "frame": {
+    "_class": "rect",
+    "constrainProportions": false,
+    "do_objectID": "CBA50959-4FF9-4F9D-A195-BD7E986BDE8B",
+    "height": 30,
+    "width": 335,
+    "x": 0,
+    "y": 95
+  },
+  "hasClippingMask": false,
+  "horizontalSpacing": 0,
+  "isFixedToViewport": false,
+  "isFlippedHorizontal": false,
+  "isFlippedVertical": false,
+  "isLocked": false,
+  "isVisible": true,
+  "layerListExpandedType": 0,
+  "name": "Person with job Copy",
+  "nameIsFixed": false,
+  "overrideValues": [
+    {
+      "_class": "overrideValue",
+      "do_objectID": "D01FC622-E524-45AF-B1DB-9F2FC114749F",
+      "overrideName": "36CFAB4D-EAF1-41A6-BA4F-B8F9B94CEECE_stringValue",
+      "value": "2"
+    },
+    {
+      "_class": "overrideValue",
+      "do_objectID": "F155A0DF-4C40-41E3-98E8-FEFC680C82DF",
+      "overrideName": "C0290F82-7CDF-4A8E-BC99-02C559137B8D_stringValue",
+      "value": "Through it all"
+    }
+  ],
+  "resizingConstraint": 63,
+  "resizingType": 0,
+  "rotation": 0,
+  "scale": 1,
+  "shouldBreakMaskChain": false,
+  "style": {
+    "_class": "style",
+    "do_objectID": "F9ED42EF-7285-4E17-AF7C-C4AD128574EC",
+    "endMarkerType": 0,
+    "miterLimit": 10,
+    "startMarkerType": 0,
+    "windingRule": 1
+  },
+  "symbolID": "3FF08056-C183-4EC3-8A72-F993B0D0F65D",
+  "verticalSpacing": 0
+}

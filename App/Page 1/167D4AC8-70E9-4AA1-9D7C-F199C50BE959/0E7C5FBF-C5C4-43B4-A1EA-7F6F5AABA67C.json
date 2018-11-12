@@ -1,0 +1,65 @@
+{
+  "_class": "symbolInstance",
+  "booleanOperation": -1,
+  "clippingMaskMode": 0,
+  "do_objectID": "0E7C5FBF-C5C4-43B4-A1EA-7F6F5AABA67C",
+  "exportOptions": {
+    "_class": "exportOptions",
+    "exportFormats": [
+    ],
+    "includedLayerIds": [
+    ],
+    "layerOptions": 0,
+    "shouldTrim": false
+  },
+  "frame": {
+    "_class": "rect",
+    "constrainProportions": false,
+    "height": 30,
+    "width": 335,
+    "x": 25,
+    "y": 314
+  },
+  "hasClippingMask": false,
+  "horizontalSpacing": 0,
+  "isFixedToViewport": false,
+  "isFlippedHorizontal": false,
+  "isFlippedVertical": false,
+  "isLocked": false,
+  "isVisible": true,
+  "layerListExpandedType": 0,
+  "name": "Person with job Copy 3",
+  "nameIsFixed": false,
+  "overrideValues": [
+    {
+      "_class": "overrideValue",
+      "do_objectID": "6801A30B-1B7B-4D77-80F2-376E6D3E0A85",
+      "overrideName": "E47623A0-2BA9-45C9-AC56-439CBD35AF0F_stringValue",
+      "value": "Ashley Graham"
+    },
+    {
+      "_class": "overrideValue",
+      "do_objectID": "9EFF8FDA-E7DD-4E82-B0CA-38C7310C4BDC",
+      "overrideName": "20E82B85-50BF-41D6-9DAA-FEFB7A868EEB_image",
+      "value": {
+        "_class": "MSJSONFileReference",
+        "_ref": "images/bc9653c3760fdcf282e81a1c6afaebf53148a302.png",
+        "_ref_class": "MSImageData"
+      }
+    }
+  ],
+  "resizingConstraint": 63,
+  "resizingType": 0,
+  "rotation": 0,
+  "scale": 1,
+  "shouldBreakMaskChain": false,
+  "style": {
+    "_class": "style",
+    "endMarkerType": 0,
+    "miterLimit": 10,
+    "startMarkerType": 0,
+    "windingRule": 1
+  },
+  "symbolID": "A2D841D2-1F0D-4BC0-8617-0411E47ED0E3",
+  "verticalSpacing": 0
+}

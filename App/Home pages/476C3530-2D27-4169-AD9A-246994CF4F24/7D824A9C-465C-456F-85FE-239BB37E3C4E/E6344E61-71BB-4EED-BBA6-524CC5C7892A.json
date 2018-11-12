@@ -1,0 +1,70 @@
+{
+  "_class": "symbolInstance",
+  "booleanOperation": -1,
+  "clippingMaskMode": 0,
+  "do_objectID": "E6344E61-71BB-4EED-BBA6-524CC5C7892A",
+  "exportOptions": {
+    "_class": "exportOptions",
+    "do_objectID": "E5E97840-8C74-4F03-B9FE-7635561532E1",
+    "exportFormats": [
+    ],
+    "includedLayerIds": [
+    ],
+    "layerOptions": 0,
+    "shouldTrim": false
+  },
+  "frame": {
+    "_class": "rect",
+    "constrainProportions": false,
+    "do_objectID": "AB420E87-6DC6-4407-8A37-3C6B5861BB2F",
+    "height": 49,
+    "width": 340,
+    "x": 40,
+    "y": 201
+  },
+  "hasClippingMask": false,
+  "horizontalSpacing": 0,
+  "isFixedToViewport": false,
+  "isFlippedHorizontal": false,
+  "isFlippedVertical": false,
+  "isLocked": false,
+  "isVisible": true,
+  "layerListExpandedType": 0,
+  "name": "Event 2",
+  "nameIsFixed": true,
+  "overrideValues": [
+    {
+      "_class": "overrideValue",
+      "do_objectID": "338F3A27-DF4B-4152-80BD-FCE8CFDB925E",
+      "overrideName": "6015FD98-39FD-4A31-AC4D-9254D6999A25_stringValue",
+      "value": "Don Allen's Rehearsal"
+    },
+    {
+      "_class": "overrideValue",
+      "do_objectID": "3CE409D0-7E40-4EB7-ABCA-F7AE6DF59CB6",
+      "overrideName": "415F009A-0BEE-41E6-90D3-DF5B745BAEC6_stringValue",
+      "value": "17:00-19:00 in Main room"
+    },
+    {
+      "_class": "overrideValue",
+      "do_objectID": "C6D76DB1-04BB-47A6-9506-B9EF4EA2BE07",
+      "overrideName": "919D7730-45FA-4B4E-919E-C1A4D9479F99_stringValue",
+      "value": "in Piano Room"
+    }
+  ],
+  "resizingConstraint": 63,
+  "resizingType": 0,
+  "rotation": 0,
+  "scale": 1,
+  "shouldBreakMaskChain": false,
+  "style": {
+    "_class": "style",
+    "do_objectID": "CE788349-F75D-471F-B853-68A261DED41C",
+    "endMarkerType": 0,
+    "miterLimit": 10,
+    "startMarkerType": 0,
+    "windingRule": 1
+  },
+  "symbolID": "4D5C0ACF-F537-4B02-8988-95007F3FA6F9",
+  "verticalSpacing": 0
+}

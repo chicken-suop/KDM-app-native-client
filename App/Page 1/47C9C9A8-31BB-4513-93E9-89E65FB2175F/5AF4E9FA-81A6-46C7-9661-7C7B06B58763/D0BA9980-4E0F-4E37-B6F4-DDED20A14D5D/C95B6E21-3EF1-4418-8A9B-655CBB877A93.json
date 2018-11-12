@@ -1,0 +1,74 @@
+{
+  "_class": "symbolInstance",
+  "booleanOperation": -1,
+  "clippingMaskMode": 0,
+  "do_objectID": "C95B6E21-3EF1-4418-8A9B-655CBB877A93",
+  "exportOptions": {
+    "_class": "exportOptions",
+    "do_objectID": "64E3C22C-EB16-48AB-B34D-95B8D17A96FD",
+    "exportFormats": [
+    ],
+    "includedLayerIds": [
+    ],
+    "layerOptions": 0,
+    "shouldTrim": false
+  },
+  "frame": {
+    "_class": "rect",
+    "constrainProportions": false,
+    "do_objectID": "294D9D40-0CFE-49D8-95E7-634681C6CDCF",
+    "height": 30,
+    "width": 335,
+    "x": 0,
+    "y": 99
+  },
+  "hasClippingMask": false,
+  "horizontalSpacing": 0,
+  "isFixedToViewport": false,
+  "isFlippedHorizontal": false,
+  "isFlippedVertical": false,
+  "isLocked": false,
+  "isVisible": true,
+  "layerListExpandedType": 0,
+  "name": "Person with job Copy 2",
+  "nameIsFixed": false,
+  "overrideValues": [
+    {
+      "_class": "overrideValue",
+      "do_objectID": "EAE90CB1-659B-4AF0-9216-4E48B454164B",
+      "overrideName": "8855E3E0-FB19-4892-B108-4D3963FFE85D_image",
+      "value": {
+        "_class": "MSJSONFileReference",
+        "_ref": "images/a39436da1fa91e2358338c6f938854236f5f88aa.png",
+        "_ref_class": "MSImageData"
+      }
+    },
+    {
+      "_class": "overrideValue",
+      "do_objectID": "0701FD86-F789-4103-A32F-C5C0891E4060",
+      "overrideName": "274E63E1-C7A1-495C-BDEB-8C34F6BF17DC_stringValue",
+      "value": "Bithika Abhedananda"
+    },
+    {
+      "_class": "overrideValue",
+      "do_objectID": "E462BD93-E4CC-41A9-90F4-BB0F76A96C0D",
+      "overrideName": "E8390C30-5934-4695-989E-8D1E6DB97C05_stringValue",
+      "value": "Singer"
+    }
+  ],
+  "resizingConstraint": 63,
+  "resizingType": 0,
+  "rotation": 0,
+  "scale": 1,
+  "shouldBreakMaskChain": false,
+  "style": {
+    "_class": "style",
+    "do_objectID": "E363E0EA-5137-4674-820D-619C2456B616",
+    "endMarkerType": 0,
+    "miterLimit": 10,
+    "startMarkerType": 0,
+    "windingRule": 1
+  },
+  "symbolID": "6AA39455-CE8A-4C41-8035-EEC15FE73495",
+  "verticalSpacing": 0
+}

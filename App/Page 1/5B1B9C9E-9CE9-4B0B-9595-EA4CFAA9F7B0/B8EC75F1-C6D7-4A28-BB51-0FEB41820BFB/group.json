@@ -1,0 +1,69 @@
+{
+  "_class": "group",
+  "booleanOperation": -1,
+  "clippingMaskMode": 0,
+  "do_objectID": "B8EC75F1-C6D7-4A28-BB51-0FEB41820BFB",
+  "exportOptions": {
+    "_class": "exportOptions",
+    "do_objectID": "1EA89BB0-8691-494F-9337-ACB6B1DDE00A",
+    "exportFormats": [
+    ],
+    "includedLayerIds": [
+    ],
+    "layerOptions": 0,
+    "shouldTrim": false
+  },
+  "frame": {
+    "_class": "rect",
+    "constrainProportions": false,
+    "do_objectID": "668EC0C0-07CE-41F5-86A0-A4AAF30E0348",
+    "height": 372,
+    "width": 335,
+    "x": 30,
+    "y": 364
+  },
+  "hasClickThrough": false,
+  "hasClippingMask": false,
+  "isFixedToViewport": false,
+  "isFlippedHorizontal": false,
+  "isFlippedVertical": false,
+  "isLocked": false,
+  "isVisible": true,
+  "layerListExpandedType": 1,
+  "layers": [
+    {
+      "class": "group",
+      "id": "F194F8FA-CA9C-44DD-A199-8FE12119411E"
+    },
+    {
+      "class": "group",
+      "id": "65F1D539-8852-4ABA-9DD9-B0E6EEA3476D"
+    },
+    {
+      "class": "group",
+      "id": "07681679-95C6-48DC-A366-5CA7FAFEAFD7"
+    },
+    {
+      "class": "group",
+      "id": "C367D842-297B-451F-86CD-2C6E32B290DC"
+    },
+    {
+      "class": "text",
+      "id": "A98AC036-3E7F-42F8-A4E1-14AEC8ED5CD3"
+    }
+  ],
+  "name": "People",
+  "nameIsFixed": true,
+  "resizingConstraint": 63,
+  "resizingType": 0,
+  "rotation": 0,
+  "shouldBreakMaskChain": false,
+  "style": {
+    "_class": "style",
+    "do_objectID": "B7A1A049-441B-4F99-8097-3ACB0D3E3069",
+    "endMarkerType": 0,
+    "miterLimit": 10,
+    "startMarkerType": 0,
+    "windingRule": 1
+  }
+}

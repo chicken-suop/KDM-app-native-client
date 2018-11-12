@@ -1,0 +1,64 @@
+{
+  "_class": "symbolInstance",
+  "booleanOperation": -1,
+  "clippingMaskMode": 0,
+  "do_objectID": "C2BB721B-0DFA-44A4-9E74-11D4A70F27B3",
+  "exportOptions": {
+    "_class": "exportOptions",
+    "exportFormats": [
+    ],
+    "includedLayerIds": [
+    ],
+    "layerOptions": 0,
+    "shouldTrim": false
+  },
+  "frame": {
+    "_class": "rect",
+    "constrainProportions": false,
+    "height": 50,
+    "width": 310,
+    "x": 30,
+    "y": 268
+  },
+  "hasClippingMask": false,
+  "horizontalSpacing": 0,
+  "isFixedToViewport": false,
+  "isFlippedHorizontal": false,
+  "isFlippedVertical": false,
+  "isLocked": false,
+  "isVisible": true,
+  "layerListExpandedType": 0,
+  "name": "Song Copy",
+  "nameIsFixed": false,
+  "overrideValues": [
+    {
+      "_class": "overrideValue",
+      "overrideName": "E972C0F7-A400-4BFB-9E39-C2563F9ABFCC_stringValue",
+      "value": "3"
+    },
+    {
+      "_class": "overrideValue",
+      "overrideName": "8B3C4A04-054E-48AC-8033-F7F783EA53BA_stringValue",
+      "value": "Reckless Love"
+    },
+    {
+      "_class": "overrideValue",
+      "overrideName": "1159BAF5-198B-42CA-9B1D-C12A2A2C7750_stringValue",
+      "value": "Cory Asbury"
+    }
+  ],
+  "resizingConstraint": 63,
+  "resizingType": 0,
+  "rotation": 0,
+  "scale": 1,
+  "shouldBreakMaskChain": false,
+  "style": {
+    "_class": "style",
+    "endMarkerType": 0,
+    "miterLimit": 10,
+    "startMarkerType": 0,
+    "windingRule": 1
+  },
+  "symbolID": "0AA8A0A3-8A5C-43A2-8837-03DA517F696A",
+  "verticalSpacing": 0
+}

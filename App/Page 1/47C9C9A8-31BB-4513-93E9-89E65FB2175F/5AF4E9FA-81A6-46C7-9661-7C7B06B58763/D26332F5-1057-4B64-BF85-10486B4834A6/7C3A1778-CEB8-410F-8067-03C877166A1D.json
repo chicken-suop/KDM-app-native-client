@@ -1,0 +1,67 @@
+{
+  "_class": "symbolInstance",
+  "booleanOperation": -1,
+  "clippingMaskMode": 0,
+  "do_objectID": "7C3A1778-CEB8-410F-8067-03C877166A1D",
+  "exportOptions": {
+    "_class": "exportOptions",
+    "exportFormats": [
+    ],
+    "includedLayerIds": [
+    ],
+    "layerOptions": 0,
+    "shouldTrim": false
+  },
+  "flow": {
+    "_class": "MSImmutableFlowConnection",
+    "animationType": 0,
+    "destinationArtboardID": "1F087690-354D-41CA-BA60-5AFEBA629A67",
+    "do_objectID": "FD74A888-A41C-42C7-AA64-F122C9B97BF1"
+  },
+  "frame": {
+    "_class": "rect",
+    "constrainProportions": false,
+    "height": 30,
+    "width": 335,
+    "x": 0,
+    "y": 29
+  },
+  "hasClippingMask": false,
+  "horizontalSpacing": 0,
+  "isFixedToViewport": false,
+  "isFlippedHorizontal": false,
+  "isFlippedVertical": false,
+  "isLocked": false,
+  "isVisible": true,
+  "layerListExpandedType": 0,
+  "name": "Person with job",
+  "nameIsFixed": false,
+  "overrideValues": [
+    {
+      "_class": "overrideValue",
+      "do_objectID": "0BD1C5AE-BDA9-4130-9D3C-2B70A9A45EE3",
+      "overrideName": "E8390C30-5934-4695-989E-8D1E6DB97C05_stringValue",
+      "value": "Sermon, Announcements"
+    },
+    {
+      "_class": "overrideValue",
+      "do_objectID": "28778534-B71F-4D00-A150-497FEF0095B1",
+      "overrideName": "274E63E1-C7A1-495C-BDEB-8C34F6BF17DC_stringValue",
+      "value": "Martijn Dragonjer"
+    }
+  ],
+  "resizingConstraint": 63,
+  "resizingType": 0,
+  "rotation": 0,
+  "scale": 1,
+  "shouldBreakMaskChain": false,
+  "style": {
+    "_class": "style",
+    "endMarkerType": 0,
+    "miterLimit": 10,
+    "startMarkerType": 0,
+    "windingRule": 1
+  },
+  "symbolID": "6AA39455-CE8A-4C41-8035-EEC15FE73495",
+  "verticalSpacing": 0
+}

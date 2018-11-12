@@ -1,0 +1,70 @@
+{
+  "_class": "symbolInstance",
+  "booleanOperation": -1,
+  "clippingMaskMode": 0,
+  "do_objectID": "6C19393D-F625-4223-B4F3-979D9ABCECB6",
+  "exportOptions": {
+    "_class": "exportOptions",
+    "do_objectID": "C8D58516-9BA8-489A-BEBD-6B7866667252",
+    "exportFormats": [
+    ],
+    "includedLayerIds": [
+    ],
+    "layerOptions": 0,
+    "shouldTrim": false
+  },
+  "frame": {
+    "_class": "rect",
+    "constrainProportions": false,
+    "do_objectID": "A50D2C47-8112-4EAC-BE36-191A1A16339E",
+    "height": 30,
+    "width": 335,
+    "x": 0,
+    "y": 165
+  },
+  "hasClippingMask": false,
+  "horizontalSpacing": 0,
+  "isFixedToViewport": false,
+  "isFlippedHorizontal": false,
+  "isFlippedVertical": false,
+  "isLocked": false,
+  "isVisible": true,
+  "layerListExpandedType": 0,
+  "name": "Person with job Copy 3",
+  "nameIsFixed": false,
+  "overrideValues": [
+    {
+      "_class": "overrideValue",
+      "do_objectID": "82D18DA8-A2D8-42FA-8C2B-81AEC68D6B4A",
+      "overrideName": "36CFAB4D-EAF1-41A6-BA4F-B8F9B94CEECE_stringValue",
+      "value": "4"
+    },
+    {
+      "_class": "overrideValue",
+      "do_objectID": "6700126E-8E93-4D31-8B58-52E1D423B292",
+      "overrideName": "C0290F82-7CDF-4A8E-BC99-02C559137B8D_stringValue",
+      "value": "So will I"
+    },
+    {
+      "_class": "overrideValue",
+      "do_objectID": "E7FC0DD7-31A5-4099-ACAD-9A13B39F1186",
+      "overrideName": "099DC087-61C3-449F-AC28-C87230109D45_stringValue",
+      "value": "Hillsong"
+    }
+  ],
+  "resizingConstraint": 63,
+  "resizingType": 0,
+  "rotation": 0,
+  "scale": 1,
+  "shouldBreakMaskChain": false,
+  "style": {
+    "_class": "style",
+    "do_objectID": "7B21A7EA-D7B5-413E-82B1-E6625E3B6CFE",
+    "endMarkerType": 0,
+    "miterLimit": 10,
+    "startMarkerType": 0,
+    "windingRule": 1
+  },
+  "symbolID": "3FF08056-C183-4EC3-8A72-F993B0D0F65D",
+  "verticalSpacing": 0
+}

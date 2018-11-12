@@ -1,0 +1,66 @@
+{
+  "_class": "group",
+  "booleanOperation": -1,
+  "clippingMaskMode": 0,
+  "do_objectID": "1CA2A17B-BBC6-400B-A4C1-B6D6342A96BB",
+  "exportOptions": {
+    "_class": "exportOptions",
+    "exportFormats": [
+    ],
+    "includedLayerIds": [
+    ],
+    "layerOptions": 0,
+    "shouldTrim": false
+  },
+  "frame": {
+    "_class": "rect",
+    "constrainProportions": false,
+    "height": 211,
+    "width": 381,
+    "x": 31,
+    "y": 52
+  },
+  "hasClickThrough": false,
+  "hasClippingMask": false,
+  "isFixedToViewport": false,
+  "isFlippedHorizontal": false,
+  "isFlippedVertical": false,
+  "isLocked": false,
+  "isVisible": true,
+  "layerListExpandedType": 0,
+  "layers": [
+    {
+      "class": "symbolInstance",
+      "id": "EDA579F3-4C69-4507-A869-86266AE8144B"
+    },
+    {
+      "class": "symbolInstance",
+      "id": "46D60E25-427E-48BA-AA57-65430714FE3C"
+    },
+    {
+      "class": "symbolInstance",
+      "id": "EB941289-4B61-4114-B02B-0CCE25DDAFC0"
+    },
+    {
+      "class": "symbolInstance",
+      "id": "C7853501-E14C-4024-A46C-C33D5B513210"
+    },
+    {
+      "class": "group",
+      "id": "35311C29-FB61-4469-A774-36307C72913F"
+    }
+  ],
+  "name": "FRI",
+  "nameIsFixed": true,
+  "resizingConstraint": 63,
+  "resizingType": 0,
+  "rotation": 0,
+  "shouldBreakMaskChain": false,
+  "style": {
+    "_class": "style",
+    "endMarkerType": 0,
+    "miterLimit": 10,
+    "startMarkerType": 0,
+    "windingRule": 1
+  }
+}

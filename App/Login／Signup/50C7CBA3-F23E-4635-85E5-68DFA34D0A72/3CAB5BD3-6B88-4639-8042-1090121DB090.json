@@ -1,0 +1,64 @@
+{
+  "_class": "symbolInstance",
+  "booleanOperation": -1,
+  "clippingMaskMode": 0,
+  "do_objectID": "3CAB5BD3-6B88-4639-8042-1090121DB090",
+  "exportOptions": {
+    "_class": "exportOptions",
+    "do_objectID": "68A8B013-C816-4375-B9B1-BA9865954F05",
+    "exportFormats": [
+    ],
+    "includedLayerIds": [
+    ],
+    "layerOptions": 0,
+    "shouldTrim": false
+  },
+  "frame": {
+    "_class": "rect",
+    "constrainProportions": false,
+    "do_objectID": "FE009C99-8988-4C71-AA4D-B040B50C9295",
+    "height": 58,
+    "width": 324,
+    "x": 30,
+    "y": 287
+  },
+  "hasClippingMask": false,
+  "horizontalSpacing": 0,
+  "isFixedToViewport": false,
+  "isFlippedHorizontal": false,
+  "isFlippedVertical": false,
+  "isLocked": false,
+  "isVisible": true,
+  "layerListExpandedType": 0,
+  "name": "Email",
+  "nameIsFixed": true,
+  "overrideValues": [
+    {
+      "_class": "overrideValue",
+      "do_objectID": "520E6F6C-555E-4799-83F4-D321C8DFC161",
+      "overrideName": "A38EE3E0-D536-4316-907E-1B6D2A9E4598_stringValue",
+      "value": "Email"
+    },
+    {
+      "_class": "overrideValue",
+      "do_objectID": "73EB9B00-399E-4681-A061-707FBF020615",
+      "overrideName": "D97B0ED8-ED80-4240-AF8E-9EC03734650D_stringValue",
+      "value": "elliot.schep@gmail.com"
+    }
+  ],
+  "resizingConstraint": 63,
+  "resizingType": 0,
+  "rotation": 0,
+  "scale": 1,
+  "shouldBreakMaskChain": false,
+  "style": {
+    "_class": "style",
+    "do_objectID": "C9AA85B3-1077-4145-9A60-BE41AD1AA38D",
+    "endMarkerType": 0,
+    "miterLimit": 10,
+    "startMarkerType": 0,
+    "windingRule": 1
+  },
+  "symbolID": "6EB9EDBF-D2BB-4519-B039-4923F07D8260",
+  "verticalSpacing": 0
+}
