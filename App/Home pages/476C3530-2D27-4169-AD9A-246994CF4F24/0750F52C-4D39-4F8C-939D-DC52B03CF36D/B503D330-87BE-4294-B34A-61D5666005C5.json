@@ -9,15 +9,15 @@
           "MSAttributedStringColorAttribute": {
             "_class": "color",
             "alpha": 1,
-            "blue": 0.6079225540161133,
-            "green": 0.6078033447265625,
-            "red": 0.6078922152519226
+            "blue": 0.2392156862745098,
+            "green": 0.2392156862745098,
+            "red": 0.2392156862745098
           },
           "MSAttributedStringFontAttribute": {
             "_class": "fontDescriptor",
             "attributes": {
-              "name": "SFProText-Light",
-              "size": 14
+              "name": "SFProText-Bold",
+              "size": 12
             }
           },
           "kerning": 0,
@@ -33,12 +33,12 @@
         "location": 0
       }
     ],
-    "string": "November 3"
+    "string": "November 4"
   },
   "automaticallyDrawOnUnderlyingPath": false,
   "booleanOperation": -1,
   "clippingMaskMode": 0,
-  "do_objectID": "95E54883-45E8-48B8-A47C-E32F3CA93CE4",
+  "do_objectID": "B503D330-87BE-4294-B34A-61D5666005C5",
   "dontSynchroniseWithSymbol": false,
   "exportOptions": {
     "_class": "exportOptions",
@@ -52,12 +52,12 @@
   "frame": {
     "_class": "rect",
     "constrainProportions": false,
-    "height": 16,
-    "width": 81,
+    "height": 14,
+    "width": 74,
     "x": 0,
-    "y": 0
+    "y": 48
   },
-  "glyphBounds": "{{1, 2}, {79, 12}}",
+  "glyphBounds": "{{1, 2}, {72, 10}}",
   "hasClippingMask": false,
   "isFixedToViewport": false,
   "isFlippedHorizontal": false,
@@ -66,7 +66,7 @@
   "isVisible": true,
   "layerListExpandedType": 0,
   "lineSpacingBehaviour": 2,
-  "name": "November 3",
+  "name": "November 4",
   "nameIsFixed": false,
   "resizingConstraint": 47,
   "resizingType": 0,
@@ -83,15 +83,15 @@
         "MSAttributedStringColorAttribute": {
           "_class": "color",
           "alpha": 1,
-          "blue": 0.6079225540161133,
-          "green": 0.6078033447265625,
-          "red": 0.6078922152519226
+          "blue": 0.2392156862745098,
+          "green": 0.2392156862745098,
+          "red": 0.2392156862745098
         },
         "MSAttributedStringFontAttribute": {
           "_class": "fontDescriptor",
           "attributes": {
-            "name": "SFProText-Light",
-            "size": 14
+            "name": "SFProText-Bold",
+            "size": 12
           }
         },
         "kerning": 0,

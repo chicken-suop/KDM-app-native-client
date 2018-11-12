@@ -17,31 +17,32 @@
             "_class": "fontDescriptor",
             "attributes": {
               "name": "SFProText-Bold",
-              "size": 24
+              "size": 40
             }
           },
           "kerning": 0,
           "paragraphStyle": {
             "_class": "paragraphStyle",
-            "alignment": 2,
+            "alignment": 0,
             "allowsDefaultTighteningForTruncation": 0,
             "paragraphSpacing": 1
           },
-          "textStyleVerticalAlignmentKey": 0
+          "textStyleVerticalAlignmentKey": 1
         },
-        "length": 1,
+        "length": 11,
         "location": 0
       }
     ],
-    "string": "1"
+    "string": "KdM: Kraków"
   },
   "automaticallyDrawOnUnderlyingPath": false,
   "booleanOperation": -1,
   "clippingMaskMode": 0,
-  "do_objectID": "36CFAB4D-EAF1-41A6-BA4F-B8F9B94CEECE",
+  "do_objectID": "47784563-971A-4C1D-A0E2-ABCE4E53A87F",
   "dontSynchroniseWithSymbol": false,
   "exportOptions": {
     "_class": "exportOptions",
+    "do_objectID": "CC46684C-25CD-42FA-B841-4CBE504EFC05",
     "exportFormats": [
     ],
     "includedLayerIds": [
@@ -52,12 +53,13 @@
   "frame": {
     "_class": "rect",
     "constrainProportions": false,
-    "height": 30,
-    "width": 30,
-    "x": 0,
-    "y": 0
+    "do_objectID": "40222743-BE1C-4F4F-91D7-865AC53B057B",
+    "height": 48,
+    "width": 268,
+    "x": 120,
+    "y": 429
   },
-  "glyphBounds": "{{10, 6}, {9, 18}}",
+  "glyphBounds": "{{3, 6}, {264, 33}}",
   "hasClippingMask": false,
   "isFixedToViewport": false,
   "isFlippedHorizontal": false,
@@ -66,19 +68,21 @@
   "isVisible": true,
   "layerListExpandedType": 0,
   "lineSpacingBehaviour": 2,
-  "name": "Number",
-  "nameIsFixed": true,
-  "resizingConstraint": 18,
+  "name": "KdM: Kraków",
+  "nameIsFixed": false,
+  "resizingConstraint": 47,
   "resizingType": 0,
   "rotation": 0,
   "shouldBreakMaskChain": false,
   "style": {
     "_class": "style",
+    "do_objectID": "9133CB17-2EB1-4C05-A013-4C2AB91E9255",
     "endMarkerType": 0,
     "miterLimit": 10,
     "startMarkerType": 0,
     "textStyle": {
       "_class": "textStyle",
+      "do_objectID": "65B87AE1-602E-4127-8CC9-1EA529C817DC",
       "encodedAttributes": {
         "MSAttributedStringColorAttribute": {
           "_class": "color",
@@ -91,21 +95,21 @@
           "_class": "fontDescriptor",
           "attributes": {
             "name": "SFProText-Bold",
-            "size": 24
+            "size": 40
           }
         },
         "kerning": 0,
         "paragraphStyle": {
           "_class": "paragraphStyle",
-          "alignment": 2,
+          "alignment": 0,
           "allowsDefaultTighteningForTruncation": 0,
           "paragraphSpacing": 1
         },
-        "textStyleVerticalAlignmentKey": 0
+        "textStyleVerticalAlignmentKey": 1
       },
-      "verticalAlignment": 1
+      "verticalAlignment": 0
     },
     "windingRule": 1
   },
-  "textBehaviour": 2
+  "textBehaviour": 0
 }

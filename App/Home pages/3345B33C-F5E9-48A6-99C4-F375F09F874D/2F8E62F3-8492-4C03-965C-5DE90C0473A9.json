@@ -9,39 +9,40 @@
           "MSAttributedStringColorAttribute": {
             "_class": "color",
             "alpha": 1,
-            "blue": 0.6079225540161133,
-            "green": 0.6078033447265625,
-            "red": 0.6078922152519226
+            "blue": 0.996078431372549,
+            "green": 0.996078431372549,
+            "red": 0.996078431372549
           },
           "MSAttributedStringFontAttribute": {
             "_class": "fontDescriptor",
             "attributes": {
-              "name": "SFProText-Light",
-              "size": 14
+              "name": "SFProText-Regular",
+              "size": 16
             }
           },
           "kerning": 0,
           "paragraphStyle": {
             "_class": "paragraphStyle",
-            "alignment": 2,
+            "alignment": 0,
             "allowsDefaultTighteningForTruncation": 0,
             "paragraphSpacing": 1
           },
-          "textStyleVerticalAlignmentKey": 0
+          "textStyleVerticalAlignmentKey": 1
         },
-        "length": 10,
+        "length": 6,
         "location": 0
       }
     ],
-    "string": "November 4"
+    "string": "Search"
   },
   "automaticallyDrawOnUnderlyingPath": false,
   "booleanOperation": -1,
   "clippingMaskMode": 0,
-  "do_objectID": "B503D330-87BE-4294-B34A-61D5666005C5",
+  "do_objectID": "2F8E62F3-8492-4C03-965C-5DE90C0473A9",
   "dontSynchroniseWithSymbol": false,
   "exportOptions": {
     "_class": "exportOptions",
+    "do_objectID": "CB163FC1-4655-49BA-AC8F-F5455E34308B",
     "exportFormats": [
     ],
     "includedLayerIds": [
@@ -52,12 +53,13 @@
   "frame": {
     "_class": "rect",
     "constrainProportions": false,
-    "height": 16,
-    "width": 81,
-    "x": 0,
-    "y": 0
+    "do_objectID": "3758C05B-240E-406B-94FE-7AD433569E86",
+    "height": 19,
+    "width": 53,
+    "x": 120,
+    "y": 507
   },
-  "glyphBounds": "{{1, 2}, {79, 12}}",
+  "glyphBounds": "{{0, 3}, {52, 13}}",
   "hasClippingMask": false,
   "isFixedToViewport": false,
   "isFlippedHorizontal": false,
@@ -66,44 +68,46 @@
   "isVisible": true,
   "layerListExpandedType": 0,
   "lineSpacingBehaviour": 2,
-  "name": "November 4",
-  "nameIsFixed": false,
+  "name": "Button",
+  "nameIsFixed": true,
   "resizingConstraint": 47,
   "resizingType": 0,
   "rotation": 0,
   "shouldBreakMaskChain": false,
   "style": {
     "_class": "style",
+    "do_objectID": "4697DA09-E128-417A-8956-F8894B7932B4",
     "endMarkerType": 0,
     "miterLimit": 10,
     "startMarkerType": 0,
     "textStyle": {
       "_class": "textStyle",
+      "do_objectID": "2C4B1A7C-5D4B-48B9-B02C-DA26BCF79E9B",
       "encodedAttributes": {
         "MSAttributedStringColorAttribute": {
           "_class": "color",
           "alpha": 1,
-          "blue": 0.6079225540161133,
-          "green": 0.6078033447265625,
-          "red": 0.6078922152519226
+          "blue": 0.996078431372549,
+          "green": 0.996078431372549,
+          "red": 0.996078431372549
         },
         "MSAttributedStringFontAttribute": {
           "_class": "fontDescriptor",
           "attributes": {
-            "name": "SFProText-Light",
-            "size": 14
+            "name": "SFProText-Regular",
+            "size": 16
           }
         },
         "kerning": 0,
         "paragraphStyle": {
           "_class": "paragraphStyle",
-          "alignment": 2,
+          "alignment": 0,
           "allowsDefaultTighteningForTruncation": 0,
           "paragraphSpacing": 1
         },
-        "textStyleVerticalAlignmentKey": 0
+        "textStyleVerticalAlignmentKey": 1
       },
-      "verticalAlignment": 0
+      "verticalAlignment": 1
     },
     "windingRule": 1
   },

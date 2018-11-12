@@ -1,16 +1,15 @@
 {
-  "_class": "symbolMaster",
+  "_class": "artboard",
   "backgroundColor": {
     "_class": "color",
     "alpha": 1,
-    "blue": 0.2235294117647059,
-    "green": 0.407843137254902,
-    "red": 0.984313725490196
+    "blue": 0.0117647061124444,
+    "green": 0.0117647061124444,
+    "red": 0.0117647061124444
   },
   "booleanOperation": -1,
-  "changeIdentifier": 5564,
   "clippingMaskMode": 0,
-  "do_objectID": "13675A21-3172-46C4-A539-8BDD0238EAE6",
+  "do_objectID": "3345B33C-F5E9-48A6-99C4-F375F09F874D",
   "exportOptions": {
     "_class": "exportOptions",
     "exportFormats": [
@@ -23,16 +22,10 @@
   "frame": {
     "_class": "rect",
     "constrainProportions": false,
-    "height": 30,
-    "width": 335,
-    "x": 2448,
-    "y": 399
-  },
-  "grid": {
-    "_class": "simpleGrid",
-    "gridSize": 20,
-    "isEnabled": false,
-    "thickGridTimes": 10
+    "height": 736,
+    "width": 414,
+    "x": -2934,
+    "y": 360
   },
   "hasBackgroundColor": true,
   "hasClickThrough": true,
@@ -44,7 +37,6 @@
     ]
   },
   "includeBackgroundColorInExport": true,
-  "includeBackgroundColorInInstance": false,
   "includeInCloudUpload": true,
   "isFixedToViewport": false,
   "isFlippedHorizontal": false,
@@ -52,23 +44,54 @@
   "isFlowHome": false,
   "isLocked": false,
   "isVisible": true,
-  "layerListExpandedType": 0,
+  "layerListExpandedType": 2,
   "layers": [
     {
-      "class": "text",
-      "id": "099DC087-61C3-449F-AC28-C87230109D45"
+      "class": "bitmap",
+      "id": "19DD1CA2-7004-4B2D-8520-7553B5AFB643"
+    },
+    {
+      "class": "rectangle",
+      "id": "B8934F95-9AEB-4FCE-B567-5116F96137B3"
+    },
+    {
+      "class": "rectangle",
+      "id": "60BDB7FB-1F4D-43AD-A488-475422CD9736"
+    },
+    {
+      "class": "group",
+      "id": "83168F0D-E85A-4B90-855F-C10778AF8568"
     },
     {
       "class": "text",
-      "id": "C0290F82-7CDF-4A8E-BC99-02C559137B8D"
+      "id": "47784563-971A-4C1D-A0E2-ABCE4E53A87F"
     },
     {
       "class": "text",
-      "id": "36CFAB4D-EAF1-41A6-BA4F-B8F9B94CEECE"
+      "id": "2F8E62F3-8492-4C03-965C-5DE90C0473A9"
+    },
+    {
+      "class": "text",
+      "id": "B099C39B-7CFC-4F34-B7C6-C0DFCB5A2363"
+    },
+    {
+      "class": "text",
+      "id": "0E7DBFA1-2EA7-45EB-92BE-A7A8165547E0"
+    },
+    {
+      "class": "text",
+      "id": "59A1CF74-6280-4EB6-8B91-5437D84A7E76"
     }
   ],
-  "name": "Song",
+  "name": "Sidebar",
   "nameIsFixed": true,
+  "presetDictionary": {
+    "allowResizedMatching": 1,
+    "height": 736,
+    "name": "iPhone 8 Plus",
+    "offersLandscapeVariant": 1,
+    "width": 414
+  },
   "resizesContent": false,
   "resizingConstraint": 63,
   "resizingType": 0,
@@ -81,7 +104,6 @@
     "startMarkerType": 0,
     "windingRule": 1
   },
-  "symbolID": "3FF08056-C183-4EC3-8A72-F993B0D0F65D",
   "verticalRulerData": {
     "_class": "rulerData",
     "base": 0,

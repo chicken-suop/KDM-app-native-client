@@ -9,15 +9,15 @@
           "MSAttributedStringColorAttribute": {
             "_class": "color",
             "alpha": 1,
-            "blue": 0.3450980392156862,
-            "green": 0.8431372549019608,
-            "red": 0.9137254901960784
+            "blue": 0.996078431372549,
+            "green": 0.996078431372549,
+            "red": 0.996078431372549
           },
           "MSAttributedStringFontAttribute": {
             "_class": "fontDescriptor",
             "attributes": {
-              "name": "SFProText-Semibold",
-              "size": 14
+              "name": "SFProText-Regular",
+              "size": 16
             }
           },
           "kerning": 0,
@@ -25,22 +25,20 @@
             "_class": "paragraphStyle",
             "alignment": 0,
             "allowsDefaultTighteningForTruncation": 0,
-            "maximumLineHeight": 14,
-            "minimumLineHeight": 14,
             "paragraphSpacing": 1
           },
           "textStyleVerticalAlignmentKey": 1
         },
-        "length": 13,
+        "length": 8,
         "location": 0
       }
     ],
-    "string": "Not avaliable"
+    "string": "Sign out"
   },
   "automaticallyDrawOnUnderlyingPath": false,
   "booleanOperation": -1,
   "clippingMaskMode": 0,
-  "do_objectID": "64E5A1D0-4559-45CA-A13F-D98F7DD5BD55",
+  "do_objectID": "59A1CF74-6280-4EB6-8B91-5437D84A7E76",
   "dontSynchroniseWithSymbol": false,
   "exportOptions": {
     "_class": "exportOptions",
@@ -54,12 +52,12 @@
   "frame": {
     "_class": "rect",
     "constrainProportions": false,
-    "height": 14,
-    "width": 90,
-    "x": 10,
-    "y": 91
+    "height": 19,
+    "width": 63,
+    "x": 120,
+    "y": 600
   },
-  "glyphBounds": "{{1, 1}, {88, 12}}",
+  "glyphBounds": "{{0, 3}, {62, 16}}",
   "hasClippingMask": false,
   "isFixedToViewport": false,
   "isFlippedHorizontal": false,
@@ -68,9 +66,9 @@
   "isVisible": true,
   "layerListExpandedType": 0,
   "lineSpacingBehaviour": 2,
-  "name": "Body",
+  "name": "Button 4",
   "nameIsFixed": true,
-  "resizingConstraint": 7,
+  "resizingConstraint": 47,
   "resizingType": 0,
   "rotation": 0,
   "shouldBreakMaskChain": false,
@@ -85,15 +83,15 @@
         "MSAttributedStringColorAttribute": {
           "_class": "color",
           "alpha": 1,
-          "blue": 0.3450980392156862,
-          "green": 0.8431372549019608,
-          "red": 0.9137254901960784
+          "blue": 0.996078431372549,
+          "green": 0.996078431372549,
+          "red": 0.996078431372549
         },
         "MSAttributedStringFontAttribute": {
           "_class": "fontDescriptor",
           "attributes": {
-            "name": "SFProText-Semibold",
-            "size": 14
+            "name": "SFProText-Regular",
+            "size": 16
           }
         },
         "kerning": 0,
@@ -101,13 +99,11 @@
           "_class": "paragraphStyle",
           "alignment": 0,
           "allowsDefaultTighteningForTruncation": 0,
-          "maximumLineHeight": 14,
-          "minimumLineHeight": 14,
           "paragraphSpacing": 1
         },
         "textStyleVerticalAlignmentKey": 1
       },
-      "verticalAlignment": 0
+      "verticalAlignment": 1
     },
     "windingRule": 1
   },

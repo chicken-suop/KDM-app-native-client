@@ -33,15 +33,11 @@
   "isFlippedVertical": false,
   "isLocked": false,
   "isVisible": true,
-  "layerListExpandedType": 0,
+  "layerListExpandedType": 2,
   "layers": [
     {
       "class": "shapePath",
       "id": "7811D879-E20A-483B-A7E6-FC791FD69146"
-    },
-    {
-      "class": "text",
-      "id": "64E5A1D0-4559-45CA-A13F-D98F7DD5BD55"
     },
     {
       "class": "group",

@@ -2,10 +2,9 @@
   "_class": "group",
   "booleanOperation": -1,
   "clippingMaskMode": 0,
-  "do_objectID": "3C78DE83-037E-4B2F-A29B-9974F1C28102",
+  "do_objectID": "83168F0D-E85A-4B90-855F-C10778AF8568",
   "exportOptions": {
     "_class": "exportOptions",
-    "do_objectID": "DA0C57D7-9081-47AA-ABF7-018EA04F8C63",
     "exportFormats": [
     ],
     "includedLayerIds": [
@@ -16,11 +15,10 @@
   "frame": {
     "_class": "rect",
     "constrainProportions": false,
-    "do_objectID": "66715083-8142-4CD2-B7DA-9650E6292C0A",
-    "height": 60,
-    "width": 300,
-    "x": 0,
-    "y": 0
+    "height": 45,
+    "width": 268,
+    "x": 120,
+    "y": 631
   },
   "hasClickThrough": false,
   "hasClippingMask": false,
@@ -33,14 +31,14 @@
   "layers": [
     {
       "class": "rectangle",
-      "id": "5494D7DC-D5C7-441F-B1BC-7AAD4F3DF7DA"
+      "id": "DB1FBF4F-6EA2-4844-9364-4D07E57B50BF"
     },
     {
       "class": "text",
-      "id": "852D2CFE-A0B2-4EA4-9F74-33200BB77797"
+      "id": "3F71D9F4-9F32-4C3F-9A62-BB68A8B3BB80"
     }
   ],
-  "name": "Input box",
+  "name": "Big button",
   "nameIsFixed": true,
   "resizingConstraint": 63,
   "resizingType": 0,
@@ -48,7 +46,6 @@
   "shouldBreakMaskChain": false,
   "style": {
     "_class": "style",
-    "do_objectID": "7D0B7A56-A4BB-493A-8695-E4D7C6CFCEAC",
     "endMarkerType": 0,
     "miterLimit": 10,
     "startMarkerType": 0,

@@ -2,11 +2,10 @@
   "_class": "rectangle",
   "booleanOperation": -1,
   "clippingMaskMode": 0,
-  "do_objectID": "5494D7DC-D5C7-441F-B1BC-7AAD4F3DF7DA",
+  "do_objectID": "7C0AAACD-EBF1-44F2-A75F-54C1AA9E5DCE",
   "edited": false,
   "exportOptions": {
     "_class": "exportOptions",
-    "do_objectID": "14BD2B4B-38A9-4898-9C60-6904173B4618",
     "exportFormats": [
     ],
     "includedLayerIds": [
@@ -14,15 +13,14 @@
     "layerOptions": 0,
     "shouldTrim": false
   },
-  "fixedRadius": 2,
+  "fixedRadius": 1,
   "frame": {
     "_class": "rect",
     "constrainProportions": false,
-    "do_objectID": "7DF51B0D-53C0-4C69-ACF8-C0082F61D75F",
-    "height": 60,
-    "width": 300,
-    "x": 0,
-    "y": 0
+    "height": 24,
+    "width": 2,
+    "x": 36,
+    "y": 19
   },
   "hasClippingMask": false,
   "hasConvertedToNewRoundCorners": true,
@@ -39,7 +37,7 @@
   "points": [
     {
       "_class": "curvePoint",
-      "cornerRadius": 2,
+      "cornerRadius": 1,
       "curveFrom": "{0, 0}",
       "curveMode": 1,
       "curveTo": "{0, 0}",
@@ -49,7 +47,7 @@
     },
     {
       "_class": "curvePoint",
-      "cornerRadius": 2,
+      "cornerRadius": 1,
       "curveFrom": "{1, 0}",
       "curveMode": 1,
       "curveTo": "{1, 0}",
@@ -59,7 +57,7 @@
     },
     {
       "_class": "curvePoint",
-      "cornerRadius": 0,
+      "cornerRadius": 1,
       "curveFrom": "{1, 1}",
       "curveMode": 1,
       "curveTo": "{1, 1}",
@@ -69,7 +67,7 @@
     },
     {
       "_class": "curvePoint",
-      "cornerRadius": 0,
+      "cornerRadius": 1,
       "curveFrom": "{0, 1}",
       "curveMode": 1,
       "curveTo": "{0, 1}",
@@ -84,7 +82,6 @@
   "shouldBreakMaskChain": false,
   "style": {
     "_class": "style",
-    "do_objectID": "EEBBCDFD-8C71-4E03-A360-48F3968B083F",
     "endMarkerType": 0,
     "fills": [
       {
@@ -92,9 +89,9 @@
         "color": {
           "_class": "color",
           "alpha": 1,
-          "blue": 1,
-          "green": 1,
-          "red": 1
+          "blue": 0.2392156862745098,
+          "green": 0.2392156862745098,
+          "red": 0.2392156862745098
         },
         "fillType": 0,
         "isEnabled": true,

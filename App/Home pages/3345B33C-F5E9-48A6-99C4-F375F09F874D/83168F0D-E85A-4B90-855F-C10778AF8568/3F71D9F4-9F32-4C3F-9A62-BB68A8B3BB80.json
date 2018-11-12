@@ -9,15 +9,15 @@
           "MSAttributedStringColorAttribute": {
             "_class": "color",
             "alpha": 1,
-            "blue": 0.996078431372549,
-            "green": 0.996078431372549,
-            "red": 0.996078431372549
+            "blue": 0,
+            "green": 0,
+            "red": 0
           },
           "MSAttributedStringFontAttribute": {
             "_class": "fontDescriptor",
             "attributes": {
               "name": "SFProText-Bold",
-              "size": 24
+              "size": 16
             }
           },
           "kerning": 0,
@@ -27,18 +27,18 @@
             "allowsDefaultTighteningForTruncation": 0,
             "paragraphSpacing": 1
           },
-          "textStyleVerticalAlignmentKey": 0
+          "textStyleVerticalAlignmentKey": 1
         },
-        "length": 1,
+        "length": 15,
         "location": 0
       }
     ],
-    "string": "1"
+    "string": "Become a patron"
   },
   "automaticallyDrawOnUnderlyingPath": false,
   "booleanOperation": -1,
   "clippingMaskMode": 0,
-  "do_objectID": "36CFAB4D-EAF1-41A6-BA4F-B8F9B94CEECE",
+  "do_objectID": "3F71D9F4-9F32-4C3F-9A62-BB68A8B3BB80",
   "dontSynchroniseWithSymbol": false,
   "exportOptions": {
     "_class": "exportOptions",
@@ -52,12 +52,12 @@
   "frame": {
     "_class": "rect",
     "constrainProportions": false,
-    "height": 30,
-    "width": 30,
+    "height": 19,
+    "width": 268,
     "x": 0,
-    "y": 0
+    "y": 11.875
   },
-  "glyphBounds": "{{10, 6}, {9, 18}}",
+  "glyphBounds": "{{67, 3}, {134, 15}}",
   "hasClippingMask": false,
   "isFixedToViewport": false,
   "isFlippedHorizontal": false,
@@ -66,9 +66,9 @@
   "isVisible": true,
   "layerListExpandedType": 0,
   "lineSpacingBehaviour": 2,
-  "name": "Number",
-  "nameIsFixed": true,
-  "resizingConstraint": 18,
+  "name": "Become a patron",
+  "nameIsFixed": false,
+  "resizingConstraint": 47,
   "resizingType": 0,
   "rotation": 0,
   "shouldBreakMaskChain": false,
@@ -83,15 +83,15 @@
         "MSAttributedStringColorAttribute": {
           "_class": "color",
           "alpha": 1,
-          "blue": 0.996078431372549,
-          "green": 0.996078431372549,
-          "red": 0.996078431372549
+          "blue": 0,
+          "green": 0,
+          "red": 0
         },
         "MSAttributedStringFontAttribute": {
           "_class": "fontDescriptor",
           "attributes": {
             "name": "SFProText-Bold",
-            "size": 24
+            "size": 16
           }
         },
         "kerning": 0,
@@ -101,11 +101,11 @@
           "allowsDefaultTighteningForTruncation": 0,
           "paragraphSpacing": 1
         },
-        "textStyleVerticalAlignmentKey": 0
+        "textStyleVerticalAlignmentKey": 1
       },
-      "verticalAlignment": 1
+      "verticalAlignment": 0
     },
     "windingRule": 1
   },
-  "textBehaviour": 2
+  "textBehaviour": 1
 }
