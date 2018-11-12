@@ -17,7 +17,7 @@
             "_class": "fontDescriptor",
             "attributes": {
               "name": "SFProText-Bold",
-              "size": 20
+              "size": 30
             }
           },
           "kerning": 0,
@@ -52,12 +52,12 @@
   "frame": {
     "_class": "rect",
     "constrainProportions": false,
-    "height": 24,
-    "width": 104,
-    "x": 54,
-    "y": 10
+    "height": 36,
+    "width": 156,
+    "x": 129,
+    "y": 3
   },
-  "glyphBounds": "{{1, 4}, {103, 16}}",
+  "glyphBounds": "{{2, 6}, {153, 24}}",
   "hasClippingMask": false,
   "isFixedToViewport": false,
   "isFlippedHorizontal": false,
@@ -91,7 +91,7 @@
           "_class": "fontDescriptor",
           "attributes": {
             "name": "SFProText-Bold",
-            "size": 20
+            "size": 30
           }
         },
         "kerning": 0,

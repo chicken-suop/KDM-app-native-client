@@ -29,7 +29,7 @@
           },
           "textStyleVerticalAlignmentKey": 1
         },
-        "length": 16,
+        "length": 11,
         "location": 0
       },
       {
@@ -59,10 +59,10 @@
           "textStyleVerticalAlignmentKey": 1
         },
         "length": 2,
-        "location": 16
+        "location": 11
       }
     ],
-    "string": "Become a patron 🍜"
+    "string": "Support me 🍜"
   },
   "automaticallyDrawOnUnderlyingPath": false,
   "booleanOperation": -1,
@@ -86,7 +86,7 @@
     "x": 0,
     "y": 6.875
   },
-  "glyphBounds": "{{55, 3}, {159, 21}}",
+  "glyphBounds": "{{75, 3}, {118, 21}}",
   "hasClippingMask": false,
   "isFixedToViewport": false,
   "isFlippedHorizontal": false,
@@ -95,7 +95,7 @@
   "isVisible": true,
   "layerListExpandedType": 0,
   "lineSpacingBehaviour": 2,
-  "name": "Become a patron 🍜",
+  "name": "Support me 🍜",
   "nameIsFixed": false,
   "resizingConstraint": 47,
   "resizingType": 0,

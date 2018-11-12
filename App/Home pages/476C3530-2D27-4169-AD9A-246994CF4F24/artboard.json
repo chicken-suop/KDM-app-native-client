@@ -3,9 +3,9 @@
   "backgroundColor": {
     "_class": "color",
     "alpha": 1,
-    "blue": 0.01176470588,
-    "green": 0.01176470588,
-    "red": 0.01176470588
+    "blue": 0.07058823529411765,
+    "green": 0.07058823529411765,
+    "red": 0.07058823529411765
   },
   "booleanOperation": -1,
   "clippingMaskMode": 0,
@@ -31,13 +31,13 @@
   "frame": {
     "_class": "rect",
     "constrainProportions": false,
-    "height": 893,
+    "height": 906,
     "width": 414,
-    "x": -3548,
-    "y": 360
+    "x": -3477,
+    "y": 410
   },
   "hasBackgroundColor": true,
-  "hasClickThrough": true,
+  "hasClickThrough": false,
   "hasClippingMask": false,
   "horizontalRulerData": {
     "_class": "rulerData",
@@ -53,7 +53,7 @@
   "isFlowHome": false,
   "isLocked": false,
   "isVisible": true,
-  "layerListExpandedType": 2,
+  "layerListExpandedType": 0,
   "layers": [
     {
       "class": "group",

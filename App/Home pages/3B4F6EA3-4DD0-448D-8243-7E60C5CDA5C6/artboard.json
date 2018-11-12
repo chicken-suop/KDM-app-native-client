@@ -3,9 +3,9 @@
   "backgroundColor": {
     "_class": "color",
     "alpha": 1,
-    "blue": 0.0117647061124444,
-    "green": 0.0117647061124444,
-    "red": 0.0117647061124444
+    "blue": 0.07058823529411765,
+    "green": 0.07058823529411765,
+    "red": 0.07058823529411765
   },
   "booleanOperation": -1,
   "clippingMaskMode": 0,
@@ -33,11 +33,11 @@
     "constrainProportions": false,
     "height": 736,
     "width": 414,
-    "x": -2420,
-    "y": 360
+    "x": -2049,
+    "y": 495
   },
   "hasBackgroundColor": true,
-  "hasClickThrough": true,
+  "hasClickThrough": false,
   "hasClippingMask": false,
   "horizontalRulerData": {
     "_class": "rulerData",
@@ -53,7 +53,7 @@
   "isFlowHome": false,
   "isLocked": false,
   "isVisible": true,
-  "layerListExpandedType": 2,
+  "layerListExpandedType": 0,
   "layers": [
     {
       "class": "text",

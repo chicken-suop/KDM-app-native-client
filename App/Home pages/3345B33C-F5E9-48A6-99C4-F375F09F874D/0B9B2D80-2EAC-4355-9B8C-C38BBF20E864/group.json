@@ -1,16 +1,8 @@
 {
-  "_class": "symbolMaster",
-  "backgroundColor": {
-    "_class": "color",
-    "alpha": 1,
-    "blue": 1,
-    "green": 1,
-    "red": 1
-  },
+  "_class": "group",
   "booleanOperation": -1,
-  "changeIdentifier": 521,
   "clippingMaskMode": 0,
-  "do_objectID": "F7A0C690-A130-4E34-88F8-E121EA3B1957",
+  "do_objectID": "0B9B2D80-2EAC-4355-9B8C-C38BBF20E864",
   "exportOptions": {
     "_class": "exportOptions",
     "exportFormats": [
@@ -25,61 +17,42 @@
     "constrainProportions": false,
     "height": 522,
     "width": 243,
-    "x": -2936,
-    "y": -259
+    "x": -153,
+    "y": 245
   },
-  "hasBackgroundColor": false,
   "hasClickThrough": false,
   "hasClippingMask": false,
-  "horizontalRulerData": {
-    "_class": "rulerData",
-    "base": 0,
-    "guides": [
-    ]
-  },
-  "includeBackgroundColorInExport": true,
-  "includeBackgroundColorInInstance": false,
-  "includeInCloudUpload": true,
   "isFixedToViewport": false,
   "isFlippedHorizontal": false,
   "isFlippedVertical": false,
-  "isFlowHome": false,
   "isLocked": false,
   "isVisible": true,
   "layerListExpandedType": 0,
   "layers": [
     {
       "class": "bitmap",
-      "id": "19DD1CA2-7004-4B2D-8520-7553B5AFB643"
+      "id": "F916287F-98E2-466E-93C2-E3584208EA26"
     },
     {
       "class": "rectangle",
-      "id": "B8934F95-9AEB-4FCE-B567-5116F96137B3"
+      "id": "04FFDF10-77A5-4426-91BE-C0A37A6FA758"
     },
     {
       "class": "rectangle",
-      "id": "60BDB7FB-1F4D-43AD-A488-475422CD9736"
+      "id": "F87B9727-861A-465A-A5FB-83F8075CDC76"
     }
   ],
   "name": "Sidebar sched page",
   "nameIsFixed": false,
-  "resizesContent": false,
   "resizingConstraint": 63,
   "resizingType": 0,
   "rotation": 0,
-  "shouldBreakMaskChain": true,
+  "shouldBreakMaskChain": false,
   "style": {
     "_class": "style",
     "endMarkerType": 0,
     "miterLimit": 10,
     "startMarkerType": 0,
     "windingRule": 1
-  },
-  "symbolID": "02A2923C-4961-48FC-B517-B2E4D3AEBE07",
-  "verticalRulerData": {
-    "_class": "rulerData",
-    "base": 0,
-    "guides": [
-    ]
   }
 }

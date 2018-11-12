@@ -3,9 +3,9 @@
   "backgroundColor": {
     "_class": "color",
     "alpha": 1,
-    "blue": 0.0117647061124444,
-    "green": 0.0117647061124444,
-    "red": 0.0117647061124444
+    "blue": 0.07058823529411765,
+    "green": 0.07058823529411765,
+    "red": 0.07058823529411765
   },
   "booleanOperation": -1,
   "clippingMaskMode": 0,
@@ -24,11 +24,11 @@
     "constrainProportions": false,
     "height": 736,
     "width": 414,
-    "x": -2934,
-    "y": 360
+    "x": -2763,
+    "y": 495
   },
   "hasBackgroundColor": true,
-  "hasClickThrough": true,
+  "hasClickThrough": false,
   "hasClippingMask": false,
   "horizontalRulerData": {
     "_class": "rulerData",
@@ -44,11 +44,11 @@
   "isFlowHome": false,
   "isLocked": false,
   "isVisible": true,
-  "layerListExpandedType": 2,
+  "layerListExpandedType": 0,
   "layers": [
     {
-      "class": "symbolInstance",
-      "id": "3ACC924D-5122-408F-AFE1-C428DED9D9CD"
+      "class": "group",
+      "id": "0B9B2D80-2EAC-4355-9B8C-C38BBF20E864"
     },
     {
       "class": "group",
