@@ -37,7 +37,7 @@
     "y": 410
   },
   "hasBackgroundColor": true,
-  "hasClickThrough": false,
+  "hasClickThrough": true,
   "hasClippingMask": false,
   "horizontalRulerData": {
     "_class": "rulerData",
@@ -85,11 +85,15 @@
     },
     {
       "class": "symbolInstance",
+      "id": "01CD1D69-C5F2-44F7-B53B-D97C7706B88F"
+    },
+    {
+      "class": "symbolInstance",
       "id": "3D358404-FCF8-4351-B1E5-43783CC1A73B"
     },
     {
       "class": "symbolInstance",
-      "id": "01CD1D69-C5F2-44F7-B53B-D97C7706B88F"
+      "id": "5FFA3E93-F99F-4602-8827-E5EA8121D099"
     }
   ],
   "name": "Schedule Page",
