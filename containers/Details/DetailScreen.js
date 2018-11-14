@@ -4,10 +4,10 @@ import {
   SafeAreaView,
   View,
   StyleSheet,
-  TouchableWithoutFeedback,
+  TouchableOpacity,
   Text,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 import defaultStyles, { secondaryColor, activeColor } from '../../Styles';
 import { daysData } from '../../helpers/propTypes';
 
@@ -33,18 +33,77 @@ export default class DetailScreen extends React.Component {
         style={styles.main}
       >
         <View style={styles.header}>
-          <Text style={[defaultStyles.whiteClr, { fontSize: 24 }]}>
-            text
+          <Text style={[defaultStyles.whiteClr, styles.headerText]}>
+            Barista training
           </Text>
-          <TouchableWithoutFeedback onPress={() => {}}>
-            <View style={styles.closeButton}>
-              <Ionicons
-                name="ios-close"
-                size={50}
-                color="white"
-              />
-            </View>
-          </TouchableWithoutFeedback>
+          <TouchableOpacity onPress={() => {}} style={styles.closeButton}>
+            <Feather
+              name="x"
+              size={40}
+              color="white"
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.body}>
+          <View style={styles.paragraph}>
+            <Text style={[defaultStyles.whiteClr, styles.headerText]}>
+                Time
+            </Text>
+            <TouchableOpacity onPress={() => {}}>
+              <View style={styles.paragraphButton}>
+                <Text style={[defaultStyles.whiteClr, styles.paragraphText]}>
+                  {'Tuesday, 16 Sep\n11:30-13:30'}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.paragraph}>
+            <Text style={[defaultStyles.whiteClr, styles.headerText]}>
+                Location
+            </Text>
+            <TouchableOpacity onPress={() => {}}>
+              <View style={styles.paragraphButton}>
+                <Text style={[defaultStyles.whiteClr, styles.paragraphText]}>
+                  {'Spotkawie'}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.paragraph}>
+            <Text style={[defaultStyles.whiteClr, styles.headerText]}>
+                Notifications
+            </Text>
+            <TouchableOpacity onPress={() => {}}>
+              <View style={styles.paragraphButton}>
+                <Text style={[defaultStyles.whiteClr, styles.paragraphText]}>
+                  {'1 hour before'}
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {}}>
+              <View style={styles.paragraphButton}>
+                <Text style={[defaultStyles.whiteClr, styles.paragraphText]}>
+                  {'Add another notification'}
+                </Text>
+                <Feather
+                  name="chevron-right"
+                  size={20}
+                  color="white"
+                />
+              </View>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.paragraph}>
+            <Text style={[defaultStyles.whiteClr, styles.headerText]}>
+                People
+            </Text>
+            <Text style={[defaultStyles.whiteClr, styles.paragraphText]}>
+              {'Tuesday, 16 Sep\n11:30-13:30'}
+            </Text>
+          </View>
         </View>
       </SafeAreaView>
     );
@@ -55,29 +114,36 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     backgroundColor: secondaryColor,
-    paddingVertical: 15,
-    paddingHorizontal: 30,
-    // flexDirection: 'row',
-    position: 'relative',
+    paddingHorizontal: 20,
   },
   header: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 50,
-    backgroundColor: '#cccccc',
-    justifyContent: 'center',
+    marginBottom: 30,
+    minHeight: 70,
+    flexDirection: 'row',
     alignItems: 'center',
-    // position: 'absolute',
-    // top: 0,
-    // left: 0,
-    // right: 0,
-    // bottom: 0,
+    position: 'relative',
+  },
+  headerText: {
+    fontSize: 24,
+    fontWeight: '600',
   },
   closeButton: {
     position: 'absolute',
     right: 30,
     padding: 15,
+  },
+  body: {
+    flex: 1,
+  },
+  paragraph: {
+    marginBottom: 30,
+  },
+  paragraphButton: {
+    paddingTop: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  paragraphText: {
+    fontSize: 20,
   },
 });
