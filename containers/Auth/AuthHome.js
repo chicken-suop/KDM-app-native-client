@@ -12,21 +12,14 @@ import {
 } from 'react-native';
 import { SafeAreaView, createStackNavigator } from 'react-navigation';
 import Collapsible from 'react-native-collapsible';
-import { Mutation } from 'react-apollo';
-import gql from 'graphql-tag';
+import { createFragmentContainer, graphql } from 'react-relay';
 import styles, { activeColor } from '../../Styles';
+import LoginMutation from '../../mutation/LoginMutation';
+import { ERRORS } from '../../helpers/config';
 
 const window = Dimensions.get('window');
 
 class Index extends React.Component {
-  POST_MUTATION = gql`
-    mutation($userName: String!, $email: String!, $password: String!) {
-      signup(name: $userName, email: $email, password: $password) {
-        token
-      }
-    }
-  `
-
   static propTypes = {
     loginCallback: PropTypes.func.isRequired,
   };
@@ -49,7 +42,7 @@ class Index extends React.Component {
     this.setState({ showingForm: false, formType: 'Get Started' });
   }
 
-  submit = () => {
+  signup = () => {
     // Need to focus on input because autofilling the password breaks Keyboard.dismiss()
     this.secondTextInput.focus();
     Keyboard.dismiss();
@@ -63,6 +56,42 @@ class Index extends React.Component {
       this.setState({ errorState: false, errorText: '' }, () => setTimeout(() => this.setState({
         errorState: true,
         errorText: 'There was a problem logging in, try again later.',
+      }), 300));
+    }
+  }
+
+  login = () => {
+    // Need to focus on input because autofilling the password breaks Keyboard.dismiss()
+    this.secondTextInput.focus();
+    Keyboard.dismiss();
+
+    const { loginCallback } = this.props;
+    const { email, password } = this.state;
+
+    // Simple check
+    if (email !== '' && email.includes('@') && password !== '') {
+      LoginMutation.commit({
+        email,
+        password,
+        onCompleted: (response, error) => {
+          if (error.length) {
+            switch (error[0].message) {
+              case ERRORS.WrongEmailOrPassword:
+                this.setState({ errorState: true, errorText: 'Email or password is incorrect' });
+                break;
+              default:
+                this.setState({ errorState: false, errorText: '' });
+                break;
+            }
+          } else {
+            loginCallback({ token: response.token });
+          }
+        },
+      });
+    } else {
+      this.setState({ errorState: false, errorText: '' }, () => setTimeout(() => this.setState({
+        errorState: true,
+        errorText: 'Not a valid email or no password specified',
       }), 300));
     }
   }
@@ -104,6 +133,7 @@ class Index extends React.Component {
               KOŚCIÓŁ DLA MIASTA: KRAKÓW
             </Text>
             <Collapsible collapsed={!showingForm} style={styles.startContainer}>
+              {formType === 'Sign Up' && (
               <TextInput
                 style={{
                   width: 300,
@@ -121,6 +151,7 @@ class Index extends React.Component {
                 returnKeyType="next"
                 onSubmitEditing={() => this.secondTextInput.focus()}
               />
+              )}
               <TextInput
                 style={{
                   width: 300,
@@ -159,36 +190,28 @@ class Index extends React.Component {
                 placeholder="Password"
                 returnKeyType="go"
                 ref={(input) => { this.thridTextInput = input; }}
-                onSubmitEditing={this.submit}
+                onSubmitEditing={this.login}
               />
             </Collapsible>
             <View style={[indexStyle.box, { backgroundColor: activeColor }]}>
-              <Mutation
-                mutation={this.POST_MUTATION}
-                variables={{ userName, email, password }}
-                onError={error => console.log(error)}
-                onCompleted={data => console.log(data)}
+              <TouchableWithoutFeedback
+                style={{ flex: 1 }}
+                onPress={() => {
+                  if (formType === 'Get Started') {
+                    this.showForm('Sign Up');
+                  } else if (formType === 'Sign Up') {
+                    this.signup();
+                  } else if (formType === 'Log In') {
+                    this.login();
+                  }
+                }}
               >
-                {signup => (
-                  <TouchableWithoutFeedback
-                    style={{ flex: 1 }}
-                    onPress={() => {
-                      if (formType === 'Get Started') {
-                        this.showForm('Sign Up');
-                      } else {
-                        // signup();
-                        this.submit();
-                      }
-                    }}
-                  >
-                    <View>
-                      <Text style={[{ fontSize: 16 }, styles.centerText]}>
-                        {formType}
-                      </Text>
-                    </View>
-                  </TouchableWithoutFeedback>
-                )}
-              </Mutation>
+                <View>
+                  <Text style={[{ fontSize: 16 }, styles.centerText]}>
+                    {formType}
+                  </Text>
+                </View>
+              </TouchableWithoutFeedback>
             </View>
             <Collapsible collapsed={showingForm} style={styles.startContainer}>
               <View style={[indexStyle.box, { backgroundColor: 'white' }]}>

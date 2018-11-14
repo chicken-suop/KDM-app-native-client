@@ -1,9 +1,8 @@
 import React from 'react';
 import { AsyncStorage } from 'react-native';
 import Home from './Home';
-import graphQLEndpoint from './config';
 import { storeSession, fetchSession } from './helpers/actions';
-// import AuthHome from './containers/Auth/AuthHome';
+import AuthHome from './containers/Auth/AuthHome';
 
 export default class Index extends React.Component {
   state = {
@@ -35,11 +34,11 @@ export default class Index extends React.Component {
 
   render() {
     const { isLoggedIn, sessionInfo } = this.state;
-    // if (isLoggedIn === false) {
-    //   return (
-    //     <AuthHome loginCallback={this.completeLogin} />
-    //   );
-    // }
+    if (isLoggedIn === false) {
+      return (
+        <AuthHome loginCallback={this.completeLogin} />
+      );
+    }
     return (
       <Home
         logoutCallback={this.logout}

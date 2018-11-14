@@ -37,7 +37,7 @@
     "y": -477
   },
   "hasBackgroundColor": true,
-  "hasClickThrough": true,
+  "hasClickThrough": false,
   "hasClippingMask": false,
   "horizontalRulerData": {
     "_class": "rulerData",
@@ -64,7 +64,7 @@
       "id": "3EF203EA-261D-41F8-8F55-20AFC5D6D3BE"
     }
   ],
-  "name": "Login/Signup",
+  "name": "Logged out",
   "nameIsFixed": true,
   "presetDictionary": {
     "allowResizedMatching": 1,

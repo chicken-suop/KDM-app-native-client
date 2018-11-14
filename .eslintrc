@@ -13,7 +13,8 @@
         // React Native includes images via require('../images/example.png')
         'global-require': 'off',
         // Let variables be defined after use
-        'no-use-before-define': ['error', { 'variables': false }]
+        'no-use-before-define': ['error', { 'variables': false }],
+        'import/no-extraneous-dependencies': 'off'
     },
     "globals": { "fetch": false },
     'env': {
