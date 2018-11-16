@@ -11,9 +11,9 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon-ios.png",
+    "icon": "./app/assets/icon-ios.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./app/assets/splash.png",
       "resizeMode": "cover"
     },
     "updates": {
@@ -27,8 +27,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/foreground.png",
-        "backgroundImage": "./assets/background.png"
+        "foregroundImage": "./app/assets/foreground.png",
+        "backgroundImage": "./app/assets/background.png"
       }
     },
     "githubUrl": "https://github.com/ratskin/KDM-app-native-client"
