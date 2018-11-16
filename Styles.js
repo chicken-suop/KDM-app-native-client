@@ -1,23 +1,19 @@
 import { StyleSheet } from 'react-native';
+import Color from 'color';
 
 // Orange, yellow
-export const activeColor = '#E9D758';
-export const primaryColor = '#E55F34';
-export const secondaryColor = '#FB6839';
-export const trinaryColor = '#FB754B';
-
-export const hexToRgbA = (hex, alpha = 1) => {
-  const [r, g, b] = hex.match(/\w\w/g).map(x => parseInt(x, 16));
-  return `rgba(${r},${g},${b},${alpha})`;
-};
+export const darkColor = Color.rgb(18, 18, 18);
+export const activeColor = Color.rgb(233, 215, 89);
+export const primaryColor = Color.rgb(230, 95, 52);
+export const secondaryColor = Color.rgb(251, 104, 57);
+export const trinaryColor = Color.rgb(251, 117, 75);
+export const kindaBlackColor = Color.rgb(34, 34, 34);
+export const kindaGrayColor = Color.rgb(61, 61, 61);
+export const nearlyWhiteColor = Color.rgb(254, 254, 254);
 
 export default StyleSheet.create({
   primaryText: {
-    color: '#fff',
-  },
-  startContainer: {
-    flex: 1,
-    alignItems: 'center',
+    color: '#FEFEFE',
   },
   container: {
     flex: 1,
@@ -31,6 +27,9 @@ export default StyleSheet.create({
     right: 0,
     bottom: 0,
     justifyContent: 'center',
+  },
+  expand: {
+    flex: 1,
   },
   centerText: {
     textAlign: 'center',

@@ -7,41 +7,42 @@ import AuthHome from './containers/Auth/AuthHome';
 export default class Index extends React.Component {
   state = {
     sessionInfo: {},
+    isSignedIn: false,
   }
 
   async componentWillMount() {
     try {
       const sessionInfo = await fetchSession();
       if (sessionInfo) {
-        this.setState({ isLoggedIn: true, sessionInfo });
+        this.setState({ isSignedIn: true, sessionInfo });
       } else {
-        this.setState({ isLoggedIn: false });
+        this.setState({ isSignedIn: false });
       }
     } catch (e) {
-      this.setState({ isLoggedIn: false });
+      this.setState({ isSignedIn: false });
     }
   }
 
-  completeLogin = (sessionInfo) => {
-    this.setState({ isLoggedIn: true, sessionInfo });
+  completeSignIn = (sessionInfo) => {
+    this.setState({ isSignedIn: true, sessionInfo });
     storeSession(sessionInfo);
   }
 
-  logout = async () => {
+  signOut = async () => {
     await AsyncStorage.removeItem('@kdmApp:localSession');
-    this.setState({ isLoggedIn: false, sessionInfo: null });
+    this.setState({ isSignedIn: false, sessionInfo: null });
   }
 
   render() {
-    const { isLoggedIn, sessionInfo } = this.state;
-    if (isLoggedIn === false) {
+    const { isSignedIn, sessionInfo } = this.state;
+    if (isSignedIn === false) {
       return (
-        <AuthHome loginCallback={this.completeLogin} />
+        <AuthHome signInCallback={this.completeSignIn} />
       );
     }
     return (
       <Home
-        logoutCallback={this.logout}
+        signOutCallback={this.signOut}
         sessionInfo={sessionInfo}
       />
     );

@@ -3,263 +3,323 @@ import React from 'react';
 import {
   View,
   Text,
-  Image,
-  TextInput,
-  TouchableWithoutFeedback,
   Keyboard,
   ScrollView,
-  Dimensions,
+  StyleSheet,
+  StatusBar,
 } from 'react-native';
-import { SafeAreaView, createStackNavigator } from 'react-navigation';
+import { SafeAreaView } from 'react-navigation';
 import Collapsible from 'react-native-collapsible';
-import { createFragmentContainer, graphql } from 'react-relay';
-import styles, { activeColor } from '../../Styles';
-import LoginMutation from '../../mutation/LoginMutation';
+import { Feather } from '@expo/vector-icons';
+import { TextField } from 'react-native-material-textfield';
+import defaultStyles, {
+  activeColor,
+  darkColor,
+  kindaGrayColor,
+  nearlyWhiteColor,
+} from '../../Styles';
+import SignInMutation from '../../mutation/SignInMutation';
+import SignUpMutation from '../../mutation/SignUpMutation';
 import { ERRORS } from '../../helpers/config';
+import Touchable from '../../components/Touchable';
+import BoxButton from '../../components/BoxButton';
+import AnimatedExpand from '../../components/AnimatedExpand';
 
-const window = Dimensions.get('window');
+export default class AuthHome extends React.Component {
+  fullName = null
 
-class Index extends React.Component {
   static propTypes = {
-    loginCallback: PropTypes.func.isRequired,
+    signInCallback: PropTypes.func.isRequired,
   };
 
   state = {
-    showingForm: false,
-    formType: 'Get Started',
-    userName: '',
+    formType: 'Create account',
+    errorText: '',
+    errors: {},
+    fullName: '',
     email: '',
     password: '',
-    errorState: false,
-    errorText: '',
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    const {
+      formType,
+      errorText,
+      errors,
+    } = this.state;
+
+    return (
+      formType !== nextState.formType
+      || errorText !== nextState.errorText
+      || errors.fullName !== nextState.errors.fullName
+      || errors.email !== nextState.errors.email
+      || errors.password !== nextState.errors.password
+    );
+  }
+
+  onSubmit = () => {
+    const errors = this.checkErrors();
+    this.setState({ errors });
+    if (Object.keys(errors).length === 0 && errors.constructor === Object) {
+      const { formType } = this.state;
+      if (formType === 'Sign Up') {
+        this.signUp();
+      } else if (formType === 'Sign In') {
+        this.signIn();
+      }
+    }
+  }
+
+  onChangeText = (text) => {
+    ['fullName', 'email', 'password']
+      .map(name => ({ name, ref: this[name] }))
+      .forEach(({ name, ref }) => {
+        if (ref !== null && ref.isFocused()) {
+          this.setState({ [name]: text });
+        }
+      });
+  }
+
+  setError = (text) => {
+    // First unset, then set it, for cases where there's already an error
+    this.setState({ errorText: '' }, () => setTimeout(() => this.setState({
+      errorText: text,
+    }), 300));
   }
 
   showForm = (type) => {
-    this.setState({ showingForm: true, formType: type });
-  }
-
-  hideForm = () => {
-    this.setState({ showingForm: false, formType: 'Get Started' });
-  }
-
-  signup = () => {
-    // Need to focus on input because autofilling the password breaks Keyboard.dismiss()
-    this.secondTextInput.focus();
-    Keyboard.dismiss();
-
-    const { loginCallback } = this.props;
-    const { userName, email, password } = this.state;
-    if (userName !== '' && userName.includes(' ') && email !== '' && email.includes('@') && password !== '') {
-      this.setState({ errorState: false, errorText: '' });
-      loginCallback({ token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjam8wMzZ1ZGwwMDA4MGEyMjg0bGIyMnJ2IiwiaWF0IjoxNTQxMTY3MjUyfQ.YAl4z45nqRRfTAqmQ3cjIFKDous62mUtESDwh4wMN_g' });
+    if (type !== 'Create account') {
+      this.setState({ formType: type });
     } else {
-      this.setState({ errorState: false, errorText: '' }, () => setTimeout(() => this.setState({
-        errorState: true,
-        errorText: 'There was a problem logging in, try again later.',
-      }), 300));
+      this.removeErrors();
+      this.setState({ formType: type });
     }
   }
 
-  login = () => {
+  checkErrors = () => {
+    const errors = {};
+    ['fullName', 'email', 'password'].forEach((name) => {
+      if (this[name] !== null) {
+        const value = this[name].value();
+        if (!value) {
+          errors[name] = 'Should not be empty';
+        } else if (name === 'password' && value.length < 8) {
+          errors[name] = 'Password must be at least 8 characters';
+        }
+      }
+    });
+    return errors;
+  }
+
+  removeErrors = () => {
+    this.setState({ errors: {}, errorText: '' });
+  }
+
+  signUp = () => {
     // Need to focus on input because autofilling the password breaks Keyboard.dismiss()
-    this.secondTextInput.focus();
+    this.email.focus();
     Keyboard.dismiss();
 
-    const { loginCallback } = this.props;
+    const { signInCallback } = this.props;
+    const { email, password, fullName } = this.state;
+    SignUpMutation.commit({
+      email,
+      password,
+      fullName,
+      onCompleted: (response, err) => {
+        if (err && err.length) {
+          this.setError('The was an issue signing you in');
+        } else {
+          signInCallback({ token: response.token });
+        }
+      },
+      onError: (err) => {
+        switch (err) {
+          case ERRORS.NetworkRequestFailed:
+            this.setError("Couldn't connect to server");
+            break;
+          default:
+            this.setError('The was an issue signing you in');
+            break;
+        }
+      },
+    });
+  }
+
+  signIn = () => {
+    // Need to focus on input because autofilling the password breaks Keyboard.dismiss()
+    this.email.focus();
+    Keyboard.dismiss();
+
+    const { signInCallback } = this.props;
     const { email, password } = this.state;
-
-    // Simple check
-    if (email !== '' && email.includes('@') && password !== '') {
-      LoginMutation.commit({
-        email,
-        password,
-        onCompleted: (response, error) => {
-          if (error.length) {
-            switch (error[0].message) {
-              case ERRORS.WrongEmailOrPassword:
-                this.setState({ errorState: true, errorText: 'Email or password is incorrect' });
-                break;
-              default:
-                this.setState({ errorState: false, errorText: '' });
-                break;
-            }
-          } else {
-            loginCallback({ token: response.token });
+    SignInMutation.commit({
+      email,
+      password,
+      onCompleted: (response, err) => {
+        if (err && err.length) {
+          switch (err[0].message) {
+            case ERRORS.WrongEmailOrPassword:
+              this.setError('Email or password is incorrect');
+              break;
+            default:
+              this.removeErrors();
+              break;
           }
-        },
-      });
-    } else {
-      this.setState({ errorState: false, errorText: '' }, () => setTimeout(() => this.setState({
-        errorState: true,
-        errorText: 'Not a valid email or no password specified',
-      }), 300));
-    }
+        } else {
+          signInCallback({ token: response.token });
+        }
+      },
+      onError: (err) => {
+        switch (err) {
+          case ERRORS.NetworkRequestFailed:
+            this.setError('The was an issue signing you in');
+            break;
+          default:
+            this.removeErrors();
+            break;
+        }
+      },
+    });
   }
 
   render() {
     const {
-      showingForm,
       formType,
-      userName,
+      errorText,
+      errors,
+      fullName,
       email,
       password,
-      errorState,
-      errorText,
     } = this.state;
 
     return (
-      <View style={{ flex: 1 }}>
-        <View>
-          <Image
-            resizeMode="cover"
-            style={{ height: window.height, width: window.width, position: 'absolute' }}
-            source={require('../../assets/login_signup_background.png')}
-          />
-        </View>
+      <SafeAreaView style={styles.background}>
+        <StatusBar barStyle="light-content" />
         <ScrollView
           keyboardShouldPersistTaps="always"
           keyboardDismissMode="on-drag"
-          contentContainerStyle={{ flex: 1 }}
+          contentContainerStyle={[defaultStyles.expand, { paddingVertical: 60 }]}
         >
-          <SafeAreaView style={styles.startContainer}>
-            <Text
-              style={[
-                { marginTop: 60, marginBottom: 80, fontSize: 24 },
-                styles.whiteClr,
-                styles.fntWt900,
-                styles.centerText,
-              ]}
-            >
-              KOŚCIÓŁ DLA MIASTA: KRAKÓW
-            </Text>
-            <Collapsible collapsed={!showingForm} style={styles.startContainer}>
-              {formType === 'Sign Up' && (
-              <TextInput
-                style={{
-                  width: 300,
-                  padding: 20,
-                  marginTop: 80,
-                  borderTopRightRadius: 2,
-                  borderTopLeftRadius: 2,
-                  backgroundColor: 'white',
-                  fontSize: 16,
-                }}
-                value={userName}
-                onChangeText={text => this.setState({ userName: text })}
-                textContentType="givenName"
-                placeholder="Full Name"
-                returnKeyType="next"
-                onSubmitEditing={() => this.secondTextInput.focus()}
-              />
+          <View style={defaultStyles.expand}>
+            <AnimatedExpand>
+              {formType !== 'Create account' && (
+                <Touchable onPress={() => this.showForm('Create account')} style={{ marginBottom: 30 }}>
+                  <Feather
+                    name="arrow-left"
+                    size={40}
+                    color="white"
+                  />
+                </Touchable>
               )}
-              <TextInput
-                style={{
-                  width: 300,
-                  padding: 20,
-                  borderBottomRightRadius: 2,
-                  borderBottomLeftRadius: 2,
-                  borderTopColor: '#E3E3E3',
-                  borderTopWidth: 1,
-                  backgroundColor: 'white',
-                  fontSize: 16,
-                }}
-                value={email}
-                onChangeText={text => this.setState({ email: text })}
-                keyboardType="email-address"
-                textContentType="emailAddress"
-                placeholder="Email"
-                returnKeyType="next"
-                onSubmitEditing={() => this.thridTextInput.focus()}
-                ref={(input) => { this.secondTextInput = input; }}
-              />
-              <TextInput
-                style={{
-                  width: 300,
-                  padding: 20,
-                  borderBottomRightRadius: 2,
-                  borderBottomLeftRadius: 2,
-                  borderTopColor: '#E3E3E3',
-                  borderTopWidth: 1,
-                  backgroundColor: 'white',
-                  fontSize: 16,
-                }}
-                value={password}
-                onChangeText={text => this.setState({ password: text })}
-                secureTextEntry
-                textContentType="password"
-                placeholder="Password"
-                returnKeyType="go"
-                ref={(input) => { this.thridTextInput = input; }}
-                onSubmitEditing={this.login}
-              />
-            </Collapsible>
-            <View style={[indexStyle.box, { backgroundColor: activeColor }]}>
-              <TouchableWithoutFeedback
-                style={{ flex: 1 }}
-                onPress={() => {
-                  if (formType === 'Get Started') {
-                    this.showForm('Sign Up');
-                  } else if (formType === 'Sign Up') {
-                    this.signup();
-                  } else if (formType === 'Log In') {
-                    this.login();
-                  }
-                }}
-              >
+              <Text style={[styles.headerText, defaultStyles.primaryText]}>
+                {formType === 'Create account' && 'KdM: Kraków'}
+                {formType === 'Sign Up' && 'Create\nAccount.'}
+                {formType === 'Sign In' && 'Welcome\nBack.'}
+              </Text>
+              {formType !== 'Create account' && (
                 <View>
-                  <Text style={[{ fontSize: 16 }, styles.centerText]}>
-                    {formType}
-                  </Text>
+                  {formType === 'Sign Up' && (
+                    <TextField
+                      ref={(input) => { this.fullName = input; }}
+                      value={fullName}
+                      textColor={nearlyWhiteColor.toString()}
+                      tintColor={kindaGrayColor.toString()}
+                      baseColor={kindaGrayColor.toString()}
+                      autoCorrect={false}
+                      enablesReturnKeyAutomatically
+                      onFocus={this.removeErrors}
+                      onChangeText={this.onChangeText}
+                      onSubmitEditing={() => this.email.focus()}
+                      returnKeyType="next"
+                      label="Full Name"
+                      error={errors.fullName}
+                    />
+                  )}
+                  <TextField
+                    ref={(input) => { this.email = input; }}
+                    value={email}
+                    textColor={nearlyWhiteColor.toString()}
+                    tintColor={kindaGrayColor.toString()}
+                    baseColor={kindaGrayColor.toString()}
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    enablesReturnKeyAutomatically
+                    onFocus={this.removeErrors}
+                    onChangeText={this.onChangeText}
+                    onSubmitEditing={() => this.password.focus()}
+                    returnKeyType="next"
+                    label="Email"
+                    error={errors.email}
+                  />
+                  <TextField
+                    ref={(input) => { this.password = input; }}
+                    value={password}
+                    textColor={nearlyWhiteColor.toString()}
+                    tintColor={kindaGrayColor.toString()}
+                    baseColor={kindaGrayColor.toString()}
+                    secureTextEntry
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    enablesReturnKeyAutomatically
+                    onFocus={this.removeErrors}
+                    onChangeText={this.onChangeText}
+                    onSubmitEditing={() => this.onSubmit()}
+                    returnKeyType="done"
+                    label="Password"
+                    error={errors.password}
+                  />
                 </View>
-              </TouchableWithoutFeedback>
-            </View>
-            <Collapsible collapsed={showingForm} style={styles.startContainer}>
-              <View style={[indexStyle.box, { backgroundColor: 'white' }]}>
-                <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.showForm('Log In')}>
-                  <View>
-                    <Text style={[{ fontSize: 16 }, styles.centerText]}>
-                      Log In
-                    </Text>
-                  </View>
-                </TouchableWithoutFeedback>
-              </View>
-            </Collapsible>
-            <Collapsible collapsed={!errorState} style={{ padding: 0 }}>
-              <View style={[indexStyle.box, { flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.4 )' }]}>
-                <Text style={[{ fontSize: 16, color: 'white' }, styles.centerText]}>
+              )}
+            </AnimatedExpand>
+          </View>
+          <Collapsible collapsed={errorText === ''} style={{ marginBottom: 30 }}>
+            <View style={defaultStyles.expand}>
+              <View style={styles.errorBox}>
+                <Text style={[{ fontSize: 11 }, defaultStyles.primaryText]}>
                   {errorText}
                 </Text>
               </View>
-            </Collapsible>
-          </SafeAreaView>
+            </View>
+          </Collapsible>
+          <BoxButton
+            onPress={() => {
+              if (formType === 'Create account') {
+                this.showForm('Sign Up');
+              } else {
+                this.onSubmit();
+              }
+            }}
+            style={{ backgroundColor: activeColor }}
+          >
+            {formType}
+          </BoxButton>
+          <Collapsible collapsed={formType !== 'Create account'}>
+            <BoxButton onPress={() => this.showForm('Sign In')} style={{ backgroundColor: 'white' }}>
+              Sign In
+            </BoxButton>
+          </Collapsible>
         </ScrollView>
-      </View>
+      </SafeAreaView>
     );
   }
 }
 
-const indexStyle = {
-  box: {
-    width: 300,
-    marginTop: 12,
-    padding: 20,
-    borderRadius: 2,
+const styles = StyleSheet.create({
+  background: {
+    backgroundColor: darkColor,
+    flex: 1,
+    paddingHorizontal: 30,
   },
-};
-
-const AuthHome = (props) => {
-  const AppNavigator = createStackNavigator(
-    {
-      Index: {
-        screen: screenProps => <Index {...screenProps} {...props} />,
-      },
-    },
-    {
-      initialRouteName: 'Index',
-      navigationOptions: { header: null },
-    },
-  );
-  return <AppNavigator />;
-};
-
-export default AuthHome;
+  headerText: {
+    fontSize: 40,
+    fontWeight: '700',
+  },
+  errorBox: {
+    width: '50%',
+    paddingBottom: 12,
+    borderBottomColor: kindaGrayColor,
+    borderBottomWidth: 1,
+  },
+});
