@@ -16,7 +16,7 @@
         'no-use-before-define': ['error', { 'variables': false }],
         'import/no-extraneous-dependencies': 'off'
     },
-    "globals": { "fetch": false, "requestAnimationFrame": true },
+    "globals": { "fetch": false, "requestAnimationFrame": true, 'alert': true },
     'env': {
         'jest': true
     }

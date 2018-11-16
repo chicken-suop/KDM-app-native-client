@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 6cbb2256a9785ccdf0c432c2a5e435a4
+ * @relayHash c3cf3dabf1d7a1692ba8950138ce7cb1
  */
 
 /* eslint-disable */
@@ -16,7 +16,10 @@ export type SignUpMutationVariables = {|
 |};
 export type SignUpMutationResponse = {|
   +signUp: ?{|
-    +token: ?string
+    +token: ?string,
+    +user: ?{|
+      +id: string
+    |},
   |}
 |};
 export type SignUpMutation = {|
@@ -34,6 +37,9 @@ mutation SignUpMutation(
 ) {
   signUp(email: $email, password: $password, name: $fullName) {
     token
+    user {
+      id
+    }
   }
 }
 */
@@ -94,6 +100,24 @@ v1 = [
         "name": "token",
         "args": null,
         "storageKey": null
+      },
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "user",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "User",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "id",
+            "args": null,
+            "storageKey": null
+          }
+        ]
       }
     ]
   }
@@ -103,7 +127,7 @@ return {
   "operationKind": "mutation",
   "name": "SignUpMutation",
   "id": null,
-  "text": "mutation SignUpMutation(\n  $email: String!\n  $password: String!\n  $fullName: String!\n) {\n  signUp(email: $email, password: $password, name: $fullName) {\n    token\n  }\n}\n",
+  "text": "mutation SignUpMutation(\n  $email: String!\n  $password: String!\n  $fullName: String!\n) {\n  signUp(email: $email, password: $password, name: $fullName) {\n    token\n    user {\n      id\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -122,5 +146,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'cc9e9a565c08327880c8808e85407e99';
+(node/*: any*/).hash = '56fd06dd11700022ce4e325fca8db734';
 module.exports = node;

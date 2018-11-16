@@ -15,7 +15,7 @@ import defaultStyles, { activeColor } from '../../Styles';
 import daysData from '../../DaysData';
 import ScheduleItem from './ScheduleItem';
 
-export default class ScheduleScreen extends React.Component {
+export default class Schedule extends React.Component {
   static propTypes = {
     navigation: PropTypes.shape({
       navigate: PropTypes.func.isRequired,

@@ -29,10 +29,6 @@ export default class AnimatedExpand extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    this.unmounted = true;
-  }
-
   measureContent(callback) {
     this.setState({ measuring: true }, () => {
       requestAnimationFrame(() => {
@@ -90,12 +86,8 @@ export default class AnimatedExpand extends React.Component {
     }
 
     return (
-      <Animated.View style={[style, contentStyle]}>
-        <Animated.View
-          ref={(ref) => { this.contentHandle = ref; }}
-        >
-          {children}
-        </Animated.View>
+      <Animated.View style={[style, contentStyle]} ref={(ref) => { this.contentHandle = ref; }}>
+        {children}
       </Animated.View>
     );
   }

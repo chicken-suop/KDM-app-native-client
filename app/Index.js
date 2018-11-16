@@ -1,50 +1,42 @@
 import React from 'react';
-import { AsyncStorage } from 'react-native';
-import Home from './Home';
-import { storeSession, fetchSession } from './helpers/actions';
-import AuthHome from './containers/Auth/AuthHome';
+import { ActivityIndicator, View } from 'react-native';
+import createRootNavigator from './router';
+import { fetchSession } from './helpers/auth';
+import { darkColor, nearlyWhiteColor } from './Styles';
 
-export default class Index extends React.Component {
-  state = {
-    sessionInfo: {},
-    isSignedIn: false,
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      signedIn: false,
+      checkedSignIn: false,
+    };
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
     try {
       const sessionInfo = await fetchSession();
-      if (sessionInfo) {
-        this.setState({ isSignedIn: true, sessionInfo });
-      } else {
-        this.setState({ isSignedIn: false });
-      }
+      this.setState({ signedIn: Boolean(sessionInfo), checkedSignIn: true });
     } catch (e) {
-      this.setState({ isSignedIn: false });
+      this.setState({ signedIn: false, checkedSignIn: true });
     }
-  }
-
-  completeSignIn = (sessionInfo) => {
-    this.setState({ isSignedIn: true, sessionInfo });
-    storeSession(sessionInfo);
-  }
-
-  signOut = async () => {
-    await AsyncStorage.removeItem('@kdmApp:localSession');
-    this.setState({ isSignedIn: false, sessionInfo: null });
   }
 
   render() {
-    const { isSignedIn, sessionInfo } = this.state;
-    if (isSignedIn === false) {
+    const { signedIn, checkedSignIn } = this.state;
+
+    // Wait until we've checked AsyncStorage before we render
+    if (!checkedSignIn) {
+      // Display loading
       return (
-        <AuthHome signInCallback={this.completeSignIn} />
+        <View style={{ flex: 1, justifyContent: 'center', backgroundColor: darkColor }}>
+          <ActivityIndicator size="small" color={nearlyWhiteColor} />
+        </View>
       );
     }
-    return (
-      <Home
-        signOutCallback={this.signOut}
-        sessionInfo={sessionInfo}
-      />
-    );
+
+    const Layout = createRootNavigator(signedIn);
+    return <Layout />;
   }
 }

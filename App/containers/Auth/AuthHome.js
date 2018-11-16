@@ -21,6 +21,7 @@ import defaultStyles, {
 import SignInMutation from '../../mutation/SignInMutation';
 import SignUpMutation from '../../mutation/SignUpMutation';
 import { ERRORS } from '../../helpers/config';
+import { storeSession } from '../../helpers/auth';
 import Touchable from '../../components/Touchable';
 import BoxButton from '../../components/BoxButton';
 import AnimatedExpand from '../../components/AnimatedExpand';
@@ -29,7 +30,9 @@ export default class AuthHome extends React.Component {
   fullName = null
 
   static propTypes = {
-    signInCallback: PropTypes.func.isRequired,
+    navigation: PropTypes.shape({
+      navigate: PropTypes.func.isRequired,
+    }).isRequired,
   };
 
   state = {
@@ -39,6 +42,7 @@ export default class AuthHome extends React.Component {
     fullName: '',
     email: '',
     password: '',
+    loading: false,
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -46,26 +50,30 @@ export default class AuthHome extends React.Component {
       formType,
       errorText,
       errors,
+      loading,
     } = this.state;
-
     return (
       formType !== nextState.formType
       || errorText !== nextState.errorText
       || errors.fullName !== nextState.errors.fullName
       || errors.email !== nextState.errors.email
       || errors.password !== nextState.errors.password
+      || loading !== nextState.loading
     );
   }
 
   onSubmit = () => {
-    const errors = this.checkErrors();
-    this.setState({ errors });
-    if (Object.keys(errors).length === 0 && errors.constructor === Object) {
-      const { formType } = this.state;
-      if (formType === 'Sign Up') {
-        this.signUp();
-      } else if (formType === 'Sign In') {
-        this.signIn();
+    const { loading } = this.state;
+    if (!loading) {
+      const errors = this.checkErrors();
+      this.setState({ errors });
+      if (Object.keys(errors).length === 0 && errors.constructor === Object) {
+        const { formType } = this.state;
+        if (formType === 'Sign Up') {
+          this.signUp();
+        } else if (formType === 'Sign In') {
+          this.signIn();
+        }
       }
     }
   }
@@ -88,12 +96,15 @@ export default class AuthHome extends React.Component {
   }
 
   showForm = (type) => {
-    if (type !== 'Create account') {
-      this.setState({ formType: type });
-    } else {
-      this.removeErrors();
-      this.setState({ formType: type });
-    }
+    this.setState({ formType: type }, () => {
+      if (type === 'Sign Up') {
+        this.fullName.focus();
+      } else if (type === 'Sign In') {
+        this.email.focus();
+      } else if (type === 'Create account') {
+        this.removeErrors();
+      }
+    });
   }
 
   checkErrors = () => {
@@ -120,20 +131,25 @@ export default class AuthHome extends React.Component {
     this.email.focus();
     Keyboard.dismiss();
 
-    const { signInCallback } = this.props;
+    const { navigation } = this.props;
     const { email, password, fullName } = this.state;
+    this.setState({ loading: true });
     SignUpMutation.commit({
       email,
       password,
       fullName,
       onCompleted: (response, err) => {
+        this.setState({ loading: false });
         if (err && err.length) {
           this.setError('The was an issue signing you in');
         } else {
-          signInCallback({ token: response.token });
+          const { user, token } = response.signUp;
+          storeSession({ userId: user.id, token });
+          navigation.navigate('SignedIn');
         }
       },
       onError: (err) => {
+        this.setState({ loading: false });
         switch (err) {
           case ERRORS.NetworkRequestFailed:
             this.setError("Couldn't connect to server");
@@ -151,12 +167,14 @@ export default class AuthHome extends React.Component {
     this.email.focus();
     Keyboard.dismiss();
 
-    const { signInCallback } = this.props;
+    const { navigation } = this.props;
     const { email, password } = this.state;
+    this.setState({ loading: true });
     SignInMutation.commit({
       email,
       password,
       onCompleted: (response, err) => {
+        this.setState({ loading: false });
         if (err && err.length) {
           switch (err[0].message) {
             case ERRORS.WrongEmailOrPassword:
@@ -167,10 +185,13 @@ export default class AuthHome extends React.Component {
               break;
           }
         } else {
-          signInCallback({ token: response.token });
+          const { user, token } = response.signIn;
+          storeSession({ userId: user.id, token });
+          navigation.navigate('SignedIn');
         }
       },
       onError: (err) => {
+        this.setState({ loading: false });
         switch (err) {
           case ERRORS.NetworkRequestFailed:
             this.setError('The was an issue signing you in');
@@ -191,6 +212,7 @@ export default class AuthHome extends React.Component {
       fullName,
       email,
       password,
+      loading,
     } = this.state;
 
     return (
@@ -283,6 +305,15 @@ export default class AuthHome extends React.Component {
               </View>
             </View>
           </Collapsible>
+          <Collapsible collapsed={!loading} style={{ marginBottom: 30 }}>
+            <View style={defaultStyles.expand}>
+              <View style={styles.errorBox}>
+                <Text style={[{ fontSize: 11 }, defaultStyles.primaryText]}>
+                  Loading...
+                </Text>
+              </View>
+            </View>
+          </Collapsible>
           <BoxButton
             onPress={() => {
               if (formType === 'Create account') {
@@ -291,7 +322,7 @@ export default class AuthHome extends React.Component {
                 this.onSubmit();
               }
             }}
-            style={{ backgroundColor: activeColor }}
+            style={{ backgroundColor: loading ? activeColor.darken(0.8) : activeColor }}
           >
             {formType}
           </BoxButton>
@@ -321,5 +352,6 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
     borderBottomColor: kindaGrayColor,
     borderBottomWidth: 1,
+    flexDirection: 'row',
   },
 });
